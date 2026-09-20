@@ -1,0 +1,11 @@
+{
+  "name": "spelling-ea-ee",
+  "version": "1.0.0",
+  "description": "Static mobile spelling practice for the ea and ee patterns.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check data.js logic.js speech.js ui-helpers.js focus-policy.js app.js"
+  }
+}
