@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una persona leyendo</title>
+  <desc id="descripcion">Una persona sostiene un libro abierto con las dos manos. La cabeza se inclina y los ojos miran hacia las páginas mientras lee.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M118 110C124 96 142 91 160 92C182 90 199 98 204 111L215 177H105Z" fill="#146B63"/>
+    <path d="M148 81V98Q160 111 172 98V81" fill="#DAA078"/>
+    <path d="M131 65C126 56 117 64 123 75L134 82M188 64C196 57 201 67 195 75L187 82" fill="#E5B18A"/>
+    <path d="M132 45C138 28 181 28 189 47L189 70C188 86 174 97 161 96C145 96 131 83 131 67Z" fill="#E5B18A"/>
+    <path d="M131 63C122 48 129 31 142 27C152 17 178 23 187 33C195 42 195 56 189 63L182 49Q165 51 151 39Q143 52 132 51Z" fill="#594235"/>
+    <path d="M143 68Q148 71 153 68M169 68Q174 71 179 68" fill="none" stroke-width="2.1"/>
+    <path d="M148 71V73M174 71V73" fill="none" stroke-width="3.2"/>
+    <path d="M161 71L158 78H162M154 84Q161 88 167 83" fill="none" stroke="#986448" stroke-width="1.8"/>
+    <path d="M124 106Q110 109 101 133L97 150L108 158L126 133M197 106Q212 108 220 133L224 150L213 158L197 133" fill="#E5B18A"/>
+    <path d="M75 108Q119 104 160 122Q203 104 245 108L239 173Q197 169 160 185Q122 169 81 173Z" fill="#F2C14E"/>
+    <path d="M84 103Q123 102 160 119V177Q123 162 88 163Z" fill="#FBF7EE"/>
+    <path d="M160 119Q197 102 236 103L232 163Q195 162 160 177Z" fill="#FFFFFF"/>
+    <g fill="none" stroke="#93ABA5" stroke-width="2">
+      <path d="M100 119Q121 120 145 129M101 132Q122 133 145 142M102 145Q120 146 136 152M176 129Q199 120 221 119M176 142Q198 133 220 132M184 152Q202 146 219 145"/>
+    </g>
+    <path d="M87 138C76 132 72 144 78 152L88 157Q94 155 93 150L87 144Q96 147 96 142Q93 139 87 138Z" fill="#E5B18A"/>
+    <path d="M233 138C244 132 248 144 242 152L232 157Q226 155 227 150L233 144Q224 147 224 142Q227 139 233 138Z" fill="#E5B18A"/>
+  </g>
+</svg>

@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
-    "check": "node --check data.js logic.js speech.js ui-helpers.js focus-policy.js app.js",
-    "check:browser": "node checks/word-selection.mjs"
+    "check": "node --check data.js && node --check logic.js && node --check speech.js && node --check illustrations.js && node --check ui-helpers.js && node --check focus-policy.js && node --check app.js && node --check checks/word-selection.mjs && node --check checks/word-illustrations.mjs",
+    "check:browser": "node checks/word-selection.mjs",
+    "check:illustrations": "node checks/word-illustrations.mjs"
   }
 }

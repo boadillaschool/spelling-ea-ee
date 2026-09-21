@@ -1,4 +1,5 @@
 import { WORDS } from './data.js';
+import { getWordIllustration } from './illustrations.js';
 import {
   addMockScore,
   advanceLearn,
@@ -260,6 +261,25 @@ function audioButton(item) {
 }
 
 /* ---------- Word, cue and form building blocks ---------- */
+
+function wordPicture(item) {
+  const illustration = getWordIllustration(item.id);
+  const fallback = el('figcaption', { class: 'picture-fallback', hidden: true, text: illustration.alt });
+  const image = el('img', {
+    src: illustration.src,
+    alt: illustration.alt,
+    width: 320,
+    height: 200,
+    loading: 'eager',
+    decoding: 'async',
+    draggable: 'false',
+    onerror: () => {
+      image.hidden = true;
+      fallback.hidden = false;
+    },
+  });
+  return el('figure', { class: 'word-picture', lang: 'es' }, image, fallback);
+}
 
 function wordElement(item) {
   const { before, pattern, after } = splitByPattern(item.word, item.pattern);
@@ -590,7 +610,7 @@ function renderHome() {
       desc: weakIds.length > 0 ? `${plural(weakIds.length, 'palabra pendiente', 'palabras pendientes')}.` : 'Aún no hay errores pendientes.',
       run: () => startPractice(weakIds, 'review'),
     },
-    { name: 'Simulacro tranquilo', desc: '10 palabras, sin pistas hasta el final.', run: startMock },
+    { name: 'Simulacro tranquilo', desc: '10 palabras con dibujos, sin corregir hasta el final.', run: startMock },
   ];
 
   const main = [
@@ -736,7 +756,7 @@ function renderLearn() {
         { class: 'card exercise' },
         stepHeading('Escucha y piensa'),
         stepHelp('¿Cómo crees que se escribe?'),
-        el('div', { class: 'stage' }, cueElement(item), audioButton(item)),
+        el('div', { class: 'stage' }, wordPicture(item), cueElement(item), audioButton(item)),
       ),
       [button('Mostrar la palabra', () => {
         learn.machine = advanceLearn(learn.machine, { type: 'reveal' });
@@ -777,7 +797,7 @@ function renderLearn() {
         'section',
         { class: 'card exercise' },
         stepHeading(misses > 0 ? 'Míralo otra vez' : 'Mira la palabra'),
-        el('div', { class: 'stage' }, wordElement(item), sentenceElement(item), audioButton(item)),
+        el('div', { class: 'stage' }, wordPicture(item), wordElement(item), sentenceElement(item), audioButton(item)),
         family,
         feedbackSlot(),
       ),
@@ -800,7 +820,7 @@ function renderLearn() {
         'section',
         { class: 'card exercise' },
         stepHeading('Ahora sin mirar', false),
-        el('div', { class: 'stage' }, cueElement(item), audioButton(item), el('p', { class: 'hidden-word', text: 'La palabra está oculta.' })),
+        el('div', { class: 'stage' }, wordPicture(item), cueElement(item), audioButton(item), el('p', { class: 'hidden-word', text: 'La palabra está oculta.' })),
         form,
         feedbackSlot(),
       ),
@@ -814,7 +834,7 @@ function renderLearn() {
       'section',
       { class: 'card exercise' },
       stepHeading('Palabra aprendida'),
-      el('div', { class: 'stage' }, wordElement(item), sentenceElement(item)),
+      el('div', { class: 'stage' }, wordPicture(item), wordElement(item), sentenceElement(item)),
       feedbackSlot(),
     ),
     [button(learn.index + 1 >= total ? 'Terminar' : 'Siguiente palabra', nextLearnWord)],
@@ -925,7 +945,7 @@ function renderPractice() {
         'section',
         { class: 'card exercise' },
         stepHeading('Míralo despacio'),
-        el('div', { class: 'stage' }, wordElement(item), sentenceElement(item), audioButton(item)),
+        el('div', { class: 'stage' }, wordPicture(item), wordElement(item), sentenceElement(item), audioButton(item)),
         feedbackSlot(),
       ),
       [button('Ocultar y escribir', () => {
@@ -943,7 +963,7 @@ function renderPractice() {
         'section',
         { class: 'card exercise' },
         stepHeading(errors === 0 ? 'Palabra correcta' : 'Palabra para repasar'),
-        el('div', { class: 'stage' }, wordElement(item), sentenceElement(item)),
+        el('div', { class: 'stage' }, wordPicture(item), wordElement(item), sentenceElement(item)),
         feedbackSlot(),
       ),
       [button(practice.index + 1 >= total ? 'Ver resumen' : 'Siguiente palabra', nextPracticeWord)],
@@ -964,7 +984,7 @@ function renderPractice() {
       { class: 'card exercise' },
       stepHeading(headings[phase], false),
       stepHelp(helps[phase]),
-      el('div', { class: 'stage' }, cueElement(item), audioButton(item), el('p', { class: 'hidden-word', text: 'La palabra está oculta.' })),
+      el('div', { class: 'stage' }, wordPicture(item), cueElement(item), audioButton(item), el('p', { class: 'hidden-word', text: 'La palabra está oculta.' })),
       form,
       feedbackSlot(),
     ),
@@ -1095,7 +1115,7 @@ function renderMock() {
   const { form } = answerForm({
     label: `Escribe la palabra ${mock.index + 1}`,
     value: mock.answers[item.id] ?? '',
-    hint: 'No hay pistas ni correcciones hasta el final.',
+    hint: 'El dibujo ayuda con el significado. Corregimos al final.',
     onSubmit: nextMock,
     onInput: (value) => {
       mock.answers[item.id] = value;
@@ -1109,7 +1129,7 @@ function renderMock() {
       { class: 'card exercise' },
       stepHeading('Escucha y escribe', false),
       stepHelp('Escucha cada palabra y escríbela.'),
-      el('div', { class: 'stage' }, el('div', { class: 'cue-slot', 'data-cue-slot': '' }, mockCue()), audioButton(item)),
+      el('div', { class: 'stage' }, wordPicture(item), el('div', { class: 'cue-slot', 'data-cue-slot': '' }, mockCue()), audioButton(item)),
       form,
     ),
     [

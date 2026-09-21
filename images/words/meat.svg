@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un filete de carne en un plato</title>
+  <desc id="descripcion">Un filete cocinado, de color marrón cálido y con marcas de parrilla, descansa en un plato. Un tenedor y un cuchillo indican que es comida preparada.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="160" cy="115" rx="103" ry="63" fill="#FBF7EE"/>
+    <ellipse cx="160" cy="115" rx="88" ry="49" fill="#FFFFFF" stroke="#A8BDB9" stroke-width="2"/>
+    <path d="M99 83C106 60 145 57 169 66C188 74 193 82 211 84C234 87 245 104 234 122C224 140 194 149 170 149C151 149 145 137 131 138C113 140 91 130 87 115C82 101 88 92 99 83Z" fill="#ECD2B5"/>
+    <path d="M106 88C112 71 142 69 163 76C181 82 189 91 209 94C224 96 234 106 225 117C215 132 191 138 172 138C153 137 149 126 131 128C116 130 100 124 97 113C93 102 98 96 106 88Z" fill="#AF7153" stroke="#865035" stroke-width="2"/>
+    <path d="M118 85L142 110M146 81L175 114M177 92L203 119" fill="none" stroke="#754832" stroke-width="5"/>
+    <path d="M113 116C120 121 129 118 136 122M194 131L203 128" fill="none" stroke="#D99F7B" stroke-width="2"/>
+    <path d="M33 67V86Q33 97 43 97Q53 97 53 86V67M43 67V151" fill="none" stroke-width="3.2"/>
+    <path d="M282 65C271 72 271 101 277 110H283V151H288V65Z" fill="#DCE6E6"/>
+  </g>
+</svg>

@@ -14,13 +14,13 @@ await fs.mkdir(out, { recursive: true });
 let server;
 let base = process.env.BASE;
 if (!base) {
-  const allowed = new Set(['index.html', 'styles.css', 'app.js', 'data.js', 'logic.js', 'speech.js', 'ui-helpers.js', 'focus-policy.js', ...words.map(id => `audio/en-gb-v1/${id}.mp3`)]);
+  const allowed = new Set(['index.html', 'styles.css', 'app.js', 'data.js', 'illustrations.js', 'logic.js', 'speech.js', 'ui-helpers.js', 'focus-policy.js', ...words.map(id => `audio/en-gb-v1/${id}.mp3`), ...words.map(id => `images/words/${id}.svg`)]);
   server = http.createServer(async (req, res) => {
     try {
       const file = new URL(req.url, 'http://localhost').pathname.slice(1) || 'index.html';
       if (req.method !== 'GET' || !allowed.has(file)) { res.writeHead(404); res.end(); return; }
       const body = await fs.readFile(path.join(root, file));
-      const type = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.mp3': 'audio/mpeg' }[path.extname(file)];
+      const type = { '.html': 'text/html', '.js': 'text/javascript', '.css': 'text/css', '.mp3': 'audio/mpeg', '.svg': 'image/svg+xml' }[path.extname(file)];
       res.writeHead(200, { 'Content-Type': type, 'Cache-Control': 'no-store' });
       res.end(body);
     } catch { res.writeHead(404); res.end(); }

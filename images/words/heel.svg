@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">El talón está detrás del pie</title>
+  <desc id="descripcion">Un pie descalzo se ve de lado, con los dedos hacia la derecha. El círculo verde y la zona amarilla señalan solo el talón, en la parte posterior e inferior del pie, no el tobillo ni los dedos.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M108 31H154L152 88Q157 108 184 119L230 134C246 136 271 139 277 151Q280 162 262 165L219 166Q197 167 183 159Q170 154 156 159Q135 170 110 168C97 168 87 162 88 149C88 132 101 112 104 95Z" fill="#E5B18A"/>
+    <path d="M105 124C96 134 93 143 95 152C96 160 104 163 115 162L129 159Q135 143 121 133Z" fill="#F2C14E" stroke="none"/>
+    <path d="M147 97Q138 94 136 106M183 130Q201 140 222 142" fill="none" stroke="#B97C57" stroke-width="1.8"/>
+    <path d="M261 144Q255 149 261 154M247 158L246 164M236 160V165" fill="none" stroke="#B97C57" stroke-width="1.8"/>
+    <circle cx="109" cy="147" r="29" fill="none" stroke="#146B63" stroke-width="3.3"/>
+    <path d="M38 116Q52 136 73 141M66 132L74 141L63 145" fill="none" stroke="#146B63" stroke-width="3"/>
+  </g>
+</svg>

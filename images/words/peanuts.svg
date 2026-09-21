@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Cacahuetes con cáscara y pelados</title>
+  <desc id="descripcion">Dos cáscaras rugosas tienen dos abultamientos y una cintura estrecha en medio. A su lado hay tres granos pelados de cacahuete, de color tostado claro.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(92 110) rotate(28)">
+      <path d="M0-53C-23-53-30-33-20-17C-14-8-15-2-21 9C-34 31-19 52 2 52C26 52 33 29 20 10C13-1 14-8 21-21C31-40 17-55 0-53Z" fill="#DEB57B"/>
+      <g fill="none" stroke="#AD7D46" stroke-width="1.7">
+        <path d="M0-45C-7-30 5-16 0-1C-7 16 6 31 1 44M-12-42C-17-29-6-16-12-1C-20 17-9 34-11 40M12-41C19-28 7-15 12-1C21 16 11 31 13 40"/>
+        <path d="M-20-32Q0-39 23-32M-18-19Q0-25 20-19M-16-5Q0-10 16-5M-21 11Q0 5 20 11M-24 25Q0 18 25 25M-18 39Q1 32 20 39"/>
+      </g>
+    </g>
+    <g transform="translate(180 82) rotate(59)">
+      <path d="M0-49C-21-49-28-31-19-16C-12-6-14 0-20 10C-31 30-17 48 2 48C24 48 31 28 19 10C12 0 13-7 20-19C29-37 16-51 0-49Z" fill="#EDCD96"/>
+      <g fill="none" stroke="#B58A50" stroke-width="1.6">
+        <path d="M0-42C-7-27 5-14 0 1C-7 15 5 29 1 41M-11-39C-16-26-7-12-11 1C-19 16-9 30-10 37M11-38C17-25 7-13 11 1C20 15 10 30 12 37"/>
+        <path d="M-19-30Q0-35 21-30M-16-16Q0-22 18-16M-14-3Q0-8 14-3M-21 12Q0 6 20 12M-22 26Q0 19 23 26M-15 39Q1 32 17 39"/>
+      </g>
+    </g>
+    <g transform="translate(199 149) rotate(-28)">
+      <path d="M-16 0C-16-15 0-20 11-12C22-4 18 13 5 16C-7 19-16 12-16 0Z" fill="#F0D0A2"/>
+      <path d="M0-12Q-5 0 2 12" fill="none" stroke="#BD8C57" stroke-width="1.8"/>
+    </g>
+    <g transform="translate(245 142) rotate(31)">
+      <path d="M-15 0C-15-15 1-19 12-10C21-1 16 13 4 16C-8 18-16 11-15 0Z" fill="#DFAE79"/>
+      <path d="M1-12Q-5 1 1 12" fill="none" stroke="#B27B48" stroke-width="1.8"/>
+    </g>
+    <path d="M260 101C269 100 277 108 274 118C272 127 259 129 252 122C244 115 250 103 260 101Z" fill="#F0D0A2"/>
+    <path d="M262 106Q256 113 264 122" fill="none" stroke="#BD8C57" stroke-width="1.8"/>
+  </g>
+</svg>

@@ -24,12 +24,22 @@ The interface is in Spanish (aimed at 2º de Primaria); the audio is British Eng
 - The choice survives returning home in the same page session; reloading starts with all ten again. Changing the selection writes nothing to storage.
 - **Aprender** and **Simulacro** still cover all ten words. The daily mission is a secondary, explicitly optional suggestion with its own clearly labeled subset.
 
+## Meaning illustrations
+
+- Each of the ten words has its own original, local SVG illustration, shown with the active word throughout learning, practice, error review and mock questions.
+- The drawings explain the meaning, not the spelling: there are no English answers written inside the pictures or their Spanish alternative text.
+- Relational words use scenes: a ball between two boxes, a person reaching for a shelf, and a simple two-piece puzzle for `easy`. The `heel` illustration identifies the back of a bare foot.
+- Images load from `images/words/` on the same origin. No stock-image service, third-party request, tracking or remote font is involved.
+- Explicit dimensions reserve space before loading. Compact images leave room for the task, with smaller pictures on short screens.
+- If an image fails to load, its Spanish meaning description appears instead; answering and audio keep working.
+- See [image provenance and usage](images/README.md).
+
 ## Modes
 
 - **Aprender**: active recall. Hear the word, reveal the spelling with only `ea`/`ee` highlighted, identify the family, hide it, then type it once.
 - **Practicar**: select from the ten-word list, then type each chosen word you hear. After a first mistake you can retry; after a second one the spelling is revealed, hidden again, and must be typed correctly once.
 - **Repasar errores**: the same flow, limited to words that need more work.
-- **Simulacro**: the ten words exactly once in random order, with no hints or feedback until you submit. If speech is unsupported, or playback fails for a prompt, the Spanish cue is shown as a fallback for that prompt.
+- **Simulacro**: the ten words exactly once in random order, with meaning illustrations but no revealed spelling or corrections until you submit. If speech is unsupported, or playback fails for a prompt, the Spanish cue is shown as a fallback for that prompt.
 - **Resultado** (`Has terminado`): score, best mock score, words to revisit, a suggested next step, and sharing with the app URL (Web Share, clipboard, or manual copy).
 
 ## Privacy
@@ -62,6 +72,7 @@ Optional browser checks require Playwright as developer tooling only:
 npm install --no-save --package-lock=false playwright
 npx playwright install chromium
 npm run check:browser
+npm run check:illustrations
 ```
 
 The check serves the app locally, exercises all-ten and subset sessions, keyboard selection, empty selection, storage isolation, mobile layouts and 200% text size. Evidence goes to the system temporary directory, never this repository. Set `BASE` to test a deployment, `QA_OUT` to choose an evidence directory, or `AXE_SOURCE` to an installed `axe-core/axe.min.js` file for additional WCAG checks. `PLAYWRIGHT_MODULE` and `BROWSER_PATH` can point to existing developer-tool installations.
@@ -77,5 +88,6 @@ The check serves the app locally, exercises all-ten and subset sessions, keyboar
 | `focus-policy.js` | Pure focus policy: focus moves on screen/step changes, not on same-step feedback |
 | `speech.js` | Bundled audio playback, cancellation, and slower en-GB Web Speech fallback |
 | `audio/en-gb-v1/` | Ten same-origin British English pronunciation clips |
+| `illustrations.js`, `images/words/` | Fixed word-to-image metadata, Spanish alt text and ten original meaning illustrations |
 | `data.js` | The ten words with cues and sentences |
 | `tests/` | Unit tests |

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una pelota entre dos cajas</title>
+  <desc id="descripcion">Dos cajas separadas están en el mismo suelo. La pelota se encuentra en el hueco central, con una caja a su izquierda y otra a su derecha, no encima de ellas.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 160H298" fill="none" stroke="#CBD7D2" stroke-width="2"/>
+    <path d="M34 101L52 81H102L112 101V159H34Z" fill="#D2A471"/>
+    <path d="M34 101H112L102 81H52Z" fill="#F1D8AF"/>
+    <path d="M98 101V159H112V101" fill="#BD8957"/>
+    <path d="M68 82L63 101V118L70 115L77 118V101L80 82" fill="#FBF7EE" stroke="#B98D5E" stroke-width="1.7"/>
+    <path d="M47 145H62" fill="none" stroke="#A6774C" stroke-width="2"/>
+    <path d="M208 101L218 81H268L286 101V159H208Z" fill="#D2A471"/>
+    <path d="M208 101H286L268 81H218Z" fill="#F1D8AF"/>
+    <path d="M272 101V159H286V101" fill="#BD8957"/>
+    <path d="M240 82L237 101V118L244 115L251 118V101L252 82" fill="#FBF7EE" stroke="#B98D5E" stroke-width="1.7"/>
+    <path d="M222 145H237" fill="none" stroke="#A6774C" stroke-width="2"/>
+    <circle cx="160" cy="132" r="27" fill="#F2C14E"/>
+    <path d="M146 109C166 115 175 134 171 157C164 160 155 160 148 156C153 139 147 125 137 118Z" fill="#146B63" stroke="none"/>
+    <circle cx="160" cy="132" r="27" fill="none"/>
+    <path d="M177 119L179 123" fill="none" stroke="#FBF7EE" stroke-width="3"/>
+  </g>
+</svg>

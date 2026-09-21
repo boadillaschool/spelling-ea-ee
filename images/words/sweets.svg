@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Caramelos envueltos y un tarro</title>
+  <desc id="descripcion">Un tarro contiene varios caramelos de colores con los extremos del papel retorcidos. Hay otro caramelo grande fuera del tarro.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M148 45H225V57Q243 65 243 80V156Q243 173 226 173H146Q129 173 129 156V80Q129 65 148 57Z" fill="#F2F7F3"/>
+    <g transform="translate(182 92) rotate(-16)">
+      <path d="M-18-8L-34-16L-31-3L-36 10L-17 8M18-8L34-16L31-3L36 10L17 8" fill="#DDA66A" stroke-width="1.9"/>
+      <rect x="-21" y="-13" width="42" height="26" rx="11" fill="#F2C14E" stroke-width="2"/>
+      <path d="M-5-12L6 12" fill="none" stroke="#FBF7EE" stroke-width="7"/>
+    </g>
+    <g transform="translate(203 140) rotate(18)">
+      <path d="M-15-7L-29-13L-26-2L-30 9L-14 7M15-7L29-13L26-2L30 9L14 7" fill="#91B5A9" stroke-width="1.9"/>
+      <rect x="-18" y="-11" width="36" height="22" rx="9" fill="#146B63" stroke-width="2"/>
+      <path d="M-4-10L5 10" fill="none" stroke="#FBF7EE" stroke-width="5"/>
+    </g>
+    <g transform="translate(156 140) rotate(-30)">
+      <path d="M-10-7L-22-10L-19 0L-22 10L-10 7M10-7L22-10L19 0L22 10L10 7" fill="#E6A48D" stroke-width="1.8"/>
+      <rect x="-13" y="-10" width="26" height="20" rx="8" fill="#CC7964" stroke-width="2"/>
+      <path d="M-2-9L3 9" fill="none" stroke="#FBF7EE" stroke-width="4"/>
+    </g>
+    <path d="M140 91V117M231 81V112M141 156Q141 162 149 162" fill="none" stroke="#9CB8B5" stroke-width="2"/>
+    <path d="M148 45H225V57Q243 65 243 80V156Q243 173 226 173H146Q129 173 129 156V80Q129 65 148 57Z" fill="none"/>
+    <rect x="141" y="32" width="91" height="16" rx="5" fill="#146B63"/>
+    <path d="M153 38V43M167 38V43M181 38V43M195 38V43M209 38V43M223 38V43" fill="none" stroke="#91C0AC" stroke-width="2"/>
+    <g transform="translate(73 135) rotate(-18)">
+      <path d="M-20-10L-39-17L-35-3L-40 12L-20 10M20-10L39-17L35-3L40 12L20 10" fill="#F5D889"/>
+      <rect x="-25" y="-17" width="50" height="34" rx="14" fill="#F2C14E"/>
+      <path d="M-7-16L6 16" fill="none" stroke="#FBF7EE" stroke-width="9"/>
+      <path d="M-29-8L-24-3M29-8L24-3" fill="none" stroke="#B98B40" stroke-width="1.7"/>
+    </g>
+  </g>
+</svg>

@@ -677,10 +677,32 @@ progress::-moz-progress-bar {
 
 .stage {
   display: grid;
+  container-type: inline-size;
+  inline-size: 100%;
+  min-inline-size: 0;
   gap: 0.75rem;
   justify-items: center;
   padding: 0.5rem 0;
   text-align: center;
+}
+
+.word-picture {
+  width: min(100%, 256px);
+  margin: 0;
+}
+
+.word-picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: contain;
+}
+
+@media (max-height: 32rem) {
+  .word-picture {
+    width: min(100%, 160px);
+  }
 }
 
 .cue {
@@ -706,12 +728,15 @@ progress::-moz-progress-bar {
 }
 
 .word {
+  --word-size: clamp(2.5rem, 12vw, 3.75rem);
   display: inline-block;
   font-family: var(--font-word);
-  font-size: clamp(2.5rem, 12vw, 3.75rem);
+  /* Keep a spelling word intact even when surrounding UI text is enlarged. */
+  font-size: min(var(--word-size), 20cqi);
   font-weight: 700;
   letter-spacing: 0.03em;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .pattern {
@@ -740,6 +765,7 @@ progress::-moz-progress-bar {
 
 .family-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.75rem;
 }
 
@@ -936,7 +962,7 @@ progress::-moz-progress-bar {
   }
 
   .word {
-    font-size: 4rem;
+    --word-size: 4rem;
   }
 }
 
@@ -961,7 +987,7 @@ progress::-moz-progress-bar {
   }
 
   .word {
-    font-size: 2.75rem;
+    --word-size: 2.75rem;
   }
 }
 

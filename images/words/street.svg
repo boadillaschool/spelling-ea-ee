@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una calle del barrio</title>
+  <desc id="descripcion">Una calzada pasa entre dos aceras y las casas del barrio. Las rayas blancas de un paso de peatones cruzan la calle de una acera a la otra.</desc>
+  <g stroke="#17324D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M115 65H205L280 181H40Z" fill="#F0E7D5"/>
+    <path d="M134 65H186L249 181H71Z" fill="#9EADB7"/>
+    <path d="M123 79L60 176M197 79L261 176" fill="none" stroke="#D4C8B2" stroke-width="1.7"/>
+    <path d="M94 96V50L111 36L129 50V96Z" fill="#DBE8DE"/>
+    <path d="M91 51L111 34L131 51" fill="none" stroke="#146B63" stroke-width="4"/>
+    <rect x="102" y="58" width="11" height="13" rx="1.5" fill="#FBF7EE" stroke-width="1.8"/>
+    <path d="M118 96V79H109V96" fill="#C5986A" stroke-width="1.8"/>
+    <path d="M192 96V50L210 36L229 50V96Z" fill="#F4D69A"/>
+    <path d="M190 51L210 34L231 51" fill="none" stroke="#B57558" stroke-width="4"/>
+    <rect x="207" y="58" width="12" height="13" rx="1.5" fill="#FBF7EE" stroke-width="1.8"/>
+    <path d="M204 96V79H196V96" fill="#146B63" stroke-width="1.8"/>
+    <path d="M27 126V75L59 53L91 75V126Z" fill="#F3D79D"/>
+    <path d="M22 77L59 51L96 77" fill="none" stroke="#B57558" stroke-width="5"/>
+    <rect x="37" y="84" width="17" height="19" rx="1.5" fill="#FBF7EE"/>
+    <rect x="65" y="84" width="17" height="19" rx="1.5" fill="#FBF7EE"/>
+    <path d="M46 84V103M74 84V103M52 126V110H67V126" fill="#146B63" stroke-width="1.8"/>
+    <path d="M230 126V75L262 53L294 75V126Z" fill="#DBE8DE"/>
+    <path d="M225 77L262 51L299 77" fill="none" stroke="#146B63" stroke-width="5"/>
+    <rect x="239" y="84" width="17" height="19" rx="1.5" fill="#FBF7EE"/>
+    <rect x="268" y="84" width="17" height="19" rx="1.5" fill="#FBF7EE"/>
+    <path d="M248 84V103M277 84V103M255 126V110H270V126" fill="#C5986A" stroke-width="1.8"/>
+    <g fill="#FFFFFF" stroke="none">
+      <path d="M158 79H162L163 94H157ZM157 109H163L164 129H156Z"/>
+      <path d="M99 165L108 148H123L116 165ZM124 165L129 148H144L141 165ZM149 165L151 148H167L169 165ZM178 165L175 148H190L195 165ZM203 165L196 148H211L220 165Z"/>
+    </g>
+  </g>
+</svg>

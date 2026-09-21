@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Estirarse para alcanzar una pelota</title>
+  <desc id="descripcion">Una persona, con ambos pies en el suelo, estira un brazo hacia la pelota de una estantería. La mano está muy cerca de la pelota. No hay escalera ni se está trepando.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M69 187H174" fill="none" stroke="#CBD7D2" stroke-width="2"/>
+    <path d="M213 73V90L231 73M271 73V90L254 73" fill="none" stroke="#9A7351" stroke-width="3"/>
+    <rect x="198" y="64" width="94" height="9" rx="2" fill="#CB9B6C"/>
+    <circle cx="220" cy="49" r="14" fill="#F2C14E"/>
+    <path d="M220 35Q227 48 215 62" fill="none" stroke="#C59234" stroke-width="2"/>
+    <path d="M211 43L214 40" fill="none" stroke="#FBF7EE" stroke-width="2.5"/>
+    <rect x="258" y="31" width="11" height="32" rx="1" fill="#146B63"/>
+    <path d="M272 34L282 32L288 62L278 64Z" fill="#6E97B0"/>
+    <path d="M260 55H266M278 54L282 53" fill="none" stroke="#FBF7EE" stroke-width="1.8"/>
+    <path d="M105 135L101 173L113 176L124 146L138 174L150 171L138 134Z" fill="#477DA6"/>
+    <path d="M101 171L113 174V185H90Q85 182 91 178ZM138 172L149 169L159 179Q165 185 158 185H141Z" fill="#FBF7EE"/>
+    <path d="M110 91V101L124 105L128 84" fill="#C79068"/>
+    <path d="M104 103L94 124L86 137Q86 145 91 145Q98 142 102 135L116 111" fill="#D9A17A"/>
+    <path d="M132 103L154 73L180 50L190 39Q193 36 195 39L191 46L200 40Q204 39 204 42L196 49L202 47Q206 47 204 51L193 58L186 58L165 84L147 118Z" fill="#D9A17A"/>
+    <path d="M105 97Q116 94 127 98L137 96L149 109L140 121L134 117L140 142Q124 149 103 139L105 117L99 120L94 111Z" fill="#146B63"/>
+    <path d="M135 102L142 110M108 132Q120 138 132 134" fill="none" stroke="#78AA98" stroke-width="1.8"/>
+    <path d="M101 52C105 40 123 39 133 48Q142 55 138 66L143 72Q144 75 138 77C136 88 125 93 114 87C105 83 100 73 101 62Z" fill="#D9A17A"/>
+    <path d="M102 68C91 54 101 38 116 38C130 37 136 43 138 50Q127 59 115 52L110 64Z" fill="#594235"/>
+    <path d="M106 65C98 60 97 72 106 75" fill="#D9A17A"/>
+    <path d="M126 60L131 58M130 65L131 64" fill="none" stroke-width="2.7"/>
+    <path d="M130 80Q135 81 137 77" fill="none" stroke="#925C40" stroke-width="1.7"/>
+  </g>
+</svg>
