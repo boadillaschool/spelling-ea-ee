@@ -331,6 +331,15 @@ progress::-moz-progress-bar {
   display: none;
 }
 
+.audio-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 100%;
+}
+
 .btn {
   flex: 1 1 10rem;
   min-height: 3.5rem;

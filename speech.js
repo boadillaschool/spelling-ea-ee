@@ -1,32 +1,37 @@
-import { selectEnglishVoice } from './logic.js';
+import { WORDS } from './data.js';
+import { getSpeechText, selectEnglishVoice } from './logic.js';
 
 const SPEECH_LANG = 'en-GB';
-const SPEECH_RATE = 0.82;
+const SPEECH_RATE = 0.64;
 const SELF_CANCEL_ERRORS = new Set(['interrupted', 'canceled', 'cancelled']);
+// Only exact curriculum prompts can select media. Caller text is never a URL.
+const CLIPS = new Map(WORDS.map((item) => [getSpeechText(item), `audio/en-gb-v1/${item.id}.mp3`]));
 
 /**
- * Wraps the Web Speech API so audio is British English, slow, and never throws.
+ * Prefers bundled British English clips, with slow Web Speech as a fallback.
  * Statuses: unsupported | no-english-voice | ready | speaking | idle | error.
  *
- * @param {{ synth?: object, Utterance?: Function, onStatus?: (status: string) => void }} options
+ * @param {{ synth?: object, Utterance?: Function, AudioCtor?: Function, onStatus?: (status: string) => void }} options
  */
-export function createSpeaker({ synth, Utterance, onStatus = () => {} } = {}) {
-  const supported =
+export function createSpeaker({ synth, Utterance, AudioCtor, onStatus = () => {} } = {}) {
+  const speechSupported =
     synth !== undefined &&
     synth !== null &&
     typeof synth.speak === 'function' &&
     typeof Utterance === 'function';
+  const mediaSupported = typeof AudioCtor === 'function';
+  const supported = speechSupported || mediaSupported;
 
   let voice = null;
   let current = null;
 
-  function refreshVoices() {
+  function refreshVoices(report = !mediaSupported) {
     try {
       const voices = synth.getVoices();
       voice = selectEnglishVoice(voices);
-      if (voice !== null) {
+      if (report && voice !== null) {
         onStatus('ready');
-      } else if (voices.length > 0) {
+      } else if (report && voices.length > 0) {
         onStatus('no-english-voice');
       }
     } catch {
@@ -36,18 +41,34 @@ export function createSpeaker({ synth, Utterance, onStatus = () => {} } = {}) {
 
   if (!supported) {
     onStatus('unsupported');
-  } else {
+  } else if (mediaSupported) {
+    onStatus('ready');
+  }
+  if (speechSupported) {
     refreshVoices();
+    const voicesChanged = () => refreshVoices();
     if (typeof synth.addEventListener === 'function') {
-      synth.addEventListener('voiceschanged', refreshVoices);
+      synth.addEventListener('voiceschanged', voicesChanged);
     } else {
-      synth.onvoiceschanged = refreshVoices;
+      synth.onvoiceschanged = voicesChanged;
     }
   }
 
   function cancel() {
+    const previous = current;
     current = null;
-    if (!supported || typeof synth.cancel !== 'function') {
+    if (typeof previous?.pause === 'function') {
+      try {
+        previous.pause();
+        previous.currentTime = 0;
+      } catch {
+        // Media may not have loaded enough to seek yet.
+      }
+    }
+    if (previous !== null) {
+      onStatus('idle');
+    }
+    if (!speechSupported || typeof synth.cancel !== 'function') {
       return;
     }
     try {
@@ -57,18 +78,53 @@ export function createSpeaker({ synth, Utterance, onStatus = () => {} } = {}) {
     }
   }
 
-  function speak(text) {
+  function speak(text, { slow = false } = {}) {
     if (!supported) {
       onStatus('unsupported');
       return false;
     }
 
     try {
+      const clip = mediaSupported && CLIPS.get(text);
+      if (clip) {
+        cancel();
+        onStatus('ready');
+        const audio = new AudioCtor(clip);
+        audio.playbackRate = slow ? 0.8 : 1;
+        audio.preservesPitch = true;
+        current = audio;
+        audio.onended = () => {
+          if (current === audio) {
+            current = null;
+            onStatus('idle');
+          }
+        };
+        const fallback = () => {
+          if (current === audio) {
+            cancel();
+            speakNative(text, slow);
+          }
+        };
+        audio.onerror = fallback;
+        const attempt = audio.play();
+        attempt?.catch(fallback);
+        onStatus('speaking');
+        return true;
+      }
+      cancel();
+      return speakNative(text, slow);
+    } catch {
+      cancel();
+      return speakNative(text, slow);
+    }
+  }
+
+  function speakNative(text, slow) {
+    try {
       if (voice === null) {
-        refreshVoices();
+        refreshVoices(true);
       }
 
-      cancel();
       if (synth.paused && typeof synth.resume === 'function') {
         synth.resume();
       }
@@ -76,11 +132,12 @@ export function createSpeaker({ synth, Utterance, onStatus = () => {} } = {}) {
       const utterance = new Utterance(text);
       utterance.lang = SPEECH_LANG;
       utterance.voice = voice;
-      utterance.rate = SPEECH_RATE;
+      utterance.rate = slow ? 0.50 : SPEECH_RATE;
       utterance.pitch = 1;
       utterance.volume = 1;
       utterance.onend = () => {
         if (utterance === current) {
+          current = null;
           onStatus('idle');
         }
       };
@@ -88,12 +145,15 @@ export function createSpeaker({ synth, Utterance, onStatus = () => {} } = {}) {
         if (utterance !== current) {
           return;
         }
+        current = null;
         onStatus(SELF_CANCEL_ERRORS.has(event?.error) ? 'idle' : 'error');
       };
 
       current = utterance;
       synth.speak(utterance);
-      onStatus('speaking');
+      if (current === utterance) {
+        onStatus('speaking');
+      }
       return true;
     } catch {
       current = null;

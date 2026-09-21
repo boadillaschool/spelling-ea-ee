@@ -222,16 +222,17 @@ function getSpeechSynthesis() {
 const speaker = createSpeaker({
   synth: getSpeechSynthesis(),
   Utterance: window.SpeechSynthesisUtterance,
+  AudioCtor: window.Audio,
   onStatus: handleAudioStatus,
 });
 
-function playWord(item) {
+function playWord(item, slow = false) {
   audioPlayedFor = item.id;
-  return speaker.speak(getSpeechText(item));
+  return speaker.speak(getSpeechText(item), { slow });
 }
 
 function audioButton(item) {
-  return el(
+  const normal = el(
     'button',
     {
       type: 'button',
@@ -242,6 +243,19 @@ function audioButton(item) {
     },
     getAudioLabel({ speaking: false, played: audioPlayedFor === item.id }),
   );
+  const slower = el('button', {
+    type: 'button',
+    class: 'btn btn-secondary btn-audio-slow',
+    'data-audio-slow': item.id,
+    'aria-label': 'Escuchar más despacio',
+    onclick: () => playWord(item, true),
+    text: 'Más despacio',
+  });
+  return el('div', {
+    class: 'audio-controls',
+    role: 'group',
+    'aria-label': 'Audio en inglés',
+  }, normal, slower);
 }
 
 /* ---------- Word, cue and form building blocks ---------- */
@@ -577,6 +591,7 @@ function startLearn(ids) {
 const currentLearnWord = () => wordsById.get(state.learn.ids[state.learn.index]);
 
 function nextLearnWord() {
+  speaker.cancel();
   const learn = state.learn;
   announce('');
   if (learn.index + 1 >= learn.ids.length) {
@@ -919,6 +934,7 @@ function moveMock(index) {
 function nextMock() {
   const mock = state.mock;
   if (mock.backToReview || mock.index + 1 >= mock.order.length) {
+    speaker.cancel();
     mock.stage = 'review';
     mock.backToReview = false;
     announce('');

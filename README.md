@@ -5,6 +5,16 @@ The first app of the **Boadilla School** family of educational apps: a small, st
 
 The interface is in Spanish (aimed at 2º de Primaria); the audio is British English.
 
+## Clear, slower audio
+
+- Each word has a bundled British English MP3: word, pause, example sentence, pause, word.
+- Sentences are synthesized more slowly than isolated words; all devices play the same prepared pronunciation.
+- **Más despacio** replays the clip at ×0.8 with pitch preservation. Normal playback is already deliberately paced for learning.
+- `read` uses the present-tense /riːd/ sound. See [audio provenance](audio/README.md) for the voice, pacing and generation details.
+- Clips load from this site's own `audio/en-gb-v1/` directory, not a third-party speech API. They work without installed browser voices.
+- If a clip cannot play, Web Speech is the fallback: prefer `en-GB`, rate 0.64 (or 0.50 for the slower replay). Its voice quality depends on the device.
+- Replaying or changing the prompt cancels earlier audio; finishing learning or opening the mock review also stops playback.
+
 ## Modes
 
 - **Aprender**: active recall. Hear the word, reveal the spelling with only `ea`/`ee` highlighted, identify the family, hide it, then type it once.
@@ -46,6 +56,7 @@ npm run check   # syntax check of the JavaScript modules
 | `logic.js` | Pure, tested logic: validation, progress, transitions, mock scoring, summaries |
 | `ui-helpers.js` | Small pure UI helpers: nullish-safe child lists, audio button label |
 | `focus-policy.js` | Pure focus policy: focus moves on screen/step changes, not on same-step feedback |
-| `speech.js` | Web Speech wrapper: en-GB voice selection, rate 0.82, safe fallbacks |
+| `speech.js` | Bundled audio playback, cancellation, and slower en-GB Web Speech fallback |
+| `audio/en-gb-v1/` | Ten same-origin British English pronunciation clips |
 | `data.js` | The ten words with cues and sentences |
 | `tests/` | Unit tests |
