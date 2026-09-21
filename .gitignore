@@ -3,3 +3,4 @@ Thumbs.db
 .claude/
 .playwright-mcp/
 .quality/
+node_modules/

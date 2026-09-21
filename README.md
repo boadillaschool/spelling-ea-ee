@@ -15,10 +15,19 @@ The interface is in Spanish (aimed at 2º de Primaria); the audio is British Eng
 - If a clip cannot play, Web Speech is the fallback: prefer `en-GB`, rate 0.64 (or 0.50 for the slower replay). Its voice quality depends on the device.
 - Replaying or changing the prompt cancels earlier audio; finishing learning or opening the mock review also stops playback.
 
+## Choose from the ten-word list
+
+- The home screen leads with **Practica tus 10 palabras** and the complete, unchanged vocabulary list.
+- All ten native checkboxes are selected on arrival. Tap a word, **Marcar todas**, or **Quitar todas** to choose a smaller set.
+- A live counter and the main practice button show the exact selection size. With no words selected, practice is disabled and explains what to do.
+- Both home practice buttons use only the checked words, once each, keeping the existing review priority. The list is hidden during spelling practice.
+- The choice survives returning home in the same page session; reloading starts with all ten again. Changing the selection writes nothing to storage.
+- **Aprender** and **Simulacro** still cover all ten words. The daily mission is a secondary, explicitly optional suggestion with its own clearly labeled subset.
+
 ## Modes
 
 - **Aprender**: active recall. Hear the word, reveal the spelling with only `ea`/`ee` highlighted, identify the family, hide it, then type it once.
-- **Practicar**: type the word you hear. After a first mistake you can retry; after a second one the spelling is revealed, hidden again, and must be typed correctly once.
+- **Practicar**: select from the ten-word list, then type each chosen word you hear. After a first mistake you can retry; after a second one the spelling is revealed, hidden again, and must be typed correctly once.
 - **Repasar errores**: the same flow, limited to words that need more work.
 - **Simulacro**: the ten words exactly once in random order, with no hints or feedback until you submit. If speech is unsupported, or playback fails for a prompt, the Spanish cue is shown as a fallback for that prompt.
 - **Resultado** (`Has terminado`): score, best mock score, words to revisit, a suggested next step, and sharing with the app URL (Web Share, clipboard, or manual copy).
@@ -46,6 +55,16 @@ Then open `localhost:8000` in a browser. All asset and module URLs are relative,
 npm test        # Node built-in test runner
 npm run check   # syntax check of the JavaScript modules
 ```
+
+Optional browser checks require Playwright as developer tooling only:
+
+```sh
+npm install --no-save --package-lock=false playwright
+npx playwright install chromium
+npm run check:browser
+```
+
+The check serves the app locally, exercises all-ten and subset sessions, keyboard selection, empty selection, storage isolation, mobile layouts and 200% text size. Evidence goes to the system temporary directory, never this repository. Set `BASE` to test a deployment, `QA_OUT` to choose an evidence directory, or `AXE_SOURCE` to an installed `axe-core/axe.min.js` file for additional WCAG checks. `PLAYWRIGHT_MODULE` and `BROWSER_PATH` can point to existing developer-tool installations.
 
 ## Files
 

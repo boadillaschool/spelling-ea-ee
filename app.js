@@ -86,6 +86,7 @@ const state = {
   mock: null,
   results: null,
   shareText: '',
+  selectedIds: new Set(allIds()),
 };
 
 /* ---------- Storage and progress (aggregate counters only) ---------- */
@@ -511,6 +512,66 @@ function resetProgress() {
   go('home');
 }
 
+function startSelectedPractice() {
+  const ids = buildReviewQueue(WORDS, progress).filter(({ id }) => state.selectedIds.has(id)).map(({ id }) => id);
+  if (ids.length > 0) startPractice(ids, 'practice');
+}
+
+function practiceSelectionPanel() {
+  const countText = el('p', { id: 'selection-count', class: 'selection-count', role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true' });
+  const start = button('', startSelectedPractice, { id: 'start-selection' });
+  function updateSelection() {
+    const count = state.selectedIds.size;
+    countText.textContent = `${count} de ${WORDS.length} ${count === 1 ? 'palabra seleccionada' : 'palabras seleccionadas'}`;
+    start.textContent = count === WORDS.length ? `Practicar las ${count} palabras` : `Practicar ${plural(count, 'palabra', 'palabras')}`;
+    start.disabled = count === 0;
+    const mode = document.getElementById('selected-practice-mode');
+    if (mode) mode.disabled = count === 0;
+    if (count === 0) {
+      start.textContent = 'Elige alguna palabra';
+      countText.append(' ', el('span', { text: 'Elige al menos una palabra para empezar.' }));
+    }
+  }
+  function selectAll(selected) {
+    state.selectedIds = new Set(selected ? allIds() : []);
+    for (const input of panel.querySelectorAll('input')) input.checked = selected;
+    updateSelection();
+  }
+  updateSelection();
+  const panel = el(
+    'section',
+    { class: 'card word-selection', 'aria-labelledby': 'selection-title' },
+    el('h2', { id: 'selection-title', text: `Practica tus ${WORDS.length} palabras` }),
+    el('p', { id: 'selection-help', text: 'Marca todas o elige solo las que quieras practicar.' }),
+    el('div', { class: 'selection-tools' },
+      button('Marcar todas', () => selectAll(true), { kind: 'secondary' }),
+      button('Quitar todas', () => selectAll(false), { kind: 'secondary' }),
+    ),
+    el(
+      'fieldset',
+      { class: 'word-choices', 'aria-describedby': 'selection-help' },
+      el('legend', { class: 'sr-only', text: `Lista de ${WORDS.length} palabras` }),
+      ...WORDS.map((item) => el(
+        'label',
+        { class: 'word-option', for: `choose-${item.id}` },
+        el('input', {
+          type: 'checkbox', id: `choose-${item.id}`, value: item.id, checked: state.selectedIds.has(item.id),
+          onchange: (event) => {
+            if (event.currentTarget.checked) state.selectedIds.add(item.id);
+            else state.selectedIds.delete(item.id);
+            updateSelection();
+          },
+        }),
+        el('span', { lang: 'en-GB', text: item.word }),
+      )),
+    ),
+    countText,
+    start,
+  );
+  start.setAttribute('aria-describedby', 'selection-count');
+  return panel;
+}
+
 function renderHome() {
   const mission = getDailyMission(formatLocalDate(new Date()), progress, WORDS);
   const summary = summarizeProgress(WORDS, progress);
@@ -521,8 +582,8 @@ function renderHome() {
     { name: 'Aprender', desc: 'Escucha, mira la palabra y recuérdala.', run: () => startLearn(allIds()) },
     {
       name: 'Practicar',
-      desc: 'Escribe cada palabra que oyes.',
-      run: () => startPractice(buildReviewQueue(WORDS, progress).map(({ id }) => id), 'practice'),
+      desc: 'Escribe las palabras que has marcado arriba.',
+      run: startSelectedPractice,
     },
     {
       name: 'Repasar errores',
@@ -534,15 +595,7 @@ function renderHome() {
 
   const main = [
     feedbackSlot({ reserve: false }),
-    el(
-      'section',
-      { class: 'card mission', 'aria-labelledby': 'mission-title' },
-      el('p', { class: 'eyebrow', text: 'Misión de hoy' }),
-      el('h2', { id: 'mission-title', text: mission.title }),
-      el('p', { class: 'meta', text: `Unos ${mission.recommendedMinutes} minutos · ${plural(mission.wordIds.length, 'palabra', 'palabras')}` }),
-      el('p', { text: 'Es una sugerencia: puedes elegir cualquier modo, sin prisa.' }),
-      button(isMock ? 'Empezar simulacro' : 'Empezar práctica', () => startFromMission(mission)),
-    ),
+    practiceSelectionPanel(),
     el(
       'section',
       { class: 'home-section', 'aria-labelledby': 'avance-title' },
@@ -564,7 +617,12 @@ function renderHome() {
             {},
             el(
               'button',
-              { type: 'button', class: 'mode-row', onclick: run },
+              {
+                type: 'button', class: 'mode-row', onclick: run,
+                id: name === 'Practicar' ? 'selected-practice-mode' : null,
+                disabled: name === 'Practicar' && state.selectedIds.size === 0,
+                'aria-describedby': name === 'Practicar' ? 'selection-count' : null,
+              },
               el('span', { class: 'mode-name', text: name }),
               el('span', { class: 'mode-desc', text: desc }),
               chevron(),
@@ -572,6 +630,15 @@ function renderHome() {
           ),
         ),
       ),
+    ),
+    el(
+      'section',
+      { class: 'home-section mission', 'aria-labelledby': 'mission-title' },
+      el('p', { class: 'eyebrow', text: 'Sugerencia de hoy · Opcional' }),
+      el('h2', { id: 'mission-title', text: mission.title }),
+      el('p', { class: 'meta', text: `${mission.wordIds.length} de las ${WORDS.length} palabras · Unos ${mission.recommendedMinutes} minutos` }),
+      el('p', { text: 'Esta sugerencia usa su propia selección de la misma lista.' }),
+      button(isMock ? 'Empezar simulacro' : 'Practicar esta sugerencia', () => startFromMission(mission), { kind: 'secondary' }),
     ),
     familiesPanel(),
   ];

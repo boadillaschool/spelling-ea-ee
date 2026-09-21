@@ -423,6 +423,80 @@ progress::-moz-progress-bar {
 
 /* Home */
 
+.word-selection {
+  gap: 0.75rem;
+  padding: min(1.25rem, 20px);
+}
+
+.word-selection h2 {
+  font-size: 1.5rem;
+}
+
+.word-selection > .btn {
+  padding-inline: min(1.25rem, 20px);
+}
+
+.word-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.word-option {
+  display: flex;
+  flex: 1 1 calc(50% - 0.25rem);
+  align-items: center;
+  gap: 0.5rem;
+  min-width: max-content;
+  min-height: 3.25rem;
+  padding: 0.5rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-control);
+  background: var(--surface);
+  font-family: var(--font-word);
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.word-option:has(input:checked) {
+  border-color: var(--petrol);
+  background: var(--success-soft);
+}
+
+.word-option input {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--petrol);
+  cursor: pointer;
+}
+
+.word-option span {
+  white-space: nowrap;
+}
+
+.selection-count {
+  font-weight: 700;
+}
+
+.selection-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.selection-tools .btn {
+  flex: 1 1 auto;
+  min-height: var(--touch);
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+}
+
 .mission {
   gap: 0.5rem;
 }
@@ -491,6 +565,11 @@ progress::-moz-progress-bar {
 .mode-row:hover,
 .mode-row:active {
   background: var(--surface-2);
+}
+
+.mode-row:disabled {
+  color: var(--muted);
+  cursor: not-allowed;
 }
 
 .mode-name {
