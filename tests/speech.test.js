@@ -102,6 +102,7 @@ test('curriculum spelling prompts use separate packaged clips', () => {
   for (const item of WORDS) {
     assert.equal(speaker.speak(getSpellingText(item)), true, item.id);
     assert.equal(instances.at(-1)?.src, `audio/spelling-en-gb-v1/${item.id}.mp3`);
+    assert.equal(instances.at(-1)?.playbackRate, 0.55, 'default spelling feedback must leave deliberate pauses between letters');
   }
   assert.equal(instances.length, WORDS.length);
 });
@@ -126,17 +127,21 @@ test('packaged playback reports current time only for the active clip', () => {
   assert.deepEqual(times, [0.72, 0.3]);
 });
 
-test('slow media replay uses 0.8 with pitch preservation and normal replay resets to 1', () => {
+test('slow media replay keeps pronunciation at 0.8 and slows spelling to 0.4 with pitch preservation', () => {
   const { AudioCtor, instances } = fakeMedia();
   const speaker = createSpeaker({ AudioCtor });
-  const text = getSpeechText(WORDS[0]);
+  const pronunciation = getSpeechText(WORDS[0]);
+  const spelling = getSpellingText(WORDS[0]);
 
-  assert.equal(speaker.speak(text, { slow: true }), true);
+  assert.equal(speaker.speak(pronunciation, { slow: true }), true);
   assert.equal(instances[0].playbackRate, 0.8);
   assert.equal(instances[0].preservesPitch, true);
-  speaker.speak(text);
+  speaker.speak(pronunciation);
   assert.equal(instances[1].playbackRate, 1);
   assert.equal(instances[1].preservesPitch, true);
+  speaker.speak(spelling, { slow: true });
+  assert.equal(instances[2].playbackRate, 0.4);
+  assert.equal(instances[2].preservesPitch, true);
 });
 
 test('replacement and explicit cancel stop prior audio and native speech before another attempt', () => {
@@ -207,6 +212,23 @@ test('a rejected play promise falls back once to native speech at the requested 
     assert.equal(instances[0].paused, true);
     assert.equal(statuses.includes('error'), false, 'a working fallback is not a user-facing failure');
     assert.equal(statuses.at(-1), 'speaking');
+  }
+});
+
+test('spelling media fallback remains deliberately slow in native speech', async () => {
+  for (const [slow, expectedRate] of [[false, 0.45], [true, 0.32]]) {
+    const rejection = Promise.reject(new Error('NotSupportedError'));
+    rejection.catch(() => {});
+    const { AudioCtor } = fakeMedia(() => rejection);
+    const synth = fakeSynth([voice('en-GB')]);
+    const speaker = createSpeaker({ synth, Utterance: FakeUtterance, AudioCtor });
+    const text = getSpellingText(WORDS[0]);
+
+    assert.equal(speaker.speak(text, { slow }), true);
+    await Promise.resolve();
+    assert.equal(synth.spoken.length, 1);
+    assert.equal(synth.spoken[0].text, text);
+    assert.equal(synth.spoken[0].rate, expectedRate);
   }
 });
 

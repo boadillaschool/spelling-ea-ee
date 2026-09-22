@@ -14,6 +14,7 @@ These twenty MP3 files are bundled with the application and served from the same
 ## Post-answer spelling clips
 
 - The same `en-GB-SoniaNeural` voice says each English letter name with a pause, then repeats the complete word.
+- Default spelling playback is deliberately slowed to `0.55`; **Deletrear más despacio** uses `0.4`. Pitch preservation remains enabled where supported, and the authored cues stay synchronized through media time.
 - Clips were generated with `edge-tts` `WordBoundary` events. The resulting authored offsets live in `spelling-timings.js` and drive the visible letter highlight.
 - Spelling prompts are mapped from exact curriculum strings to fixed relative paths; caller-provided text never becomes an asset URL.
 - The app requests these clips only in teaching/reveal feedback or after an answer, and only after final submission in the simulacro.

@@ -2,7 +2,14 @@ import { WORDS } from './data.js';
 import { getSpeechText, getSpellingText, selectEnglishVoice } from './logic.js';
 
 const SPEECH_LANG = 'en-GB';
-const SPEECH_RATE = 0.64;
+const PRONUNCIATION_SPEECH_RATE = 0.64;
+const SLOW_PRONUNCIATION_SPEECH_RATE = 0.5;
+const PRONUNCIATION_RATE = 1;
+const SLOW_PRONUNCIATION_RATE = 0.8;
+const SPELLING_RATE = 0.55;
+const SLOW_SPELLING_RATE = 0.4;
+const SPELLING_SPEECH_RATE = 0.45;
+const SLOW_SPELLING_SPEECH_RATE = 0.32;
 const SELF_CANCEL_ERRORS = new Set(['interrupted', 'canceled', 'cancelled']);
 // Only exact curriculum prompts can select media. Caller text is never a URL.
 const CLIPS = new Map(
@@ -11,6 +18,21 @@ const CLIPS = new Map(
     [getSpellingText(item), `audio/spelling-en-gb-v1/${item.id}.mp3`],
   ]),
 );
+const SPELLING_PROMPTS = new Set(WORDS.map((item) => getSpellingText(item)));
+
+function getMediaRate(text, slow) {
+  if (SPELLING_PROMPTS.has(text)) {
+    return slow ? SLOW_SPELLING_RATE : SPELLING_RATE;
+  }
+  return slow ? SLOW_PRONUNCIATION_RATE : PRONUNCIATION_RATE;
+}
+
+function getNativeRate(text, slow) {
+  if (SPELLING_PROMPTS.has(text)) {
+    return slow ? SLOW_SPELLING_SPEECH_RATE : SPELLING_SPEECH_RATE;
+  }
+  return slow ? SLOW_PRONUNCIATION_SPEECH_RATE : PRONUNCIATION_SPEECH_RATE;
+}
 
 /**
  * Prefers bundled British English clips, with slow Web Speech as a fallback.
@@ -95,7 +117,7 @@ export function createSpeaker({ synth, Utterance, AudioCtor, onStatus = () => {}
         cancel();
         onStatus('ready');
         const audio = new AudioCtor(clip);
-        audio.playbackRate = slow ? 0.8 : 1;
+        audio.playbackRate = getMediaRate(text, slow);
         audio.preservesPitch = true;
         current = audio;
         audio.ontimeupdate = () => {
@@ -142,7 +164,7 @@ export function createSpeaker({ synth, Utterance, AudioCtor, onStatus = () => {}
       const utterance = new Utterance(text);
       utterance.lang = SPEECH_LANG;
       utterance.voice = voice;
-      utterance.rate = slow ? 0.50 : SPEECH_RATE;
+      utterance.rate = getNativeRate(text, slow);
       utterance.pitch = 1;
       utterance.volume = 1;
       utterance.onend = () => {

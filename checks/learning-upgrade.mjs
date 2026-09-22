@@ -37,6 +37,20 @@ try {
   const page = await context.newPage();
   const requests = [];
   page.on('request', (request) => requests.push(new URL(request.url()).pathname));
+  await page.addInitScript(() => {
+    const NativeAudio = window.Audio;
+    window.__playedAudio = [];
+    window.Audio = function TrackedAudio(...args) {
+      const audio = new NativeAudio(...args);
+      const nativePlay = audio.play.bind(audio);
+      audio.play = () => {
+        window.__playedAudio.push({ src: audio.src, rate: audio.playbackRate });
+        return nativePlay();
+      };
+      return audio;
+    };
+    window.Audio.prototype = NativeAudio.prototype;
+  });
   await page.goto(base, { waitUntil: 'domcontentloaded' });
   const methodGroup = page.getByRole('radiogroup', { name: 'Cómo quieres escribir' });
   assert.equal(await methodGroup.count(), 1);
@@ -63,6 +77,17 @@ try {
   assert.equal(await panel.getByRole('button', { name: 'Deletrear más despacio', exact: true }).count(), 1);
   await page.waitForTimeout(250);
   assert.ok(requests.includes('/audio/spelling-en-gb-v1/easy.mp3'), JSON.stringify(requests));
+  assert.equal(
+    await page.evaluate(() => window.__playedAudio.filter(({ src }) => src.includes('/spelling-en-gb-v1/easy.mp3')).at(-1)?.rate),
+    0.55,
+    'automatic spelling feedback must use the slower default pace',
+  );
+  await panel.getByRole('button', { name: 'Deletrear más despacio', exact: true }).click();
+  assert.equal(
+    await page.evaluate(() => window.__playedAudio.filter(({ src }) => src.includes('/spelling-en-gb-v1/easy.mp3')).at(-1)?.rate),
+    0.4,
+    'the slower spelling replay must leave even more space between letters',
+  );
 
   await page.locator('#back').click();
   await page.locator('.mode-row').filter({ hasText: /^Aprender/ }).click();

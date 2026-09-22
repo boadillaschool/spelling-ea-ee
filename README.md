@@ -12,12 +12,12 @@ The interface is in Spanish (aimed at 2º de Primaria); the audio is British Eng
 - **Más despacio** replays the clip at ×0.8 with pitch preservation. Normal playback is already deliberately paced for learning.
 - `read` uses the present-tense /riːd/ sound. See [audio provenance](audio/README.md) for the voice, pacing and generation details.
 - Clips load from this site's own `audio/en-gb-v1/` directory, not a third-party speech API. They work without installed browser voices.
-- If a clip cannot play, Web Speech is the fallback: prefer `en-GB`, rate 0.64 (or 0.50 for the slower replay). Its voice quality depends on the device.
+- If a clip cannot play, Web Speech is the fallback: prefer `en-GB`, rate 0.64 (or 0.50 for the slower pronunciation replay). Spelling feedback uses the deliberately slower rates 0.45 and 0.32. Voice quality depends on the device.
 - Replaying or changing the prompt cancels earlier audio; finishing learning or opening the mock review also stops playback.
 
 ## Post-answer spelling and handwriting
 
-- After a retrieval attempt, a separate bundled British-English clip spells the word letter by letter, highlights the active letter, then repeats the whole word. Practice and the mock never request spelling audio before the answer is submitted.
+- After a retrieval attempt, a separate bundled British-English clip spells the word letter by letter at ×0.55, highlights the active letter, then repeats the whole word. **Deletrear más despacio** uses ×0.4. Practice and the mock never request spelling audio before the answer is submitted.
 - **Deletrear otra vez** and **Deletrear más despacio** are available only in teaching or feedback states.
 - **Teclado** and **Lápiz de la tablet** both keep a native text input, so Android's handwriting keyboard can supply text that the app checks normally.
 - **Cuaderno con lápiz** is a local freehand canvas with pressure-aware pointer strokes, high-DPI rendering, undo, clear, compare and self-assessment. Keyboard and switch users can choose **Comparar** without drawing. It deliberately does not claim handwriting recognition; raw ink is never saved.
