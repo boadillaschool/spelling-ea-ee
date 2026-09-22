@@ -15,6 +15,20 @@ The interface is in Spanish (aimed at 2º de Primaria); the audio is British Eng
 - If a clip cannot play, Web Speech is the fallback: prefer `en-GB`, rate 0.64 (or 0.50 for the slower replay). Its voice quality depends on the device.
 - Replaying or changing the prompt cancels earlier audio; finishing learning or opening the mock review also stops playback.
 
+## Post-answer spelling and handwriting
+
+- After a retrieval attempt, a separate bundled British-English clip spells the word letter by letter, highlights the active letter, then repeats the whole word. Practice and the mock never request spelling audio before the answer is submitted.
+- **Deletrear otra vez** and **Deletrear más despacio** are available only in teaching or feedback states.
+- **Teclado** and **Lápiz de la tablet** both keep a native text input, so Android's handwriting keyboard can supply text that the app checks normally.
+- **Cuaderno con lápiz** is a local freehand canvas with pressure-aware pointer strokes, high-DPI rendering, undo, clear, compare and self-assessment. Keyboard and switch users can choose **Comparar** without drawing. It deliberately does not claim handwriting recognition; raw ink is never saved.
+- The optional fullscreen control is explicit and progressively enhanced. Answer fields and their submit buttons stay in one form, with `visualViewport` handling for software keyboards.
+
+## Delayed and spaced review
+
+- A word missed in practice returns once after up to two intervening prompts. The repeat does not inflate the original denominator or first-try score.
+- Local progress distinguishes new, learning, due and secure words. A word becomes secure only after clean recall on separate days; a later due date or any miss returns it to review.
+- Existing version-1 local progress is sanitized and migrated conservatively: historical aggregates can seed learning, but never secure mastery.
+
 ## Choose from the ten-word list
 
 - The home screen leads with **Practica tus 10 palabras** and the complete, unchanged vocabulary list.
@@ -37,15 +51,16 @@ The interface is in Spanish (aimed at 2º de Primaria); the audio is British Eng
 ## Modes
 
 - **Aprender**: active recall. Hear the word, reveal the spelling with only `ea`/`ee` highlighted, identify the family, hide it, then type it once.
-- **Practicar**: select from the ten-word list, then type each chosen word you hear. After a first mistake you can retry; after a second one the spelling is revealed, hidden again, and must be typed correctly once.
-- **Repasar errores**: the same flow, limited to words that need more work.
+- **Practicar**: select from the ten-word list, then type each chosen word you hear. After a first mistake you can retry; after a second one the spelling is revealed, hidden again, and must be typed correctly once. A miss returns later in the same session for delayed retrieval.
+- **Cuaderno con lápiz**: write each selected word freely on a local canvas, compare it with the model and self-assess without OCR.
+- **Repasar errores**: the same flow, combining active errors with words whose spaced-review date has arrived.
 - **Simulacro**: the ten words exactly once in random order, with meaning illustrations but no revealed spelling or corrections until you submit. If speech is unsupported, or playback fails for a prompt, the Spanish cue is shown as a fallback for that prompt.
 - **Resultado** (`Has terminado`): score, best mock score, words to revisit, a suggested next step, and sharing with the app URL (Web Share, clipboard, or manual copy).
 
 ## Privacy
 
 - No analytics, trackers, remote fonts, CDNs, API calls or service workers.
-- Only aggregate counters, mistake counts and mock scores are stored in `localStorage` under `spelling-ea-ee:v1`. Typed answers and names are never stored.
+- Only aggregate counters, spaced-review timestamps/levels and mock scores are stored in `localStorage` under the existing `spelling-ea-ee:v1` key. The current schema is version 2 and migrates valid version-1 snapshots in place. Typed answers, names and canvas strokes are never stored.
 - The page ships a restrictive Content-Security-Policy, a `no-referrer` policy, `noindex` metadata and a `robots.txt` that disallows crawling.
 - The app keeps working if `localStorage`, `speechSynthesis`, Web Share or the clipboard are unavailable.
 
@@ -73,9 +88,13 @@ npm install --no-save --package-lock=false playwright
 npx playwright install chromium
 npm run check:browser
 npm run check:illustrations
+npm run check:learning
+npm run check:responsive
+BROWSER_ENGINE=firefox npm run check:smoke
+BROWSER_ENGINE=webkit npm run check:smoke
 ```
 
-The check serves the app locally, exercises all-ten and subset sessions, keyboard selection, empty selection, storage isolation, mobile layouts and 200% text size. Evidence goes to the system temporary directory, never this repository. Set `BASE` to test a deployment, `QA_OUT` to choose an evidence directory, or `AXE_SOURCE` to an installed `axe-core/axe.min.js` file for additional WCAG checks. `PLAYWRIGHT_MODULE` and `BROWSER_PATH` can point to existing developer-tool installations.
+The checks serve the app locally, exercise all-ten and subset sessions, keyboard selection, empty selection, storage isolation, mobile layouts, 200% text size and project-path routing. Evidence goes to the system temporary directory, never this repository. Set `BASE` to test a deployment, `QA_OUT` to choose an evidence directory, `BROWSER_ENGINE` to `chromium`, `firefox` or `webkit`, or `AXE_SOURCE` to an installed `axe-core/axe.min.js` file for additional WCAG checks. `PLAYWRIGHT_MODULE` and `BROWSER_PATH` can point to existing developer-tool installations.
 
 ## Files
 
@@ -86,8 +105,9 @@ The check serves the app locally, exercises all-ten and subset sessions, keyboar
 | `logic.js` | Pure, tested logic: validation, progress, transitions, mock scoring, summaries |
 | `ui-helpers.js` | Small pure UI helpers: nullish-safe child lists, audio button label |
 | `focus-policy.js` | Pure focus policy: focus moves on screen/step changes, not on same-step feedback |
-| `speech.js` | Bundled audio playback, cancellation, and slower en-GB Web Speech fallback |
-| `audio/en-gb-v1/` | Ten same-origin British English pronunciation clips |
+| `speech.js`, `spelling-timings.js` | Bundled word/spelling playback, cancellation, letter cues and slower en-GB Web Speech fallback |
+| `audio/en-gb-v1/`, `audio/spelling-en-gb-v1/` | Ten pronunciation clips and ten paced spelling clips, all same-origin |
+| `ink-pad.js` | Pure local freehand-stroke state, normalization, undo and clear logic |
 | `illustrations.js`, `images/words/` | Fixed word-to-image metadata, Spanish alt text and ten original meaning illustrations |
 | `data.js` | The ten words with cues and sentences |
 | `tests/` | Unit tests |

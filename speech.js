@@ -1,11 +1,16 @@
 import { WORDS } from './data.js';
-import { getSpeechText, selectEnglishVoice } from './logic.js';
+import { getSpeechText, getSpellingText, selectEnglishVoice } from './logic.js';
 
 const SPEECH_LANG = 'en-GB';
 const SPEECH_RATE = 0.64;
 const SELF_CANCEL_ERRORS = new Set(['interrupted', 'canceled', 'cancelled']);
 // Only exact curriculum prompts can select media. Caller text is never a URL.
-const CLIPS = new Map(WORDS.map((item) => [getSpeechText(item), `audio/en-gb-v1/${item.id}.mp3`]));
+const CLIPS = new Map(
+  WORDS.flatMap((item) => [
+    [getSpeechText(item), `audio/en-gb-v1/${item.id}.mp3`],
+    [getSpellingText(item), `audio/spelling-en-gb-v1/${item.id}.mp3`],
+  ]),
+);
 
 /**
  * Prefers bundled British English clips, with slow Web Speech as a fallback.
@@ -78,7 +83,7 @@ export function createSpeaker({ synth, Utterance, AudioCtor, onStatus = () => {}
     }
   }
 
-  function speak(text, { slow = false } = {}) {
+  function speak(text, { slow = false, onTime } = {}) {
     if (!supported) {
       onStatus('unsupported');
       return false;
@@ -93,6 +98,11 @@ export function createSpeaker({ synth, Utterance, AudioCtor, onStatus = () => {}
         audio.playbackRate = slow ? 0.8 : 1;
         audio.preservesPitch = true;
         current = audio;
+        audio.ontimeupdate = () => {
+          if (current === audio && typeof onTime === 'function') {
+            onTime(audio.currentTime);
+          }
+        };
         audio.onended = () => {
           if (current === audio) {
             current = null;

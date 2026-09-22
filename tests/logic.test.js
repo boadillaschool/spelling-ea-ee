@@ -84,10 +84,10 @@ test('createEmptyProgress starts versioned counters for every word', () => {
   const progress = createEmptyProgress(WORDS.slice(0, 2));
 
   assert.deepEqual(progress, {
-    version: 1,
+    version: 2,
     words: {
-      easy: { seen: 0, correct: 0, wrong: 0, lastPractisedAt: null },
-      meat: { seen: 0, correct: 0, wrong: 0, lastPractisedAt: null },
+      easy: { seen: 0, correct: 0, wrong: 0, lastPractisedAt: null, level: 0, lastCleanAt: null, nextReviewAt: null },
+      meat: { seen: 0, correct: 0, wrong: 0, lastPractisedAt: null, level: 0, lastCleanAt: null, nextReviewAt: null },
     },
     mockScores: [],
   });
@@ -114,15 +114,18 @@ test('sanitizeProgress resets null and malformed snapshots without throwing', ()
 
 test('sanitizeProgress preserves a valid current-version snapshot', () => {
   const raw = {
-    version: 1,
+    version: 2,
     words: {
       easy: {
         seen: 3,
         correct: 2,
         wrong: 1,
         lastPractisedAt: '2026-09-20T10:00:00.000Z',
+        level: 1,
+        lastCleanAt: '2026-09-20T10:00:00.000Z',
+        nextReviewAt: '2026-09-21T10:00:00.000Z',
       },
-      meat: { seen: 0, correct: 0, wrong: 0, lastPractisedAt: null },
+      meat: { seen: 0, correct: 0, wrong: 0, lastPractisedAt: null, level: 0, lastCleanAt: null, nextReviewAt: null },
     },
     mockScores: [{ score: 8, total: 10, completedAt: '2026-09-20T11:00:00.000Z' }],
   };
@@ -371,6 +374,9 @@ test('sanitizeProgress resets missing or invalid per-word counters', () => {
     correct: 0,
     wrong: 0,
     lastPractisedAt: null,
+    level: 0,
+    lastCleanAt: null,
+    nextReviewAt: null,
   });
   assert.deepEqual(sanitized.words.meat, sanitized.words.easy);
   assert.deepEqual(sanitized.words.peanuts, sanitized.words.easy);
@@ -381,6 +387,9 @@ test('sanitizeProgress resets missing or invalid per-word counters', () => {
     correct: 1,
     wrong: 0,
     lastPractisedAt: null,
+    level: 0,
+    lastCleanAt: null,
+    nextReviewAt: null,
   });
 });
 
@@ -411,7 +420,15 @@ test('sanitizeProgress drops unknown word ids and malformed mock score collectio
   const sanitized = sanitizeProgress(raw, words);
 
   assert.deepEqual(Object.keys(sanitized.words), ['easy']);
-  assert.deepEqual(sanitized.words.easy, raw.words.easy);
+  assert.deepEqual(sanitized.words.easy, {
+    seen: 1,
+    correct: 0,
+    wrong: 1,
+    lastPractisedAt: null,
+    level: 0,
+    lastCleanAt: null,
+    nextReviewAt: null,
+  });
   assert.deepEqual(sanitized.mockScores, []);
 });
 
@@ -428,18 +445,27 @@ test('recordAttempt immutably records correct and wrong attempts', () => {
     correct: 0,
     wrong: 0,
     lastPractisedAt: null,
+    level: 0,
+    lastCleanAt: null,
+    nextReviewAt: null,
   });
   assert.deepEqual(afterCorrect.words.easy, {
     seen: 1,
     correct: 1,
     wrong: 0,
     lastPractisedAt: firstTimestamp,
+    level: 1,
+    lastCleanAt: firstTimestamp,
+    nextReviewAt: '2026-09-21T10:00:00.000Z',
   });
   assert.deepEqual(afterWrong.words.easy, {
     seen: 2,
     correct: 1,
     wrong: 1,
     lastPractisedAt: secondTimestamp,
+    level: 0,
+    lastCleanAt: null,
+    nextReviewAt: secondTimestamp,
   });
   assert.notEqual(afterCorrect, original);
   assert.notEqual(afterCorrect.words, original.words);

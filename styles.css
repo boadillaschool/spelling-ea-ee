@@ -22,9 +22,16 @@
   --font-word: Verdana, "DejaVu Sans", sans-serif;
   --radius-card: 18px;
   --radius-control: 12px;
-  --shadow-card: 0 1px 2px rgba(23, 50, 77, 0.08), 0 4px 12px rgba(23, 50, 77, 0.05);
+  --shadow-card: 0 1px 2px rgba(23, 50, 77, 0.08), 0 8px 24px rgba(23, 50, 77, 0.07);
+  --shadow-lift: 0 14px 36px rgba(23, 50, 77, 0.12);
+  --sky-soft: #eaf4fb;
+  --aqua-soft: #def3ef;
+  --coral: #e76f51;
+  --coral-soft: #fff0e8;
   --touch: 3rem;
   --gutter: 1rem;
+  --visual-viewport-height: 100dvh;
+  --keyboard-inset: 0px;
 }
 
 *,
@@ -44,7 +51,11 @@ html {
 
 body {
   margin: 0;
-  background: var(--canvas);
+  min-height: var(--visual-viewport-height);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(242, 193, 78, 0.16), transparent 22rem),
+    radial-gradient(circle at 100% 18%, rgba(20, 107, 99, 0.1), transparent 25rem),
+    var(--canvas);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: 1.0625rem;
@@ -103,7 +114,8 @@ summary {
   flex-direction: column;
   min-height: 100vh;
   min-height: 100dvh;
-  max-width: 45rem;
+  min-height: var(--visual-viewport-height);
+  max-width: 64rem;
   margin-inline: auto;
   padding-left: max(var(--gutter), env(safe-area-inset-left));
   padding-right: max(var(--gutter), env(safe-area-inset-right));
@@ -112,7 +124,7 @@ summary {
 
 .app > * {
   width: 100%;
-  max-width: 40rem;
+  max-width: 56rem;
   margin-inline: auto;
 }
 
@@ -155,6 +167,35 @@ summary {
 .brand-context {
   color: var(--muted);
   font-size: 0.9375rem;
+}
+
+.brand-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.fullscreen-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 3rem;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--petrol-pressed);
+  font-size: 0.9375rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.fullscreen-toggle:hover,
+.fullscreen-toggle:active,
+.fullscreen-toggle[aria-pressed="true"] {
+  border-color: var(--petrol);
+  background: var(--aqua-soft);
 }
 
 /* Screen heading */
@@ -311,13 +352,17 @@ progress::-moz-progress-bar {
 .card {
   display: grid;
   gap: 1rem;
-  max-width: 40rem;
+  max-width: 44rem;
   margin-inline: auto;
   padding: 1.25rem;
-  border: 1px solid var(--rule);
+  border: 1px solid rgba(117, 128, 126, 0.42);
   border-radius: var(--radius-card);
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.96);
   box-shadow: var(--shadow-card);
+}
+
+body[data-view="home"] .card {
+  max-width: 56rem;
 }
 
 .actions-area {
@@ -325,6 +370,9 @@ progress::-moz-progress-bar {
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: calc(var(--radius-control) + 4px);
+  background: rgba(251, 247, 238, 0.94);
 }
 
 .actions-area:empty {
@@ -825,6 +873,249 @@ progress::-moz-progress-bar {
   font-size: 0.9375rem;
 }
 
+/* Input method, spelling feedback and freehand notebook */
+
+.input-method-card {
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-color: rgba(20, 107, 99, 0.28);
+  background: linear-gradient(135deg, var(--sky-soft), rgba(255, 255, 255, 0.97));
+}
+
+.input-method-card legend {
+  padding-inline: 0.25rem;
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.input-method-options {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.input-method-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 4.5rem;
+  padding: 0.75rem;
+  border: 2px solid var(--rule);
+  border-radius: var(--radius-control);
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+}
+
+.input-method-option:has(input:checked) {
+  border-color: var(--petrol);
+  background: var(--aqua-soft);
+  box-shadow: inset 0 0 0 1px var(--petrol);
+}
+
+.input-method-option input {
+  flex: none;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin: 0;
+  accent-color: var(--petrol);
+}
+
+.input-method-copy {
+  display: grid;
+  gap: 0.1rem;
+}
+
+.input-method-copy strong {
+  font-family: var(--font-head);
+}
+
+.input-method-copy small {
+  color: var(--muted);
+}
+
+.spelling-panel {
+  display: grid;
+  justify-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid rgba(20, 107, 99, 0.32);
+  border-radius: var(--radius-card);
+  background: linear-gradient(150deg, var(--aqua-soft), #ffffff 80%);
+}
+
+.spelling-kicker {
+  color: var(--petrol-pressed);
+  font-family: var(--font-head);
+  font-weight: 700;
+}
+
+.spelling-letters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3rem;
+  max-width: 100%;
+}
+
+.spelling-letter {
+  display: inline-grid;
+  width: clamp(2rem, 8vw, 2.8rem);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 2px solid rgba(20, 107, 99, 0.34);
+  border-radius: 0.65rem;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-word);
+  font-size: clamp(1.15rem, 5vw, 1.55rem);
+  font-weight: 800;
+  transition: transform 0.12s ease, background-color 0.12s ease, color 0.12s ease;
+}
+
+.spelling-letter[data-active="true"] {
+  border-color: var(--petrol);
+  background: var(--petrol);
+  color: #ffffff;
+  transform: translateY(-0.2rem) scale(1.08);
+  box-shadow: 0 0 0 4px var(--gold);
+}
+
+.spelling-actions,
+.ink-tools,
+.answer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  width: 100%;
+}
+
+.spelling-actions .btn,
+.ink-tools .btn,
+.answer-actions .btn {
+  flex: 1 1 10rem;
+}
+
+.spelling-letters-compact {
+  justify-content: flex-start;
+  gap: 0.15rem;
+}
+
+.spelling-letters-compact .spelling-letter {
+  width: 1.65rem;
+  border-width: 1px;
+  border-radius: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.answer {
+  scroll-margin-block: 5rem;
+  padding: 0.875rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-control);
+  background: var(--sky-soft);
+}
+
+.answer-pencil {
+  border-color: rgba(231, 111, 81, 0.45);
+  background: var(--coral-soft);
+}
+
+.review-return {
+  justify-self: start;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+  background: var(--retry-soft);
+  color: var(--retry);
+  font-size: 0.9375rem;
+  font-weight: 750;
+}
+
+.answer-actions {
+  margin-top: 0.25rem;
+}
+
+.answer-actions .btn {
+  min-height: 3.5rem;
+}
+
+.ink-pad {
+  display: block;
+  width: 100%;
+  min-height: 13rem;
+  max-height: min(22rem, 42vh);
+  aspect-ratio: 16 / 7;
+  border: 3px solid var(--petrol);
+  border-radius: var(--radius-card);
+  background: #fffef9;
+  box-shadow: inset 0 2px 8px rgba(23, 50, 77, 0.08);
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+}
+
+.ink-pad[data-locked="true"] {
+  border-color: var(--rule);
+  cursor: default;
+}
+
+.ink-help {
+  color: var(--muted);
+  font-size: 0.9375rem;
+  text-align: center;
+}
+
+.notebook-stage {
+  gap: 0.5rem;
+  padding: 0;
+}
+
+.notebook-card,
+.notebook-finished {
+  max-width: 50rem;
+}
+
+.notebook-answer {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem;
+  border-radius: var(--radius-control);
+  background: var(--success-soft);
+}
+
+.keyboard-open .app {
+  padding-bottom: calc(var(--keyboard-inset) + 1rem + env(safe-area-inset-bottom));
+}
+
+.keyboard-open .brand-bar {
+  padding-top: max(0.25rem, env(safe-area-inset-top));
+  padding-bottom: 0.25rem;
+}
+
+.keyboard-open .brand-context,
+.keyboard-open .module-intro {
+  display: none;
+}
+
+.keyboard-open .screen-head,
+.keyboard-open .main {
+  padding-top: 0.5rem;
+}
+
+.keyboard-open .card {
+  gap: 0.625rem;
+  padding: 0.75rem;
+}
+
+.keyboard-open .word-picture {
+  width: min(100%, 8rem);
+}
+
+.keyboard-open .stage {
+  gap: 0.35rem;
+  padding: 0;
+}
+
 /* Mock review and results */
 
 .review-list {
@@ -941,6 +1232,14 @@ progress::-moz-progress-bar {
     --gutter: 1.5rem;
   }
 
+  .input-method-options {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .word-option {
+    flex-basis: calc(20% - 0.4rem);
+  }
+
   .card {
     padding: 1.75rem;
   }
@@ -989,6 +1288,39 @@ progress::-moz-progress-bar {
   .word {
     --word-size: 2.75rem;
   }
+}
+
+@media (max-width: 30rem) {
+  .brand-context {
+    display: none;
+  }
+
+  .fullscreen-toggle {
+    width: 3rem;
+    padding-inline: 0;
+    justify-content: center;
+  }
+
+  .fullscreen-toggle span {
+    display: none;
+  }
+
+  .screen-head h1 {
+    font-size: 1.55rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .spelling-actions .btn {
+    flex-basis: 100%;
+  }
+}
+
+:fullscreen,
+:-webkit-full-screen {
+  background: var(--canvas);
 }
 
 /* Motion */

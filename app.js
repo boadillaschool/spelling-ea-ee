@@ -18,9 +18,12 @@ import {
   getBestScore,
   getContextSentence,
   getDailyMission,
+  getDueWordIds,
   getMissionRoute,
   getSpeechText,
+  getSpellingText,
   getWeakWordIds,
+  insertDelayedReview,
   isBlankAnswer,
   loadProgress,
   markAudioFailure,
@@ -34,7 +37,16 @@ import {
   summarizeProgress,
 } from './logic.js';
 import { planFocus } from './focus-policy.js';
+import {
+  appendInkPoint,
+  clearInk,
+  createInkState,
+  finishInkStroke,
+  startInkStroke,
+  undoInkStroke,
+} from './ink-pad.js';
 import { createSpeaker } from './speech.js';
+import { getSpellingCueIndex } from './spelling-timings.js';
 import { getAudioLabel, normalizeChildren } from './ui-helpers.js';
 
 const APP_TITLE = 'Boadilla School · Spelling: ea + ee';
@@ -72,6 +84,7 @@ const dom = {
   feedback: document.getElementById('feedback'),
   audioNote: document.getElementById('audio-note'),
   storageNote: document.getElementById('storage-note'),
+  fullscreenToggle: document.getElementById('fullscreen-toggle'),
 };
 
 /* ---------- Application state ---------- */
@@ -84,9 +97,11 @@ const state = {
   feedback: null,
   learn: null,
   practice: null,
+  notebook: null,
   mock: null,
   results: null,
   shareText: '',
+  inputMethod: 'keyboard',
   selectedIds: new Set(allIds()),
 };
 
@@ -116,6 +131,93 @@ function record(wordId, wasCorrect) {
   progress = recordAttempt(progress, wordId, wasCorrect, new Date().toISOString());
   persist();
 }
+
+/* ---------- Fullscreen and visual viewport ---------- */
+
+function fullscreenElement() {
+  return document.fullscreenElement ?? document.webkitFullscreenElement ?? null;
+}
+
+function fullscreenRequest() {
+  return document.documentElement.requestFullscreen ?? document.documentElement.webkitRequestFullscreen;
+}
+
+function fullscreenExit() {
+  return document.exitFullscreen ?? document.webkitExitFullscreen;
+}
+
+function paintFullscreenToggle() {
+  const supported = typeof fullscreenRequest() === 'function';
+  const active = fullscreenElement() !== null;
+  dom.fullscreenToggle.hidden = !supported;
+  dom.fullscreenToggle.setAttribute('aria-pressed', String(active));
+  dom.fullscreenToggle.setAttribute('aria-label', active ? 'Salir de pantalla completa' : 'Activar pantalla completa');
+  dom.fullscreenToggle.querySelector('span').textContent = active ? 'Salir de pantalla completa' : 'Pantalla completa';
+}
+
+async function toggleFullscreen() {
+  try {
+    if (fullscreenElement() !== null) {
+      const exit = fullscreenExit();
+      if (typeof exit === 'function') await exit.call(document);
+    } else {
+      const request = fullscreenRequest();
+      if (typeof request === 'function') await request.call(document.documentElement);
+    }
+  } catch {
+    announce('El navegador no ha podido activar la pantalla completa.', 'retry');
+  }
+  paintFullscreenToggle();
+}
+
+let viewportFrame = 0;
+
+function keepAnswerVisible() {
+  const answer = document.activeElement?.matches?.('#answer') ? document.activeElement : null;
+  if (answer === null) return;
+  const target = answer.closest('form') ?? answer;
+  cancelAnimationFrame(viewportFrame);
+  viewportFrame = requestAnimationFrame(() => {
+    const viewport = window.visualViewport;
+    const viewportTop = viewport?.offsetTop ?? 0;
+    const viewportBottom = viewportTop + (viewport?.height ?? window.innerHeight);
+    const margin = 12;
+    const box = target.getBoundingClientRect();
+    if (box.bottom > viewportBottom - margin) {
+      window.scrollBy({ top: box.bottom - viewportBottom + margin, behavior: 'auto' });
+    } else if (box.top < viewportTop + margin) {
+      window.scrollBy({ top: box.top - viewportTop - margin, behavior: 'auto' });
+    }
+  });
+}
+
+function syncVisualViewport() {
+  const viewport = window.visualViewport;
+  const viewportHeight = Math.max(1, Math.round(viewport?.height ?? window.innerHeight));
+  const viewportTop = Math.max(0, Math.round(viewport?.offsetTop ?? 0));
+  const keyboardInset = Math.max(0, Math.round(window.innerHeight - viewportHeight - viewportTop));
+  document.documentElement.style.setProperty('--visual-viewport-height', `${viewportHeight}px`);
+  document.documentElement.style.setProperty('--keyboard-inset', `${keyboardInset}px`);
+  document.body.classList.toggle('keyboard-open', keyboardInset > 80);
+  keepAnswerVisible();
+}
+
+dom.fullscreenToggle.addEventListener('click', toggleFullscreen);
+document.addEventListener('fullscreenchange', paintFullscreenToggle);
+document.addEventListener('webkitfullscreenchange', paintFullscreenToggle);
+document.addEventListener('focusin', (event) => {
+  if (event.target?.matches?.('#answer')) {
+    requestAnimationFrame(() => {
+      syncVisualViewport();
+      keepAnswerVisible();
+    });
+  }
+});
+window.addEventListener('resize', syncVisualViewport, { passive: true });
+window.visualViewport?.addEventListener('resize', syncVisualViewport, { passive: true });
+window.visualViewport?.addEventListener('scroll', syncVisualViewport, { passive: true });
+paintFullscreenToggle();
+syncVisualViewport();
 
 /* ---------- DOM helpers (textContent / createElement only) ---------- */
 
@@ -191,6 +293,7 @@ function button(label, onClick, { kind = 'primary', ...attrs } = {}) {
 
 let persistentAudioNote = '';
 let audioPlayedFor = null;
+let activeSpellingId = null;
 
 function handleAudioStatus(status) {
   if (status === 'unsupported') {
@@ -211,6 +314,11 @@ function handleAudioStatus(status) {
     node.dataset.speaking = String(speaking);
     node.textContent = getAudioLabel({ speaking, played: audioPlayedFor === node.dataset.audio });
   }
+
+  if (activeSpellingId !== null && ['idle', 'error', 'unsupported'].includes(status)) {
+    paintSpellingCue(activeSpellingId, -1);
+    activeSpellingId = null;
+  }
 }
 
 function getSpeechSynthesis() {
@@ -228,9 +336,52 @@ const speaker = createSpeaker({
   onStatus: handleAudioStatus,
 });
 
+function paintSpellingCue(wordId, activeIndex) {
+  const panel = document.querySelector(`[data-spelling="${wordId}"]`);
+  if (!panel) return;
+  for (const [index, letter] of [...panel.querySelectorAll('.spelling-letter')].entries()) {
+    letter.dataset.active = String(index === activeIndex);
+  }
+}
+
 function playWord(item, slow = false) {
+  activeSpellingId = null;
   audioPlayedFor = item.id;
   return speaker.speak(getSpeechText(item), { slow });
+}
+
+function playSpelling(item, slow = false) {
+  const started = speaker.speak(getSpellingText(item), {
+    slow,
+    onTime: (seconds) => {
+      if (activeSpellingId === item.id) {
+        paintSpellingCue(item.id, getSpellingCueIndex(item, seconds));
+      }
+    },
+  });
+  activeSpellingId = started ? item.id : null;
+  paintSpellingCue(item.id, started ? 0 : -1);
+  return started;
+}
+
+function spellingPanel(item) {
+  return el(
+    'section',
+    { class: 'spelling-panel', 'data-spelling': item.id, 'aria-label': `Deletreo de ${item.word}` },
+    el('p', { class: 'spelling-kicker', text: 'Escucha el deletreo' }),
+    el(
+      'div',
+      { class: 'spelling-letters', lang: 'en-GB', 'aria-hidden': 'true' },
+      ...item.word.toUpperCase().split('').map((letter) => el('span', { class: 'spelling-letter', 'data-active': 'false', text: letter })),
+    ),
+    el('p', { class: 'sr-only', lang: 'en-GB', text: getSpellingText(item) }),
+    el(
+      'div',
+      { class: 'spelling-actions', role: 'group', 'aria-label': 'Controles del deletreo' },
+      button('Deletrear otra vez', () => playSpelling(item), { kind: 'secondary' }),
+      button('Deletrear más despacio', () => playSpelling(item, true), { kind: 'secondary' }),
+    ),
+  );
 }
 
 function audioButton(item) {
@@ -318,7 +469,19 @@ function stepHeading(text, autofocus = true) {
 
 const stepHelp = (text) => el('p', { class: 'step-help', text });
 
-function answerForm({ label, value = '', hint = 'Escribe la palabra completa.', onSubmit, onInput }) {
+function answerForm({
+  label,
+  value = '',
+  hint = '',
+  onSubmit,
+  onInput,
+  submitLabel = 'Comprobar',
+  secondaryActions = [],
+}) {
+  const methodHint = state.inputMethod === 'pencil'
+    ? 'Activa la escritura a mano del teclado de la tablet y escribe con el lápiz.'
+    : 'Escribe la palabra completa, sin autocorrección.';
+  const fullHint = hint === '' ? methodHint : `${hint} ${methodHint}`;
   const input = el('input', {
     id: 'answer',
     name: 'answer',
@@ -341,7 +504,8 @@ function answerForm({ label, value = '', hint = 'Escribe la palabra completa.', 
     'form',
     {
       id: 'answer-form',
-      class: 'answer',
+      class: `answer answer-${state.inputMethod}`,
+      'data-input-method': state.inputMethod,
       novalidate: true,
       onsubmit: (event) => {
         event.preventDefault();
@@ -350,7 +514,8 @@ function answerForm({ label, value = '', hint = 'Escribe la palabra completa.', 
     },
     el('label', { for: 'answer', text: label }),
     input,
-    el('p', { id: 'answer-hint', class: 'hint', text: hint }),
+    el('p', { id: 'answer-hint', class: 'hint', text: fullHint }),
+    el('div', { class: 'answer-actions' }, ...secondaryActions, submitButton(submitLabel)),
   );
 
   return { form, input };
@@ -364,6 +529,7 @@ const VIEW_TITLES = {
   home: MODULE_TITLE,
   learn: 'Aprender',
   practice: 'Practicar',
+  notebook: 'Cuaderno con lápiz',
   review: 'Repasar errores',
   mock: 'Simulacro',
   results: 'Has terminado',
@@ -394,6 +560,7 @@ function goHome() {
   speaker.cancel();
   state.learn = null;
   state.practice = null;
+  state.notebook = null;
   state.mock = null;
   announce('');
   go('home');
@@ -407,7 +574,9 @@ function currentScreenKey() {
   if (view === 'learn' && learn) {
     step = learn.finished ? 'finished' : `${learn.index}:${learn.machine.phase}`;
   } else if (view === 'practice' && practice) {
-    step = practice.ids.length === 0 ? 'empty' : `${practice.index}:${practice.machine.phase}`;
+    step = practice.queue.length === 0 ? 'empty' : `${practice.index}:${practice.machine.phase}`;
+  } else if (view === 'notebook' && state.notebook) {
+    step = state.notebook.finished ? 'finished' : `${state.notebook.index}:${state.notebook.revealed ? 'compare' : 'write'}`;
   } else if (view === 'mock' && mock) {
     step = mock.stage === 'review' ? 'review' : `${mock.index}`;
   }
@@ -442,6 +611,8 @@ function render() {
   dom.title.textContent = VIEW_TITLES[viewKey];
   dom.eyebrow.textContent = isHome ? MODULE_EYEBROW : MODULE_TITLE;
   dom.intro.hidden = !isHome;
+  document.body.dataset.view = viewKey;
+  document.body.dataset.inputMethod = state.inputMethod;
   document.title = isHome ? APP_TITLE : `${VIEW_TITLES[viewKey]} · ${APP_TITLE}`;
   dom.back.hidden = isHome;
   setProgress(null);
@@ -537,6 +708,44 @@ function startSelectedPractice() {
   if (ids.length > 0) startPractice(ids, 'practice');
 }
 
+function inputMethodPicker() {
+  const options = [
+    { value: 'keyboard', label: 'Teclado', detail: 'Escribe con el teclado de la pantalla.' },
+    { value: 'pencil', label: 'Lápiz de la tablet', detail: 'Usa la escritura a mano del teclado de la tablet.' },
+  ];
+
+  return el(
+    'fieldset',
+    { class: 'card input-method-card', role: 'radiogroup', 'aria-labelledby': 'input-method-title' },
+    el('legend', { id: 'input-method-title', text: 'Cómo quieres escribir' }),
+    el('p', { id: 'input-method-help', class: 'muted', text: 'Puedes cambiarlo al volver al inicio.' }),
+    el(
+      'div',
+      { class: 'input-method-options', 'aria-describedby': 'input-method-help' },
+      ...options.map((option) =>
+        el(
+          'label',
+          { class: 'input-method-option' },
+          el('input', {
+            type: 'radio',
+            name: 'input-method',
+            value: option.value,
+            'aria-label': option.label,
+            checked: state.inputMethod === option.value,
+            onchange: (event) => {
+              if (event.currentTarget.checked) state.inputMethod = option.value;
+            },
+          }),
+          el('span', { class: 'input-method-copy' },
+            el('strong', { text: option.label }),
+            el('small', { text: option.detail }),
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
 function practiceSelectionPanel() {
   const countText = el('p', { id: 'selection-count', class: 'selection-count', role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true' });
   const start = button('', startSelectedPractice, { id: 'start-selection' });
@@ -595,7 +804,9 @@ function practiceSelectionPanel() {
 function renderHome() {
   const mission = getDailyMission(formatLocalDate(new Date()), progress, WORDS);
   const summary = summarizeProgress(WORDS, progress);
+  const dueIds = getDueWordIds(WORDS, progress, new Date().toISOString());
   const weakIds = getWeakWordIds(WORDS, progress);
+  const reviewIds = [...new Set([...dueIds, ...weakIds])];
   const isMock = getMissionRoute(mission).view === 'mock';
 
   const modes = [
@@ -606,15 +817,23 @@ function renderHome() {
       run: startSelectedPractice,
     },
     {
+      name: 'Cuaderno con lápiz',
+      desc: 'Escribe a mano, compara y decide si coincide.',
+      run: () => startNotebook([...state.selectedIds]),
+    },
+    {
       name: 'Repasar errores',
-      desc: weakIds.length > 0 ? `${plural(weakIds.length, 'palabra pendiente', 'palabras pendientes')}.` : 'Aún no hay errores pendientes.',
-      run: () => startPractice(weakIds, 'review'),
+      desc: reviewIds.length > 0
+        ? `${plural(reviewIds.length, 'palabra pendiente', 'palabras pendientes')}, incluidas las que toca recordar hoy.`
+        : 'Nada pendiente por ahora. Volverán cuando toque recordarlas.',
+      run: () => startPractice(reviewIds, 'review'),
     },
     { name: 'Simulacro tranquilo', desc: '10 palabras con dibujos, sin corregir hasta el final.', run: startMock },
   ];
 
   const main = [
     feedbackSlot({ reserve: false }),
+    inputMethodPicker(),
     practiceSelectionPanel(),
     el(
       'section',
@@ -718,13 +937,15 @@ function submitLearn(value) {
   }
 
   const learn = state.learn;
-  const correct = checkAnswer(value, currentLearnWord().word);
+  const item = currentLearnWord();
+  const correct = checkAnswer(value, item.word);
   learn.machine = advanceLearn(learn.machine, { type: 'answer', correct });
   announce(
     correct ? '¡Bien! La has recordado.' : 'Todavía no. Míralas otra vez con calma y ocúltala de nuevo.',
     correct ? 'success' : 'retry',
   );
   render();
+  playSpelling(item);
 }
 
 function renderLearn() {
@@ -798,6 +1019,7 @@ function renderLearn() {
         { class: 'card exercise' },
         stepHeading(misses > 0 ? 'Míralo otra vez' : 'Mira la palabra'),
         el('div', { class: 'stage' }, wordPicture(item), wordElement(item), sentenceElement(item), audioButton(item)),
+        spellingPanel(item),
         family,
         feedbackSlot(),
       ),
@@ -824,7 +1046,6 @@ function renderLearn() {
         form,
         feedbackSlot(),
       ),
-      [submitButton('Comprobar')],
     );
     return;
   }
@@ -835,16 +1056,279 @@ function renderLearn() {
       { class: 'card exercise' },
       stepHeading('Palabra aprendida'),
       el('div', { class: 'stage' }, wordPicture(item), wordElement(item), sentenceElement(item)),
+      spellingPanel(item),
       feedbackSlot(),
     ),
     [button(learn.index + 1 >= total ? 'Terminar' : 'Siguiente palabra', nextLearnWord)],
   );
 }
 
+/* ---------- Notebook: freehand practice with local self-assessment ---------- */
+
+let inkResizeObserver = null;
+
+function startNotebook(ids) {
+  const safeIds = ids.filter((id) => wordsById.has(id));
+  if (safeIds.length === 0) return;
+  state.notebook = {
+    ids: safeIds,
+    index: 0,
+    ink: createInkState(),
+    revealed: false,
+    finished: false,
+    correct: 0,
+    missedIds: [],
+  };
+  announce('');
+  go('notebook');
+  playWord(currentNotebookWord());
+}
+
+const currentNotebookWord = () => wordsById.get(state.notebook.ids[state.notebook.index]);
+
+function drawInkCanvas(canvas) {
+  const notebook = state.notebook;
+  const context = canvas.getContext('2d');
+  if (!context || !notebook) return;
+  const dpr = Number(canvas.dataset.dpr) || 1;
+  const width = canvas.width / dpr;
+  const height = canvas.height / dpr;
+  context.setTransform(dpr, 0, 0, dpr, 0, 0);
+  context.clearRect(0, 0, width, height);
+  context.lineCap = 'round';
+  context.lineJoin = 'round';
+
+  context.strokeStyle = '#d8d1c4';
+  context.lineWidth = 1.5;
+  for (const fraction of [0.32, 0.62, 0.82]) {
+    context.beginPath();
+    context.moveTo(16, height * fraction);
+    context.lineTo(width - 16, height * fraction);
+    context.stroke();
+  }
+
+  context.strokeStyle = '#17324d';
+  for (const stroke of notebook.ink.strokes) {
+    if (stroke.length === 1) {
+      const point = stroke[0];
+      context.beginPath();
+      context.arc(point.x * width, point.y * height, 2.8, 0, Math.PI * 2);
+      context.fillStyle = '#17324d';
+      context.fill();
+      continue;
+    }
+    for (let index = 1; index < stroke.length; index += 1) {
+      const previous = stroke[index - 1];
+      const point = stroke[index];
+      context.beginPath();
+      context.lineWidth = 3.5 + point.pressure * 2.5;
+      context.moveTo(previous.x * width, previous.y * height);
+      context.lineTo(point.x * width, point.y * height);
+      context.stroke();
+    }
+  }
+}
+
+function syncInkControls() {
+  const hasInk = (state.notebook?.ink.strokes.length ?? 0) > 0;
+  for (const id of ['ink-undo', 'ink-clear']) {
+    const control = document.getElementById(id);
+    if (control) control.disabled = !hasInk;
+  }
+}
+
+function mountInkPad(canvas, interactive) {
+  const resize = () => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width <= 0 || rect.height <= 0) return;
+    const dpr = Math.min(Math.max(window.devicePixelRatio || 1, 1), 3);
+    canvas.dataset.dpr = String(dpr);
+    canvas.width = Math.max(1, Math.round(rect.width * dpr));
+    canvas.height = Math.max(1, Math.round(rect.height * dpr));
+    drawInkCanvas(canvas);
+  };
+  resize();
+  inkResizeObserver?.disconnect();
+  if (typeof ResizeObserver === 'function') {
+    inkResizeObserver = new ResizeObserver(resize);
+    inkResizeObserver.observe(canvas);
+  }
+  if (!interactive) return;
+
+  const pointFromEvent = (event) => {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: (event.clientX - rect.left) / rect.width,
+      y: (event.clientY - rect.top) / rect.height,
+      pressure: event.pressure,
+    };
+  };
+  const update = (next) => {
+    state.notebook.ink = next;
+    drawInkCanvas(canvas);
+    syncInkControls();
+  };
+
+  canvas.addEventListener('pointerdown', (event) => {
+    if (event.pointerType === 'touch' && !event.isPrimary) return;
+    event.preventDefault();
+    canvas.setPointerCapture?.(event.pointerId);
+    update(startInkStroke(state.notebook.ink, event.pointerId, pointFromEvent(event)));
+  });
+  canvas.addEventListener('pointermove', (event) => {
+    if (state.notebook?.ink.activePointerId !== event.pointerId) return;
+    event.preventDefault();
+    const events = typeof event.getCoalescedEvents === 'function' ? event.getCoalescedEvents() : [event];
+    let next = state.notebook.ink;
+    for (const sample of events) next = appendInkPoint(next, event.pointerId, pointFromEvent(sample));
+    update(next);
+  });
+  const finish = (event) => {
+    if (!state.notebook) return;
+    update(finishInkStroke(state.notebook.ink, event.pointerId));
+  };
+  canvas.addEventListener('pointerup', finish);
+  canvas.addEventListener('pointercancel', finish);
+}
+
+function notebookCanvas(item, interactive) {
+  return el('canvas', {
+    class: 'ink-pad',
+    'data-ink-pad': '',
+    role: 'img',
+    'aria-label': interactive
+      ? 'Área de escritura a mano. La palabra sigue oculta.'
+      : `Tu escritura de ${item.word} para comparar`,
+    'aria-describedby': 'ink-help',
+    'data-readonly': String(!interactive),
+  });
+}
+
+function compareNotebook() {
+  const item = currentNotebookWord();
+  state.notebook.revealed = true;
+  announce('Compara tu escritura con la palabra.', 'info');
+  render();
+  playSpelling(item);
+}
+
+function assessNotebook(wasCorrect) {
+  const notebook = state.notebook;
+  const item = currentNotebookWord();
+  record(item.id, wasCorrect);
+  if (wasCorrect) {
+    notebook.correct += 1;
+    if (notebook.index + 1 >= notebook.ids.length) {
+      notebook.finished = true;
+      announce('Cuaderno terminado.', 'success');
+      render();
+      return;
+    }
+    notebook.index += 1;
+  } else if (!notebook.missedIds.includes(item.id)) {
+    notebook.missedIds.push(item.id);
+  }
+  notebook.ink = clearInk(notebook.ink);
+  notebook.revealed = false;
+  announce(wasCorrect ? 'Siguiente palabra.' : 'Vamos a intentarla otra vez sin mirar.', wasCorrect ? 'success' : 'retry');
+  render();
+  playWord(currentNotebookWord());
+}
+
+function renderNotebook() {
+  const notebook = state.notebook;
+  const total = notebook.ids.length;
+  inkResizeObserver?.disconnect();
+
+  if (notebook.finished) {
+    setProgress(total, total, `${total} de ${total} palabras`);
+    setView(
+      el(
+        'section',
+        { class: 'card notebook-finished' },
+        stepHeading('Cuaderno terminado'),
+        el('p', { class: 'result-summary', text: `${notebook.correct} de ${total} palabras marcadas como bien escritas` }),
+        el('p', { text: notebook.missedIds.length > 0 ? 'Las palabras que costaron quedan preparadas para repasar.' : 'Has comparado todas las palabras con calma.' }),
+      ),
+      [button('Volver al inicio', goHome)],
+    );
+    return;
+  }
+
+  const item = currentNotebookWord();
+  setProgress(notebook.index, total, `Palabra ${notebook.index + 1} de ${total}`);
+  const canvas = notebookCanvas(item, !notebook.revealed);
+  const stage = el(
+    'div',
+    { class: 'stage notebook-stage' },
+    wordPicture(item),
+    cueElement(item),
+    audioButton(item),
+  );
+
+  if (notebook.revealed) {
+    setView(
+      el(
+        'section',
+        { class: 'card exercise notebook-card' },
+        stepHeading('Compara con calma'),
+        stage,
+        el('p', { id: 'ink-help', class: 'ink-help', text: 'Tu escritura no se guarda ni se envía.' }),
+        canvas,
+        el('div', { class: 'notebook-answer' }, wordElement(item), sentenceElement(item)),
+        spellingPanel(item),
+        feedbackSlot(),
+      ),
+      [
+        button('Necesito otra vuelta', () => assessNotebook(false), { kind: 'secondary' }),
+        button('La he escrito bien', () => assessNotebook(true)),
+      ],
+    );
+    mountInkPad(canvas, false);
+    return;
+  }
+
+  const hasInk = notebook.ink.strokes.length > 0;
+  const undo = button('Deshacer', () => {
+    notebook.ink = undoInkStroke(notebook.ink);
+    drawInkCanvas(canvas);
+    syncInkControls();
+  }, { kind: 'secondary', id: 'ink-undo', disabled: !hasInk });
+  const clear = button('Borrar', () => {
+    notebook.ink = clearInk(notebook.ink);
+    drawInkCanvas(canvas);
+    syncInkControls();
+  }, { kind: 'secondary', id: 'ink-clear', disabled: !hasInk });
+
+  setView(
+    el(
+      'section',
+      { class: 'card exercise notebook-card' },
+      stepHeading('Escribe a mano', false),
+      stepHelp('Escucha la palabra y escríbela con el lápiz. Después compárala.'),
+      stage,
+      el('p', { id: 'ink-help', class: 'ink-help', text: 'Escribe dentro de la pauta. El dibujo se queda solo en esta pantalla. Con teclado o conmutador, puedes comparar sin dibujar.' }),
+      canvas,
+      el('div', { class: 'ink-tools' }, undo, clear),
+      feedbackSlot(),
+    ),
+    [button('Comparar', compareNotebook, { id: 'ink-compare' })],
+  );
+  mountInkPad(canvas, true);
+}
+
 /* ---------- Practice and Review ---------- */
 
 function startPractice(ids, kind) {
-  state.practice = { kind, ids, index: 0, machine: createPracticeState(), clean: 0, missedIds: [] };
+  state.practice = {
+    kind,
+    queue: ids.map((id) => ({ id, delayed: false })),
+    originalTotal: ids.length,
+    index: 0,
+    machine: createPracticeState(),
+    clean: 0,
+    missedIds: [],
+  };
   announce('');
   go('practice');
   if (ids.length > 0) {
@@ -852,12 +1336,13 @@ function startPractice(ids, kind) {
   }
 }
 
-const currentPracticeWord = () => wordsById.get(state.practice.ids[state.practice.index]);
+const currentPracticeEntry = () => state.practice.queue[state.practice.index];
+const currentPracticeWord = () => wordsById.get(currentPracticeEntry().id);
 
 function nextPracticeWord() {
   const practice = state.practice;
   announce('');
-  if (practice.index + 1 >= practice.ids.length) {
+  if (practice.index + 1 >= practice.queue.length) {
     finishPractice();
     return;
   }
@@ -874,6 +1359,7 @@ function submitPractice(value) {
   }
 
   const practice = state.practice;
+  const entry = currentPracticeEntry();
   const item = currentPracticeWord();
   const before = practice.machine;
   const correct = checkAnswer(value, item.word);
@@ -881,11 +1367,12 @@ function submitPractice(value) {
 
   if (!correct && before.errors === 0) {
     record(item.id, false);
-    practice.missedIds.push(item.id);
+    if (!practice.missedIds.includes(item.id)) practice.missedIds.push(item.id);
+    practice.queue = insertDelayedReview(practice.queue, practice.index, 2);
   }
   if (correct && after.errors === 0) {
     record(item.id, true);
-    practice.clean += 1;
+    if (!entry.delayed) practice.clean += 1;
   }
 
   practice.machine = after;
@@ -904,11 +1391,14 @@ function submitPractice(value) {
   }
 
   render();
+  if (after.phase === 'done' || after.phase === 'reveal') {
+    playSpelling(item);
+  }
 }
 
 function finishPractice() {
   const practice = state.practice;
-  const total = practice.ids.length;
+  const total = practice.originalTotal;
   speaker.cancel();
   showResults({
     kind: 'practice',
@@ -920,7 +1410,7 @@ function finishPractice() {
 
 function renderPractice() {
   const practice = state.practice;
-  const total = practice.ids.length;
+  const total = practice.queue.length;
 
   if (total === 0) {
     setView(
@@ -936,6 +1426,10 @@ function renderPractice() {
   }
 
   const item = currentPracticeWord();
+  const entry = currentPracticeEntry();
+  const repeatNote = entry.delayed
+    ? el('p', { class: 'review-return', text: 'Esta palabra vuelve ahora para reforzarla.' })
+    : null;
   const { phase, errors } = practice.machine;
   setProgress(phase === 'done' ? practice.index + 1 : practice.index, total, `Palabra ${practice.index + 1} de ${total}`);
 
@@ -945,7 +1439,9 @@ function renderPractice() {
         'section',
         { class: 'card exercise' },
         stepHeading('Míralo despacio'),
+        repeatNote,
         el('div', { class: 'stage' }, wordPicture(item), wordElement(item), sentenceElement(item), audioButton(item)),
+        spellingPanel(item),
         feedbackSlot(),
       ),
       [button('Ocultar y escribir', () => {
@@ -963,7 +1459,9 @@ function renderPractice() {
         'section',
         { class: 'card exercise' },
         stepHeading(errors === 0 ? 'Palabra correcta' : 'Palabra para repasar'),
+        repeatNote,
         el('div', { class: 'stage' }, wordPicture(item), wordElement(item), sentenceElement(item)),
+        spellingPanel(item),
         feedbackSlot(),
       ),
       [button(practice.index + 1 >= total ? 'Ver resumen' : 'Siguiente palabra', nextPracticeWord)],
@@ -982,13 +1480,13 @@ function renderPractice() {
     el(
       'section',
       { class: 'card exercise' },
-      stepHeading(headings[phase], false),
-      stepHelp(helps[phase]),
+      stepHeading(entry.delayed && phase === 'first' ? '¿La recuerdas ahora?' : headings[phase], false),
+      stepHelp(entry.delayed && phase === 'first' ? 'Ha pasado un poco de tiempo. Escúchala y recupérala sin mirar.' : helps[phase]),
+      repeatNote,
       el('div', { class: 'stage' }, wordPicture(item), cueElement(item), audioButton(item), el('p', { class: 'hidden-word', text: 'La palabra está oculta.' })),
       form,
       feedbackSlot(),
     ),
-    [submitButton('Comprobar')],
   );
 }
 
@@ -1110,6 +1608,7 @@ function renderMock() {
   }
 
   const item = mock.order[mock.index];
+  const last = mock.index + 1 >= total;
   setProgress(mock.index + 1, total, `Palabra ${mock.index + 1} de ${total}`);
 
   const { form } = answerForm({
@@ -1120,9 +1619,15 @@ function renderMock() {
     onInput: (value) => {
       mock.answers[item.id] = value;
     },
+    submitLabel: mock.backToReview ? 'Volver a la revisión' : last ? 'Revisar respuestas' : 'Siguiente',
+    secondaryActions: [
+      button('Anterior', () => moveMock(mock.index - 1), {
+        kind: 'secondary',
+        disabled: mock.index === 0,
+      }),
+    ],
   });
 
-  const last = mock.index + 1 >= total;
   setView(
     el(
       'section',
@@ -1132,10 +1637,6 @@ function renderMock() {
       el('div', { class: 'stage' }, wordPicture(item), el('div', { class: 'cue-slot', 'data-cue-slot': '' }, mockCue()), audioButton(item)),
       form,
     ),
-    [
-      button('Anterior', () => moveMock(mock.index - 1), { kind: 'secondary', disabled: mock.index === 0 }),
-      submitButton(mock.backToReview ? 'Volver a la revisión' : last ? 'Revisar respuestas' : 'Siguiente'),
-    ],
   );
 }
 
@@ -1212,7 +1713,22 @@ function renderResults() {
             'ul',
             { class: 'result-list' },
             ...missedWords.map((item) =>
-              el('li', {}, el('span', { lang: 'en', text: item.word }), el('span', { class: 'muted', lang: 'es', text: item.cue })),
+              el(
+                'li',
+                { 'data-spelling': item.id },
+                el(
+                  'span',
+                  { class: 'result-word spelling-letters spelling-letters-compact', lang: 'en-GB', 'aria-label': item.word },
+                  ...item.word.toUpperCase().split('').map((letter) =>
+                    el('span', { class: 'spelling-letter', 'data-active': 'false', 'aria-hidden': 'true', text: letter }),
+                  ),
+                ),
+                el('span', { class: 'muted', lang: 'es', text: item.cue }),
+                button('Deletrear', () => playSpelling(item), {
+                  kind: 'secondary',
+                  'aria-label': `Deletrear ${item.word}`,
+                }),
+              ),
             ),
           )
         : el('p', { text: 'Ninguna. ¡Sin errores!' }),
@@ -1240,6 +1756,7 @@ const RENDERERS = {
   home: renderHome,
   learn: renderLearn,
   practice: renderPractice,
+  notebook: renderNotebook,
   mock: renderMock,
   results: renderResults,
 };

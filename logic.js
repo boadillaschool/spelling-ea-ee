@@ -19,7 +19,8 @@ export function checkAnswer(answer, expectedWord) {
   return normalizeAnswer(answer) === normalizeAnswer(expectedWord);
 }
 
-const PROGRESS_VERSION = 1;
+const LEGACY_PROGRESS_VERSION = 1;
+const PROGRESS_VERSION = 2;
 const MAX_MOCK_SCORES = 20;
 
 /** @typedef {{ score: number, total: number, completedAt: string }} MockScore */
@@ -35,6 +36,15 @@ function isPlainObject(value) {
 
   const prototype = Object.getPrototypeOf(value);
   return prototype === Object.prototype || prototype === null;
+}
+
+function sanitizeTimestamp(value) {
+  if (typeof value !== 'string') return null;
+  try {
+    return new Date(value).toISOString() === value ? value : null;
+  } catch {
+    return null;
+  }
 }
 
 function sanitizeMockScore(value) {
@@ -77,7 +87,15 @@ export function createEmptyProgress(words) {
     words: Object.fromEntries(
       words.map(({ id }) => [
         id,
-        { seen: 0, correct: 0, wrong: 0, lastPractisedAt: null },
+        {
+          seen: 0,
+          correct: 0,
+          wrong: 0,
+          lastPractisedAt: null,
+          level: 0,
+          lastCleanAt: null,
+          nextReviewAt: null,
+        },
       ]),
     ),
     mockScores: [],
@@ -93,52 +111,95 @@ export function createEmptyProgress(words) {
  */
 export function sanitizeProgress(raw, words) {
   const sanitized = createEmptyProgress(words);
+  let version;
+  let storedWords;
+  let storedScores;
+
+  try {
+    if (!isPlainObject(raw)) return sanitized;
+    version = raw.version;
+    storedWords = raw.words;
+    storedScores = raw.mockScores;
+  } catch {
+    return sanitized;
+  }
 
   if (
-    raw === null ||
-    typeof raw !== 'object' ||
-    Array.isArray(raw) ||
-    raw.version !== PROGRESS_VERSION ||
-    raw.words === null ||
-    typeof raw.words !== 'object' ||
-    Array.isArray(raw.words)
+    ![LEGACY_PROGRESS_VERSION, PROGRESS_VERSION].includes(version) ||
+    !isPlainObject(storedWords)
   ) {
     return sanitized;
   }
 
   for (const { id } of words) {
-    if (!Object.hasOwn(raw.words, id)) {
+    let seen;
+    let correct;
+    let wrong;
+    let lastPractisedAtValue;
+    let levelValue = 0;
+    let lastCleanAtValue = null;
+    let nextReviewAtValue = null;
+
+    try {
+      if (!Object.hasOwn(storedWords, id)) continue;
+      const stats = storedWords[id];
+      if (!isPlainObject(stats)) continue;
+      seen = stats.seen;
+      correct = stats.correct;
+      wrong = stats.wrong;
+      lastPractisedAtValue = stats.lastPractisedAt;
+      if (version === PROGRESS_VERSION) {
+        levelValue = stats.level;
+        lastCleanAtValue = stats.lastCleanAt;
+        nextReviewAtValue = stats.nextReviewAt;
+      }
+    } catch {
       continue;
     }
 
-    const stats = raw.words[id];
     if (
-      stats === null ||
-      typeof stats !== 'object' ||
-      Array.isArray(stats) ||
-      !isNonNegativeInteger(stats.seen) ||
-      !isNonNegativeInteger(stats.correct) ||
-      !isNonNegativeInteger(stats.wrong) ||
-      stats.seen !== stats.correct + stats.wrong
+      !isNonNegativeInteger(seen) ||
+      !isNonNegativeInteger(correct) ||
+      !isNonNegativeInteger(wrong) ||
+      seen !== correct + wrong
     ) {
       continue;
     }
 
+    const lastPractisedAt = sanitizeTimestamp(lastPractisedAtValue);
+    const legacy = version === LEGACY_PROGRESS_VERSION;
+    const legacyLevel = correct > 0 && lastPractisedAt !== null ? 1 : 0;
+    let level = legacy
+      ? legacyLevel
+      : isNonNegativeInteger(levelValue) && levelValue <= 2
+        ? levelValue
+        : 0;
+    const lastCleanAt = legacy ? (legacyLevel > 0 ? lastPractisedAt : null) : sanitizeTimestamp(lastCleanAtValue);
+    let nextReviewAt = legacy ? (legacyLevel > 0 ? lastPractisedAt : null) : sanitizeTimestamp(nextReviewAtValue);
+    if (level > 0 && lastCleanAt === null) {
+      level = 0;
+      nextReviewAt = null;
+    }
+
     sanitized.words[id] = {
-      seen: stats.seen,
-      correct: stats.correct,
-      wrong: stats.wrong,
-      lastPractisedAt:
-        typeof stats.lastPractisedAt === 'string' ? stats.lastPractisedAt : null,
+      seen,
+      correct,
+      wrong,
+      lastPractisedAt,
+      level,
+      lastCleanAt,
+      nextReviewAt,
     };
   }
 
-  if (Array.isArray(raw.mockScores)) {
-    for (const mockScore of raw.mockScores) {
-      const safeMockScore = sanitizeMockScore(mockScore);
-      if (safeMockScore !== null) {
-        sanitized.mockScores.push(safeMockScore);
+  if (Array.isArray(storedScores)) {
+    try {
+      for (const mockScore of storedScores) {
+        const safeMockScore = sanitizeMockScore(mockScore);
+        if (safeMockScore !== null) sanitized.mockScores.push(safeMockScore);
       }
+    } catch {
+      // Keep any scores that were safely inspected before a hostile entry failed.
     }
     sanitized.mockScores = sanitized.mockScores.slice(-MAX_MOCK_SCORES);
   }
@@ -165,12 +226,39 @@ export function recordAttempt(progress, wordId, wasCorrect, timestamp) {
     return progress;
   }
 
+  const safeTimestamp = sanitizeTimestamp(timestamp);
+  if (safeTimestamp === null) {
+    return progress;
+  }
+  const currentLevel = isNonNegativeInteger(current.level) && current.level <= 2 ? current.level : 0;
+  const priorCleanAt = sanitizeTimestamp(current.lastCleanAt);
+  let level = currentLevel;
+  let lastCleanAt = priorCleanAt;
+  let nextReviewAt = sanitizeTimestamp(current.nextReviewAt);
+
+  if (wasCorrect) {
+    const differentDay = priorCleanAt === null || priorCleanAt.slice(0, 10) !== safeTimestamp.slice(0, 10);
+    level = differentDay ? Math.min(2, currentLevel + 1) : currentLevel;
+    lastCleanAt = safeTimestamp;
+    const intervalDays = level >= 2 ? 3 : 1;
+    const due = new Date(safeTimestamp);
+    due.setUTCDate(due.getUTCDate() + intervalDays);
+    nextReviewAt = due.toISOString();
+  } else {
+    level = 0;
+    lastCleanAt = null;
+    nextReviewAt = safeTimestamp;
+  }
+
   const nextWordProgress = {
     ...current,
     seen: current.seen + 1,
     correct: current.correct + (wasCorrect ? 1 : 0),
     wrong: current.wrong + (wasCorrect ? 0 : 1),
-    lastPractisedAt: timestamp,
+    lastPractisedAt: safeTimestamp,
+    level,
+    lastCleanAt,
+    nextReviewAt,
   };
 
   return {
@@ -390,6 +478,19 @@ export function getSpeechText(item) {
 }
 
 /**
+ * Returns letter names separated into distinct utterance phrases, then repeats
+ * the complete word. The display spelling is never changed for pronunciation.
+ *
+ * @param {{ word: string }} item
+ * @returns {string}
+ */
+export function getSpellingText(item) {
+  const word = item.word;
+  const letters = word.toUpperCase().split('').map((letter) => `${letter}.`).join(' ');
+  return `${letters} ${word[0].toUpperCase()}${word.slice(1)}.`;
+}
+
+/**
  * Whether a typed answer is empty and therefore must not be counted as an attempt.
  *
  * @param {unknown} answer
@@ -435,6 +536,24 @@ export function describeHighlightedWord({ word, pattern }) {
     letters,
     text: letters === '' ? word : `${word}; letras resaltadas: ${letters}`,
   };
+}
+
+export function insertDelayedReview(queue, currentIndex, gap = 2) {
+  if (!Array.isArray(queue) || !Number.isSafeInteger(currentIndex) || currentIndex < 0 || currentIndex >= queue.length) {
+    return queue;
+  }
+  const current = queue[currentIndex];
+  if (!current || current.delayed === true) return queue;
+  if (queue.slice(currentIndex + 1).some((entry) => entry?.id === current.id && entry.delayed === true)) {
+    return queue;
+  }
+  const safeGap = Number.isSafeInteger(gap) && gap >= 0 ? gap : 2;
+  const insertAt = Math.min(queue.length, currentIndex + safeGap + 1);
+  return [
+    ...queue.slice(0, insertAt),
+    { id: current.id, delayed: true },
+    ...queue.slice(insertAt),
+  ];
 }
 
 /**
@@ -645,6 +764,31 @@ export function getBestScore(progress) {
   return best;
 }
 
+export function getReviewStatus(stats, now) {
+  if (!stats || !isNonNegativeInteger(stats.seen) || stats.seen === 0) return 'new';
+  const level = isNonNegativeInteger(stats.level) && stats.level <= 2 ? stats.level : 0;
+  const nextReviewAt = sanitizeTimestamp(stats.nextReviewAt);
+  const safeNow = sanitizeTimestamp(now);
+  if ((level === 0 && stats.wrong > 0) || (nextReviewAt !== null && safeNow !== null && nextReviewAt <= safeNow)) {
+    return 'due';
+  }
+  return level >= 2 ? 'secure' : 'learning';
+}
+
+export function getDueWordIds(words, progress, now) {
+  return words
+    .map(({ id }, index) => ({ id, index, stats: progress.words[id] }))
+    .filter(({ stats }) => getReviewStatus(stats, now) === 'due')
+    .sort((left, right) => {
+      const leftError = left.stats.wrong - left.stats.correct;
+      const rightError = right.stats.wrong - right.stats.correct;
+      const leftLevel = isNonNegativeInteger(left.stats.level) ? left.stats.level : 0;
+      const rightLevel = isNonNegativeInteger(right.stats.level) ? right.stats.level : 0;
+      return leftLevel - rightLevel || rightError - leftError || left.index - right.index;
+    })
+    .map(({ id }) => id);
+}
+
 /**
  * Lists words whose mistakes outweigh their successes, most-missed first.
  *
@@ -673,7 +817,7 @@ export function summarizeProgress(words, progress) {
   return {
     total: words.length,
     practised: stats.filter(({ seen }) => seen > 0).length,
-    mastered: stats.filter(({ correct, wrong }) => correct > 0 && correct >= wrong).length,
+    mastered: stats.filter(({ level }) => level >= 2).length,
     weak: stats.filter(({ correct, wrong }) => wrong > correct).length,
   };
 }

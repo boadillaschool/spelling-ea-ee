@@ -13,8 +13,13 @@ await fs.mkdir(out, { recursive: true });
 let base = process.env.BASE;
 let server;
 if (!base) {
-  const allowed = new Set(['index.html', 'styles.css', 'app.js', 'data.js', 'illustrations.js', 'logic.js', 'speech.js', 'ui-helpers.js', 'focus-policy.js',
-    ...WORDS.map(({ id }) => `images/words/${id}.svg`), ...WORDS.map(({ id }) => `audio/en-gb-v1/${id}.mp3`)]);
+  const allowed = new Set([
+    'index.html', 'styles.css', 'app.js', 'data.js', 'illustrations.js', 'logic.js', 'speech.js',
+    'spelling-timings.js', 'ink-pad.js', 'ui-helpers.js', 'focus-policy.js',
+    ...WORDS.map(({ id }) => `images/words/${id}.svg`),
+    ...WORDS.map(({ id }) => `audio/en-gb-v1/${id}.mp3`),
+    ...WORDS.map(({ id }) => `audio/spelling-en-gb-v1/${id}.mp3`),
+  ]);
   server = http.createServer(async (req, res) => {
     try {
       const pathname = new URL(req.url, 'http://localhost').pathname;
@@ -85,26 +90,36 @@ try {
   await test('practice_and_error_review_keep_the_right_picture', async page => {
     await click(page, 'Practicar las 10 palabras');
     const seen = [];
-    for (let index = 0; index < WORDS.length; index++) {
+    let firstId = null;
+    for (let step = 0; step < WORDS.length + 1; step++) {
       const id = await page.locator('[data-audio]').first().getAttribute('data-audio');
-      seen.push(id); await picture(page, id);
+      if (step === 0) firstId = id;
+      seen.push(id);
+      await picture(page, id);
       assert.equal(await page.locator('.word').count(), 0);
-      if (index === 0) {
+      const occurrence = seen.filter((value) => value === id).length;
+      if ((step === 0) || (id === firstId && occurrence === 2)) {
         await page.locator('#answer').fill('wrong'); await click(page, 'Comprobar'); await picture(page, id);
         await page.locator('#answer').fill('wrong'); await click(page, 'Comprobar'); await picture(page, id);
         await click(page, 'Ocultar y escribir'); await picture(page, id);
       }
-      await capture(page, 'practice-' + id);
+      await capture(page, `practice-${id}-${occurrence}`);
       await page.locator('#answer').fill(id); await click(page, 'Comprobar'); await picture(page, id);
-      await click(page, index === WORDS.length - 1 ? 'Ver resumen' : 'Siguiente palabra');
+      if (await page.getByRole('button', { name: 'Ver resumen', exact: true }).count()) {
+        await click(page, 'Ver resumen');
+        break;
+      }
+      await click(page, 'Siguiente palabra');
     }
-    assert.deepEqual([...seen].sort(), WORDS.map(({ id }) => id).sort());
+    assert.equal(seen.length, WORDS.length + 1);
+    assert.deepEqual([...new Set(seen)].sort(), WORDS.map(({ id }) => id).sort());
+    assert.equal(seen.filter((id) => id === firstId).length, 2, 'the missed word should return once');
     assert.equal(await page.locator('.word-picture').count(), 0, 'No stale active-word picture on results');
     await page.locator('#back').click();
     await page.getByRole('button', { name: /^Repasar errores / }).click();
     assert.equal(await page.locator('#progress').getAttribute('max'), '1');
-    await picture(page, seen[0]);
-    await page.locator('#answer').fill(seen[0]); await click(page, 'Comprobar'); await picture(page, seen[0]);
+    await picture(page, firstId);
+    await page.locator('#answer').fill(firstId); await click(page, 'Comprobar'); await picture(page, firstId);
     await click(page, 'Ver resumen');
   });
   await test('mock_images_follow_random_order_previous_and_edit_without_spelling', async page => {
@@ -211,6 +226,10 @@ try {
       await click(page, 'Practicar 1 palabra'); await layout('practice');
       await page.locator('#answer').fill('wrong'); await click(page, 'Comprobar');
       await page.locator('#answer').fill('wrong'); await click(page, 'Comprobar'); await layout('practice-reveal');
+      await click(page, 'Ocultar y escribir'); await page.locator('#answer').fill('between');
+      await click(page, 'Comprobar'); await click(page, 'Siguiente palabra'); await layout('practice-delayed');
+      await page.locator('#answer').fill('wrong'); await click(page, 'Comprobar');
+      await page.locator('#answer').fill('wrong'); await click(page, 'Comprobar'); await layout('practice-delayed-reveal');
       await click(page, 'Ocultar y escribir'); await page.locator('#answer').fill('between');
       await click(page, 'Comprobar'); await click(page, 'Ver resumen'); await page.locator('#back').click();
       await page.getByRole('button', { name: /^Repasar errores / }).click(); await layout('review');

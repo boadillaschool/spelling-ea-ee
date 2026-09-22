@@ -14,7 +14,13 @@ await fs.mkdir(out, { recursive: true });
 let server;
 let base = process.env.BASE;
 if (!base) {
-  const allowed = new Set(['index.html', 'styles.css', 'app.js', 'data.js', 'illustrations.js', 'logic.js', 'speech.js', 'ui-helpers.js', 'focus-policy.js', ...words.map(id => `audio/en-gb-v1/${id}.mp3`), ...words.map(id => `images/words/${id}.svg`)]);
+  const allowed = new Set([
+    'index.html', 'styles.css', 'app.js', 'data.js', 'illustrations.js', 'logic.js', 'speech.js',
+    'spelling-timings.js', 'ink-pad.js', 'ui-helpers.js', 'focus-policy.js',
+    ...words.map(id => `audio/en-gb-v1/${id}.mp3`),
+    ...words.map(id => `audio/spelling-en-gb-v1/${id}.mp3`),
+    ...words.map(id => `images/words/${id}.svg`),
+  ]);
   server = http.createServer(async (req, res) => {
     try {
       const file = new URL(req.url, 'http://localhost').pathname.slice(1) || 'index.html';
@@ -164,7 +170,7 @@ try {
       const measurements = await page.evaluate(() => {
         const nodes = [...document.querySelectorAll('button, input, summary')].filter(node => node.checkVisibility());
         const boxes = nodes.map(node => {
-          const target = node.type === 'checkbox' ? node.closest('label') : node;
+          const target = ['checkbox', 'radio'].includes(node.type) ? node.closest('label') : node;
           const rect = target.getBoundingClientRect();
           return { label: target.innerText || node.id, width: rect.width, height: rect.height };
         });

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 
 import { createSpeaker } from '../speech.js';
 import { WORDS } from '../data.js';
-import { getSpeechText } from '../logic.js';
+import { getSpeechText, getSpellingText } from '../logic.js';
 
 class FakeUtterance {
   constructor(text) {
@@ -93,6 +93,37 @@ test('known curriculum prompts prefer their local MP3 with or without native syn
     assert.equal(synth?.spoken.length ?? 0, 0);
     assert.equal(statuses.at(-1), 'speaking');
   }
+});
+
+test('curriculum spelling prompts use separate packaged clips', () => {
+  const { AudioCtor, instances } = fakeMedia();
+  const speaker = createSpeaker({ AudioCtor });
+
+  for (const item of WORDS) {
+    assert.equal(speaker.speak(getSpellingText(item)), true, item.id);
+    assert.equal(instances.at(-1)?.src, `audio/spelling-en-gb-v1/${item.id}.mp3`);
+  }
+  assert.equal(instances.length, WORDS.length);
+});
+
+test('packaged playback reports current time only for the active clip', () => {
+  const { AudioCtor, instances } = fakeMedia();
+  const speaker = createSpeaker({ AudioCtor });
+  const times = [];
+
+  speaker.speak(getSpellingText(WORDS[0]), { onTime: (seconds) => times.push(seconds) });
+  const firstTick = instances[0].ontimeupdate;
+  instances[0].currentTime = 0.72;
+  firstTick?.();
+  assert.deepEqual(times, [0.72]);
+
+  speaker.speak(getSpellingText(WORDS[1]), { onTime: (seconds) => times.push(seconds) });
+  instances[0].currentTime = 1.4;
+  firstTick?.();
+  assert.deepEqual(times, [0.72], 'cancelled clips cannot move the visual spelling cue');
+  instances[1].currentTime = 0.3;
+  instances[1].ontimeupdate?.();
+  assert.deepEqual(times, [0.72, 0.3]);
 });
 
 test('slow media replay uses 0.8 with pitch preservation and normal replay resets to 1', () => {

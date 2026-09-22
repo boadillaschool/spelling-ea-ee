@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { WORDS } from '../data.js';
-import { getContextSentence, getSpeechText, selectEnglishVoice } from '../logic.js';
+import { getContextSentence, getSpeechText, getSpellingText, selectEnglishVoice } from '../logic.js';
 
 const voice = (lang, name = lang) => ({ lang, name });
 
@@ -63,5 +63,17 @@ test('getSpeechText forces present-tense read with an imperative and habitual co
 test('getSpeechText is defined for every word and contains its sentence', () => {
   for (const item of WORDS) {
     assert.ok(getSpeechText(item).includes(getContextSentence(item)), item.id);
+  }
+});
+
+test('getSpellingText names every letter separately before repeating the word', () => {
+  const easy = WORDS.find(({ id }) => id === 'easy');
+  const read = WORDS.find(({ id }) => id === 'read');
+
+  assert.equal(getSpellingText(easy), 'E. A. S. Y. Easy.');
+  assert.equal(getSpellingText(read), 'R. E. A. D. Read.');
+  for (const item of WORDS) {
+    const spokenLetters = item.word.toUpperCase().split('').map((letter) => `${letter}.`).join(' ');
+    assert.equal(getSpellingText(item), `${spokenLetters} ${item.word[0].toUpperCase()}${item.word.slice(1)}.`);
   }
 });

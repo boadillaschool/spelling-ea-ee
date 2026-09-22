@@ -62,12 +62,14 @@ test('getWeakWordIds is empty for a fresh progress snapshot', () => {
   assert.deepEqual(getWeakWordIds(WORDS, createEmptyProgress(WORDS)), []);
 });
 
-test('summarizeProgress counts practised, mastered and weak words', () => {
+test('summarizeProgress counts practised, secure and weak words', () => {
   let progress = createEmptyProgress(WORDS);
   progress = recordAttempt(progress, 'easy', true, at);
+  progress = recordAttempt(progress, 'easy', true, '2026-09-21T10:00:00.000Z');
   progress = recordAttempt(progress, 'meat', false, at);
   progress = recordAttempt(progress, 'read', false, at);
   progress = recordAttempt(progress, 'read', true, at);
+  progress = recordAttempt(progress, 'read', true, '2026-09-21T10:00:00.000Z');
 
   assert.deepEqual(summarizeProgress(WORDS, progress), {
     total: 10,
@@ -172,7 +174,15 @@ test('saved data contains only aggregate counters and mock scores', () => {
 
   assert.deepEqual(Object.keys(saved).sort(), ['mockScores', 'version', 'words']);
   for (const stats of Object.values(saved.words)) {
-    assert.deepEqual(Object.keys(stats).sort(), ['correct', 'lastPractisedAt', 'seen', 'wrong']);
+    assert.deepEqual(Object.keys(stats).sort(), [
+      'correct',
+      'lastCleanAt',
+      'lastPractisedAt',
+      'level',
+      'nextReviewAt',
+      'seen',
+      'wrong',
+    ]);
   }
 });
 
