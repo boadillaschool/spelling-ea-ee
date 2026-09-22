@@ -17,7 +17,7 @@ The interface is in Spanish (aimed at 2º de Primaria); the audio is British Eng
 
 ## Post-answer spelling and handwriting
 
-- After a retrieval attempt, a separate bundled British-English clip spells the word letter by letter at ×0.55, highlights the active letter, then repeats the whole word. **Deletrear más despacio** uses ×0.4. Practice and the mock never request spelling audio before the answer is submitted.
+- After a retrieval attempt, a separate bundled British-English clip spells the word with naturally synthesized letter segments and real pauses, highlights the active letter, waits 1.25 seconds after the final letter, then repeats the whole word. The prepared clip plays at its natural ×1 rate; **Deletrear más despacio** uses the mild ×0.8 rate. Practice and the mock never request spelling audio before the answer is submitted.
 - **Deletrear otra vez** and **Deletrear más despacio** are available only in teaching or feedback states.
 - **Teclado** and **Lápiz de la tablet** both keep a native text input, so Android's handwriting keyboard can supply text that the app checks normally.
 - **Cuaderno con lápiz** is a local freehand canvas with pressure-aware pointer strokes, high-DPI rendering, undo, clear, compare and self-assessment. Keyboard and switch users can choose **Comparar** without drawing. It deliberately does not claim handwriting recognition; raw ink is never saved.

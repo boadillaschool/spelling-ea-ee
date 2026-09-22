@@ -102,7 +102,7 @@ test('curriculum spelling prompts use separate packaged clips', () => {
   for (const item of WORDS) {
     assert.equal(speaker.speak(getSpellingText(item)), true, item.id);
     assert.equal(instances.at(-1)?.src, `audio/spelling-en-gb-v1/${item.id}.mp3`);
-    assert.equal(instances.at(-1)?.playbackRate, 0.55, 'default spelling feedback must leave deliberate pauses between letters');
+    assert.equal(instances.at(-1)?.playbackRate, 1, 'rebuilt spelling clips contain real pauses and play at their natural rate');
   }
   assert.equal(instances.length, WORDS.length);
 });
@@ -127,7 +127,7 @@ test('packaged playback reports current time only for the active clip', () => {
   assert.deepEqual(times, [0.72, 0.3]);
 });
 
-test('slow media replay keeps pronunciation at 0.8 and slows spelling to 0.4 with pitch preservation', () => {
+test('slow media replay uses a mild 0.8 rate for both pronunciation and rebuilt spelling clips', () => {
   const { AudioCtor, instances } = fakeMedia();
   const speaker = createSpeaker({ AudioCtor });
   const pronunciation = getSpeechText(WORDS[0]);
@@ -140,7 +140,7 @@ test('slow media replay keeps pronunciation at 0.8 and slows spelling to 0.4 wit
   assert.equal(instances[1].playbackRate, 1);
   assert.equal(instances[1].preservesPitch, true);
   speaker.speak(spelling, { slow: true });
-  assert.equal(instances[2].playbackRate, 0.4);
+  assert.equal(instances[2].playbackRate, 0.8);
   assert.equal(instances[2].preservesPitch, true);
 });
 

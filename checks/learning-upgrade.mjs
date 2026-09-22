@@ -40,8 +40,10 @@ try {
   await page.addInitScript(() => {
     const NativeAudio = window.Audio;
     window.__playedAudio = [];
+    window.__audioElements = [];
     window.Audio = function TrackedAudio(...args) {
       const audio = new NativeAudio(...args);
+      window.__audioElements.push(audio);
       const nativePlay = audio.play.bind(audio);
       audio.play = () => {
         window.__playedAudio.push({ src: audio.src, rate: audio.playbackRate });
@@ -79,15 +81,34 @@ try {
   assert.ok(requests.includes('/audio/spelling-en-gb-v1/easy.mp3'), JSON.stringify(requests));
   assert.equal(
     await page.evaluate(() => window.__playedAudio.filter(({ src }) => src.includes('/spelling-en-gb-v1/easy.mp3')).at(-1)?.rate),
-    0.55,
-    'automatic spelling feedback must use the slower default pace',
+    1,
+    'rebuilt spelling feedback must play its real pauses at the natural rate',
   );
   await panel.getByRole('button', { name: 'Deletrear más despacio', exact: true }).click();
   assert.equal(
     await page.evaluate(() => window.__playedAudio.filter(({ src }) => src.includes('/spelling-en-gb-v1/easy.mp3')).at(-1)?.rate),
-    0.4,
-    'the slower spelling replay must leave even more space between letters',
+    0.8,
+    'the slower spelling replay must avoid aggressive time stretching',
   );
+  const pauseHighlight = await page.evaluate(async () => {
+    const [{ getSpellingCues }, { WORDS }] = await Promise.all([
+      import('./spelling-timings.js'),
+      import('./data.js'),
+    ]);
+    const audio = window.__audioElements.filter(({ src }) => src.includes('/spelling-en-gb-v1/easy.mp3')).at(-1);
+    const cues = getSpellingCues(WORDS.find(({ id }) => id === 'easy'));
+    audio.pause();
+    audio.currentTime = cues.lastLetterEndAt - 0.01;
+    audio.dispatchEvent(new Event('timeupdate'));
+    const beforePause = [...document.querySelectorAll('[data-spelling="easy"] .spelling-letter')]
+      .findIndex((letter) => letter.dataset.active === 'true');
+    audio.currentTime = cues.lastLetterEndAt;
+    audio.dispatchEvent(new Event('timeupdate'));
+    const duringPause = [...document.querySelectorAll('[data-spelling="easy"] .spelling-letter')]
+      .findIndex((letter) => letter.dataset.active === 'true');
+    return { beforePause, duringPause };
+  });
+  assert.deepEqual(pauseHighlight, { beforePause: 3, duringPause: -1 }, 'the last-letter highlight must clear for the authored pause');
 
   await page.locator('#back').click();
   await page.locator('.mode-row').filter({ hasText: /^Aprender/ }).click();
