@@ -7,6 +7,22 @@ A small, static, mobile-first spelling app. The front page lets families choose 
 
 `people` is an extra spelling word, not an example of either pattern. Its learning flow skips the pattern-choice step. Both `ph` groups are highlighted in `photograph`.
 
+## Public address and publication
+
+**https://boadillaschool.github.io/spelling/** is the stable public address for every weekly list.
+
+Source code and tests stay in the independent `boadillaschool/spelling-ea-ee` repository. The portal repository `boadillaschool/boadillaschool.github.io` hosts a generated, runtime-only copy in `spelling/`. Do not edit that copy by hand.
+
+For each release, with both repositories checked out locally:
+
+1. Update and test this source repository; commit the reviewed changes with the neutral project identity.
+2. Run `node scripts/export-pages.mjs ../boadillaschool.github.io/spelling` (adjust the portal checkout path). It copies only the allowlisted modules, static shell and assets for all registered words; never development tooling or private files.
+3. Review and commit the portal's generated `spelling/` changes, publish its `main` branch, and verify the actual Pages URL and asset bytes.
+4. Only once `/spelling/` works, publish this source repository's `main` branch. Its old Pages URL redirects to the new path; lesson dates are preserved, unrelated URL parameters and fragments are dropped.
+5. Keep both repositories and histories. Future lesson changes must also be exported to the portal, not just pushed here.
+
+The origin and all existing lesson storage keys remain unchanged. Moving between the two paths therefore uses the same local progress in the same browser; no learner data is copied or uploaded. The redirect runs only on the exact legacy path, never on `/spelling/` or the local development root.
+
 ## Dated routes and separate progress
 
 - The root page is the list chooser. `?list=2026-09-25` and `?list=2026-10-02` open the corresponding lists; unknown IDs return to the chooser.
@@ -99,6 +115,7 @@ Optional browser checks require Playwright as developer tooling only:
 npm install --no-save --package-lock=false playwright
 npx playwright install chromium
 npm run check:weekly
+PORTAL_ROOT=../boadillaschool.github.io npm run check:migration
 npm run check:browser
 npm run check:illustrations
 npm run check:learning

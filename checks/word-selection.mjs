@@ -15,7 +15,7 @@ let server;
 let base = process.env.BASE;
 if (!base) {
   const allowed = new Set([
-    'index.html', 'styles.css', 'app.js', 'data.js', 'lessons.js', 'illustrations.js', 'logic.js', 'speech.js',
+    'index.html', 'styles.css', 'site-routing.js', 'app.js', 'data.js', 'lessons.js', 'illustrations.js', 'logic.js', 'speech.js',
     'spelling-timings.js', 'ink-pad.js', 'ui-helpers.js', 'focus-policy.js',
     ...words.map(id => `audio/en-gb-v1/${id}.mp3`),
     ...words.map(id => `audio/spelling-en-gb-v1/${id}.mp3`),

@@ -11,7 +11,7 @@ const browserType = playwright[engine];
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const words = ['easy', 'meat', 'peanuts', 'between', 'read', 'jeans', 'heel', 'sweets', 'street', 'reach'];
 const allowed = new Set([
-  'index.html', 'styles.css', 'app.js', 'data.js', 'lessons.js', 'illustrations.js', 'logic.js', 'speech.js',
+  'index.html', 'styles.css', 'site-routing.js', 'app.js', 'data.js', 'lessons.js', 'illustrations.js', 'logic.js', 'speech.js',
   'spelling-timings.js', 'ink-pad.js', 'ui-helpers.js', 'focus-policy.js', 'robots.txt',
   ...words.map((id) => `audio/en-gb-v1/${id}.mp3`),
   ...words.map((id) => `audio/spelling-en-gb-v1/${id}.mp3`),
@@ -21,7 +21,7 @@ const allowed = new Set([
 const server = http.createServer(async (request, response) => {
   try {
     const pathname = new URL(request.url, 'http://localhost').pathname;
-    const prefix = '/spelling-ea-ee/';
+    const prefix = '/spelling/';
     if (!pathname.startsWith(prefix)) throw new Error('outside project path');
     const file = pathname.slice(prefix.length) || 'index.html';
     if (request.method !== 'GET' || !allowed.has(file)) {
@@ -36,7 +36,7 @@ const server = http.createServer(async (request, response) => {
   }
 });
 await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
-const base = `http://127.0.0.1:${server.address().port}/spelling-ea-ee/?list=2026-09-25`;
+const base = `http://127.0.0.1:${server.address().port}/spelling/?list=2026-09-25`;
 const browser = await browserType.launch({
   headless: true,
   ...(engine === 'chromium' && process.env.BROWSER_PATH ? { executablePath: process.env.BROWSER_PATH } : {}),

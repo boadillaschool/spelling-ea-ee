@@ -1,12 +1,13 @@
 {
-  "name": "spelling-ea-ee",
+  "name": "spelling",
   "version": "1.0.0",
   "description": "Static weekly spelling lists with British audio and separate local progress.",
   "private": true,
   "type": "module",
   "scripts": {
     "test": "node --test",
-    "check": "node --check data.js && node --check lessons.js && node --check logic.js && node --check speech.js && node --check illustrations.js && node --check spelling-timings.js && node --check ink-pad.js && node --check ui-helpers.js && node --check focus-policy.js && node --check app.js && node --check checks/word-selection.mjs && node --check checks/word-illustrations.mjs && node --check checks/learning-upgrade.mjs && node --check checks/responsive-upgrade.mjs && node --check checks/cross-browser-smoke.mjs && node --check checks/weekly-lists.mjs",
+    "check": "node --check site-routing.js && node --check scripts/export-pages.mjs && node --check data.js && node --check lessons.js && node --check logic.js && node --check speech.js && node --check illustrations.js && node --check spelling-timings.js && node --check ink-pad.js && node --check ui-helpers.js && node --check focus-policy.js && node --check app.js && node --check checks/word-selection.mjs && node --check checks/word-illustrations.mjs && node --check checks/learning-upgrade.mjs && node --check checks/responsive-upgrade.mjs && node --check checks/cross-browser-smoke.mjs && node --check checks/weekly-lists.mjs && node --check checks/url-migration.mjs",
+    "check:migration": "node checks/url-migration.mjs",
     "check:weekly": "node checks/weekly-lists.mjs",
     "check:browser": "node checks/word-selection.mjs",
     "check:illustrations": "node checks/word-illustrations.mjs",

@@ -13,10 +13,10 @@ await fs.mkdir(out, { recursive: true });
 let server;
 let base = process.env.BASE;
 if (!base) {
-  const allowed = new Set(['index.html','styles.css','app.js','data.js','lessons.js','logic.js','speech.js','illustrations.js','ink-pad.js','ui-helpers.js','focus-policy.js','spelling-timings.js',
+  const allowed = new Set(['index.html','styles.css','site-routing.js','app.js','data.js','lessons.js','logic.js','speech.js','illustrations.js','ink-pad.js','ui-helpers.js','focus-policy.js','spelling-timings.js',
     ...ALL_WORDS.flatMap(({id}) => [`audio/en-gb-v1/${id}.mp3`,`audio/spelling-en-gb-v1/${id}.mp3`,`images/words/${id}.svg`])]);
   server = http.createServer(async (req,res) => {
-    const file = new URL(req.url, 'http://localhost').pathname.replace(/^\/spelling-ea-ee\//, '') || 'index.html';
+    const file = new URL(req.url, 'http://localhost').pathname.replace(/^\/spelling\//, '') || 'index.html';
     if (req.method !== 'GET' || !allowed.has(file)) { res.writeHead(404).end(); return; }
     try {
       const body = await fs.readFile(path.join(root,file));
@@ -24,7 +24,7 @@ if (!base) {
     } catch { res.writeHead(404).end(); }
   });
   await new Promise(resolve => server.listen(0,'127.0.0.1',resolve));
-  base = `http://127.0.0.1:${server.address().port}/spelling-ea-ee/`;
+  base = `http://127.0.0.1:${server.address().port}/spelling/`;
 }
 const browser = await playwright[engine].launch({headless:true,...(engine === 'chromium' && process.env.BROWSER_PATH ? {executablePath:process.env.BROWSER_PATH} : {})});
 const report = {base,engine,cases:[]};

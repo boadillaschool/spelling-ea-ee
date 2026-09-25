@@ -8,7 +8,7 @@ const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || 'playwright')
 const root = fileURLToPath(new URL('../', import.meta.url));
 const words = ['easy', 'meat', 'peanuts', 'between', 'read', 'jeans', 'heel', 'sweets', 'street', 'reach'];
 const allowed = new Set([
-  'index.html', 'styles.css', 'app.js', 'data.js', 'lessons.js', 'illustrations.js', 'logic.js', 'speech.js',
+  'index.html', 'styles.css', 'site-routing.js', 'app.js', 'data.js', 'lessons.js', 'illustrations.js', 'logic.js', 'speech.js',
   'spelling-timings.js', 'ink-pad.js', 'ui-helpers.js', 'focus-policy.js',
   ...words.map((id) => `audio/en-gb-v1/${id}.mp3`),
   ...words.map((id) => `audio/spelling-en-gb-v1/${id}.mp3`),
