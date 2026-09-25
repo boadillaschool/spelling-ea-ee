@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Personas caminando por un parque</title>
+<desc id="descripcion">Un grupo de cinco personas de distintas alturas pasea por un camino entre árboles.</desc>
+<g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M27 184Q158 159 293 184" fill="none" stroke="#D8D1C4" stroke-width="12"/><path d="M29 144V69M288 142V61" stroke="#986448" stroke-width="7"/><circle cx="29" cy="49" r="24" fill="#7CAD96"/><circle cx="288" cy="43" r="25" fill="#7CAD96"/><g transform="translate(70 119) scale(0.78)">
+<path d="M-12 20L-16 57H-4L1 25L9 57H21L14 20" fill="#526272"/>
+<path d="M-18 -20Q0 -30 18 -20L22 26H-22Z" fill="#5A9EC0"/>
+<path d="M-18 -16L-32 12M18 -16L32 12" fill="none" stroke="#E5B18A" stroke-width="10"/>
+<circle cy="-44" r="18" fill="#E5B18A"/>
+<path d="M-17 -48Q-16 -67 1 -64Q20 -63 18 -46Q9 -48 4 -56Q-6 -46 -17 -48" fill="#594235"/>
+<path d="M-7 -43H-6M6 -43H7M-5 -35Q0 -30 5 -35" fill="none"/>
+</g><g transform="translate(118 113) scale(0.94)">
+<path d="M-12 20L-16 57H-4L1 25L9 57H21L14 20" fill="#526272"/>
+<path d="M-18 -20Q0 -30 18 -20L22 26H-22Z" fill="#146B63"/>
+<path d="M-18 -16L-32 12M18 -16L32 12" fill="none" stroke="#BE805C" stroke-width="10"/>
+<circle cy="-44" r="18" fill="#BE805C"/>
+<path d="M-17 -48Q-16 -67 1 -64Q20 -63 18 -46Q9 -48 4 -56Q-6 -46 -17 -48" fill="#594235"/>
+<path d="M-7 -43H-6M6 -43H7M-5 -35Q0 -30 5 -35" fill="none"/>
+</g><g transform="translate(164 139) scale(0.55)">
+<path d="M-12 20L-16 57H-4L1 25L9 57H21L14 20" fill="#526272"/>
+<path d="M-18 -20Q0 -30 18 -20L22 26H-22Z" fill="#F2C14E"/>
+<path d="M-18 -16L-32 12M18 -16L32 12" fill="none" stroke="#E5B18A" stroke-width="10"/>
+<circle cy="-44" r="18" fill="#E5B18A"/>
+<path d="M-17 -48Q-16 -67 1 -64Q20 -63 18 -46Q9 -48 4 -56Q-6 -46 -17 -48" fill="#594235"/>
+<path d="M-7 -43H-6M6 -43H7M-5 -35Q0 -30 5 -35" fill="none"/>
+</g><g transform="translate(207 115) scale(0.9)">
+<path d="M-12 20L-16 57H-4L1 25L9 57H21L14 20" fill="#526272"/>
+<path d="M-18 -20Q0 -30 18 -20L22 26H-22Z" fill="#E76F51"/>
+<path d="M-18 -16L-32 12M18 -16L32 12" fill="none" stroke="#E5B18A" stroke-width="10"/>
+<circle cy="-44" r="18" fill="#E5B18A"/>
+<path d="M-17 -48Q-16 -67 1 -64Q20 -63 18 -46Q9 -48 4 -56Q-6 -46 -17 -48" fill="#594235"/>
+<path d="M-7 -43H-6M6 -43H7M-5 -35Q0 -30 5 -35" fill="none"/>
+</g><g transform="translate(255 126) scale(0.73)">
+<path d="M-12 20L-16 57H-4L1 25L9 57H21L14 20" fill="#526272"/>
+<path d="M-18 -20Q0 -30 18 -20L22 26H-22Z" fill="#526272"/>
+<path d="M-18 -16L-32 12M18 -16L32 12" fill="none" stroke="#BE805C" stroke-width="10"/>
+<circle cy="-44" r="18" fill="#BE805C"/>
+<path d="M-17 -48Q-16 -67 1 -64Q20 -63 18 -46Q9 -48 4 -56Q-6 -46 -17 -48" fill="#594235"/>
+<path d="M-7 -43H-6M6 -43H7M-5 -35Q0 -30 5 -35" fill="none"/>
+</g>
+</g>
+</svg>

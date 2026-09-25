@@ -11,7 +11,7 @@ const browserType = playwright[engine];
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const words = ['easy', 'meat', 'peanuts', 'between', 'read', 'jeans', 'heel', 'sweets', 'street', 'reach'];
 const allowed = new Set([
-  'index.html', 'styles.css', 'app.js', 'data.js', 'illustrations.js', 'logic.js', 'speech.js',
+  'index.html', 'styles.css', 'app.js', 'data.js', 'lessons.js', 'illustrations.js', 'logic.js', 'speech.js',
   'spelling-timings.js', 'ink-pad.js', 'ui-helpers.js', 'focus-policy.js', 'robots.txt',
   ...words.map((id) => `audio/en-gb-v1/${id}.mp3`),
   ...words.map((id) => `audio/spelling-en-gb-v1/${id}.mp3`),
@@ -36,7 +36,7 @@ const server = http.createServer(async (request, response) => {
   }
 });
 await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
-const base = `http://127.0.0.1:${server.address().port}/spelling-ea-ee/`;
+const base = `http://127.0.0.1:${server.address().port}/spelling-ea-ee/?list=2026-09-25`;
 const browser = await browserType.launch({
   headless: true,
   ...(engine === 'chromium' && process.env.BROWSER_PATH ? { executablePath: process.env.BROWSER_PATH } : {}),

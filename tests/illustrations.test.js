@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
-import { WORDS } from '../data.js';
+import { ALL_WORDS as WORDS } from '../lessons.js';
 
 test('each curriculum word has a fixed local illustration with a Spanish meaning description', async () => {
   assert.ok(existsSync(new URL('../illustrations.js', import.meta.url)), 'Missing illustration metadata for the ten words');

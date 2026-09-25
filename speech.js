@@ -1,4 +1,4 @@
-import { WORDS } from './data.js';
+import { ALL_WORDS as WORDS } from './lessons.js';
 import { getSpeechText, getSpellingText, selectEnglishVoice } from './logic.js';
 
 const SPEECH_LANG = 'en-GB';

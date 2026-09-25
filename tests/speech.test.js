@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { createSpeaker } from '../speech.js';
-import { WORDS } from '../data.js';
+import { ALL_WORDS as WORDS } from '../lessons.js';
 import { getSpeechText, getSpellingText } from '../logic.js';
 
 class FakeUtterance {
@@ -89,7 +89,7 @@ test('known curriculum prompts prefer their local MP3 with or without native syn
       assert.equal(instances.at(-1).playbackRate, 1, 'clips are already slow');
       assert.deepEqual(instances.at(-1).calls, ['play']);
     }
-    assert.equal(instances.length, 10);
+    assert.equal(instances.length, WORDS.length);
     assert.equal(synth?.spoken.length ?? 0, 0);
     assert.equal(statuses.at(-1), 'speaking');
   }

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Un delfín salta sobre el mar</title>
+<desc id="descripcion">Delfín de cuerpo curvado, hocico largo, aleta dorsal y cola con dos lóbulos sobre unas olas.</desc>
+<g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+
+<path d="M25 173Q47 158 68 173Q90 185 112 173Q134 158 156 173Q178 185 200 173Q222 158 244 173Q266 185 291 173" fill="none" stroke="#5A9EC0" stroke-width="5"/>
+<path d="M74 125Q88 95 136 82L164 48L177 81Q222 77 249 109L287 108Q294 116 280 123L252 129Q217 149 176 142Q136 138 103 139L77 153L45 169L52 145L31 121L61 131Z" fill="#7AADC5"/>
+<path d="M138 127Q160 139 185 140L163 160L155 138" fill="#5A9EC0"/>
+<circle cx="243" cy="108" r="3.5" fill="#17324D"/>
+<path d="M250 125L271 122" fill="none"/>
+<path d="M119 102Q164 87 207 98" fill="none" stroke="#C7E5F2" stroke-width="7"/>
+
+</g>
+</svg>

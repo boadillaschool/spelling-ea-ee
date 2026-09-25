@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Un trofeo dorado</title>
+<desc id="descripcion">Copa dorada con dos asas, una estrella y una base de madera.</desc>
+<g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+
+<path d="M107 57H73V81Q74 113 119 111M213 57H247V81Q245 113 201 111" fill="#FFF2C8" stroke-width="5"/>
+<path d="M106 40H214L209 89Q206 127 168 133V156H197V171H123V156H152V133Q114 127 111 89Z" fill="#F2C14E"/>
+<path d="M160 58L168 75L187 77L173 90L177 108L160 99L143 108L147 90L133 77L152 75Z" fill="#FFFFFF"/>
+<rect x="111" y="171" width="98" height="15" rx="4" fill="#986448"/>
+
+</g>
+</svg>

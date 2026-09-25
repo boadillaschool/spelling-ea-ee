@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Una farmacia</title>
+<desc id="descripcion">Establecimiento con una cruz verde, una puerta y cajas y frascos de medicamentos detrás del escaparate.</desc>
+<g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+
+<rect x="56" y="55" width="208" height="128" rx="4" fill="#FFFFFF"/>
+<path d="M48 54L64 35H255L272 54Z" fill="#146B63"/>
+<rect x="78" y="83" width="85" height="69" rx="4" fill="#EAF4FB"/>
+<rect x="184" y="83" width="58" height="100" rx="3" fill="#DEF3EF"/>
+<circle cx="229" cy="135" r="3" fill="#17324D"/>
+<path d="M148 12H170V28H186V48H170V64H148V48H132V28H148Z" fill="#287A52"/>
+<rect x="89" y="113" width="20" height="31" rx="2" fill="#FFF2C8"/>
+<rect x="116" y="103" width="19" height="41" rx="3" fill="#FFFFFF"/>
+<rect x="119" y="97" width="13" height="7" fill="#146B63"/>
+<rect x="140" y="120" width="15" height="24" fill="#E76F51"/>
+
+</g>
+</svg>

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
-import { WORDS } from '../data.js';
+import { ALL_WORDS as WORDS } from '../lessons.js';
 
 const permittedElements = new Set([
   'svg', 'title', 'desc', 'g', 'path', 'rect', 'circle', 'ellipse',

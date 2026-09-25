@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Un elefante con trompa</title>
+<desc id="descripcion">Elefante gris con cuerpo grande, orejas anchas, cuatro patas y una trompa larga curvada.</desc>
+<g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+
+<path d="M83 95Q52 83 49 115" fill="none" stroke-width="5"/>
+<ellipse cx="141" cy="109" rx="68" ry="48" fill="#B3BEC5"/>
+<path d="M89 132V176H112L119 137M144 139V176H167L175 134M183 130V172H204L210 124" fill="#B3BEC5"/>
+<circle cx="211" cy="87" r="41" fill="#B3BEC5"/>
+<path d="M241 102Q246 126 241 145Q239 158 253 158Q268 157 267 143L281 146Q282 178 255 181Q225 182 223 156L220 117" fill="#B3BEC5"/>
+<ellipse cx="184" cy="96" rx="31" ry="40" fill="#D0D8DD"/>
+<circle cx="228" cy="83" r="3.5" fill="#17324D"/>
+<path d="M229 115Q235 133 248 133Q240 142 225 123" fill="#FFFFFF"/>
+
+</g>
+</svg>

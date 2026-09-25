@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Un teléfono con auricular</title>
+<desc id="descripcion">Teléfono de sobremesa con un auricular, botones y cable en espiral.</desc>
+<g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+
+<path d="M74 91L54 169Q51 181 67 181H253Q269 181 266 169L246 91Z" fill="#DEF3EF"/>
+<path d="M65 91Q67 52 112 41Q160 26 209 41Q254 52 256 91L220 98L208 70Q159 53 112 70L99 98Z" fill="#146B63"/>
+<path d="M250 96Q282 104 270 116Q256 124 277 132Q289 140 271 148Q256 158 278 166" fill="none" stroke-width="4"/>
+<rect x="113" y="99" width="94" height="23" rx="5" fill="#FFFFFF"/>
+<circle cx="128" cy="138" r="6" fill="#FFFFFF"/><circle cx="160" cy="138" r="6" fill="#FFFFFF"/><circle cx="192" cy="138" r="6" fill="#FFFFFF"/><circle cx="128" cy="160" r="6" fill="#FFFFFF"/><circle cx="160" cy="160" r="6" fill="#FFFFFF"/><circle cx="192" cy="160" r="6" fill="#FFFFFF"/>
+</g>
+</svg>

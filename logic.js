@@ -943,8 +943,8 @@ export function recommendNextStep(summary) {
  * @param {{ kind: 'mock' | 'practice', score: number, total: number, best: { score: number, total: number } | null, missedWords: { word: string }[] }} result
  * @returns {string}
  */
-export function buildShareText({ kind, score, total, best, missedWords }) {
-  const lines = ['Boadilla School · Spelling: ea + ee'];
+export function buildShareText({ kind, score, total, best, missedWords, title = 'Boadilla School · Spelling: ea + ee' }) {
+  const lines = [title];
 
   lines.push(
     kind === 'mock' ? `Simulacro: ${score}/${total}` : `Práctica: ${score}/${total} a la primera`,

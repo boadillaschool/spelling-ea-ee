@@ -1,6 +1,6 @@
 # British English audio
 
-These twenty MP3 files are bundled with the application and served from the same origin: ten pronunciation clips in `en-gb-v1/` and ten post-answer spelling clips in `spelling-en-gb-v1/`. No text or learner data is sent to a speech service during ordinary playback.
+These forty MP3 files are bundled with the application and served from the same origin: twenty pronunciation clips in `en-gb-v1/` and twenty post-answer spelling clips in `spelling-en-gb-v1/`. The original ten ea/ee words and their audio/timings are preserved; ten ph/f words are added for 02/10/2026. No text or learner data is sent to a speech service during ordinary playback.
 
 ## Voice and pacing
 
@@ -20,7 +20,28 @@ These twenty MP3 files are bundled with the application and served from the same
 - Spelling prompts are mapped from exact curriculum strings to fixed relative paths; caller-provided text never becomes an asset URL.
 - The app requests these clips only in teaching/reveal feedback or after an answer, and only after final submission in the simulacro.
 
-The sentences follow `getContextSentence` in `logic.js`. For `read`, the sentence is **I read every day.**, in the present tense. The generation-only homophone **reed** forces /riːd/ in every segment; the learner always sees the correct spelling **read**.
+The original ea/ee sentences follow `getContextSentence` in `logic.js`. For `read`, the sentence is **I read every day.**, in the present tense. The generation-only homophone **reed** forces /riːd/ in every segment; the learner always sees the correct spelling **read**.
+
+## Weekly ph/f audio — 02/10/2026
+
+The ten additional IDs and sentences below are the exact confirmed lesson. This asset-only addition does not change curriculum data, playback mappings or application code. The pronunciation clips use the word at `-25%`, 0.70 s of added silence, the exact sentence at `-35%`, 0.85 s of added silence and the same word again. Spelling uses separately synthesized uppercase English letter names at `-10%`, 0.55 s PCM silence between letters, then 1.25 s PCM silence and the whole word at `-20%`. All new speech uses `en-GB-SoniaNeural`; no phonetic substitutions are used for this list.
+
+| ID | Exact example sentence |
+| --- | --- |
+| dolphin | The dolphin jumps out of the water. |
+| telephone | The telephone is ringing. |
+| alphabet | I know the letters of the alphabet. |
+| trophy | Our team won a trophy. |
+| photograph | This photograph shows a sunny day. |
+| elephant | The elephant has a long trunk. |
+| pharmacy | We buy medicine at the pharmacy. |
+| family | My family eats dinner together. |
+| friends | My friends play with me. |
+| people | The people are walking in the park. |
+
+Generation uses Edge TTS 7.2.8 and FFmpeg 8.1. Existing matching letter-name source segments are reused; new source speech is generated only for missing letters, the new words and their exact sentences. Sources are decoded to mono 24 kHz PCM and trimmed only at the leading/trailing edges (forward trim, reverse, forward trim, reverse), retaining internal pauses. Exact PCM gaps are inserted, cue offsets are derived from sample counts, and each final clip is encoded once as 96 kb/s MP3 without identifying metadata.
+
+Validation: all twenty new clips decode successfully and have the expected codec, channel count, sample rate and bit rate. FFmpeg `silencedetect=noise=-45dB:d=0.9` confirms the pre-word interval in all ten spelling binaries, within codec tolerance of 1.25 s; non-silent signal is independently required after `wordAt`. Original ea/ee binaries and cue entries are preserved. These checks establish playable assets and actual silence, not human listening or a physical-device test.
 
 Recordings contain only the fixed lesson vocabulary and generic example sentences. They do not contain names, personal information, or learner responses. They are generated synthetic speech, not recordings of a person participating in the app.
 

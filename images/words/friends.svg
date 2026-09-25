@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Dos amigos juegan juntos</title>
+<desc id="descripcion">Dos niños de edad parecida comparten una pelota, de frente y cerca uno del otro.</desc>
+<g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M53 181H272" fill="none" stroke="#7CAD96" stroke-width="5"/><g transform="translate(108 104) scale(1.05)">
+<path d="M-12 20L-16 57H-4L1 25L9 57H21L14 20" fill="#526272"/>
+<path d="M-18 -20Q0 -30 18 -20L22 26H-22Z" fill="#146B63"/>
+<path d="M-18 -16L-32 12M18 -16L32 12" fill="none" stroke="#E5B18A" stroke-width="10"/>
+<circle cy="-44" r="18" fill="#E5B18A"/>
+<path d="M-17 -48Q-16 -67 1 -64Q20 -63 18 -46Q9 -48 4 -56Q-6 -46 -17 -48" fill="#594235"/>
+<path d="M-7 -43H-6M6 -43H7M-5 -35Q0 -30 5 -35" fill="none"/>
+</g><g transform="translate(212 104) scale(1.05)">
+<path d="M-12 20L-16 57H-4L1 25L9 57H21L14 20" fill="#526272"/>
+<path d="M-18 -20Q0 -30 18 -20L22 26H-22Z" fill="#E76F51"/>
+<path d="M-18 -16L-32 12M18 -16L32 12" fill="none" stroke="#BE805C" stroke-width="10"/>
+<circle cy="-44" r="18" fill="#BE805C"/>
+<path d="M-17 -48Q-16 -67 1 -64Q20 -63 18 -46Q9 -48 4 -56Q-6 -46 -17 -48" fill="#594235"/>
+<path d="M-7 -43H-6M6 -43H7M-5 -35Q0 -30 5 -35" fill="none"/>
+</g><circle cx="160" cy="123" r="22" fill="#F2C14E"/>
+<path d="M146 107Q162 123 147 139M174 107Q159 123 175 139M139 123H181" fill="none"/>
+<path d="M141 115L144 121M178 115L176 121" fill="none" stroke="#E5B18A" stroke-width="10"/>
+</g>
+</svg>

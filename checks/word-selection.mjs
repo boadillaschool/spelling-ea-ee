@@ -15,7 +15,7 @@ let server;
 let base = process.env.BASE;
 if (!base) {
   const allowed = new Set([
-    'index.html', 'styles.css', 'app.js', 'data.js', 'illustrations.js', 'logic.js', 'speech.js',
+    'index.html', 'styles.css', 'app.js', 'data.js', 'lessons.js', 'illustrations.js', 'logic.js', 'speech.js',
     'spelling-timings.js', 'ink-pad.js', 'ui-helpers.js', 'focus-policy.js',
     ...words.map(id => `audio/en-gb-v1/${id}.mp3`),
     ...words.map(id => `audio/spelling-en-gb-v1/${id}.mp3`),
@@ -34,6 +34,7 @@ if (!base) {
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   base = `http://127.0.0.1:${server.address().port}/`;
 }
+base = new URL('?list=2026-09-25', base).href;
 const browser = await chromium.launch({ headless: true, ...(process.env.BROWSER_PATH ? { executablePath: process.env.BROWSER_PATH } : {}) });
 const report = { base, cases: [] };
 async function test(name, fn, viewport = { width: 412, height: 915 }) {

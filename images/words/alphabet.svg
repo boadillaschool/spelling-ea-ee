@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Letras del abecedario</title>
+<desc id="descripcion">Tres bloques muestran las formas de las primeras letras del abecedario, dibujadas con trazos.</desc>
+<g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+
+<rect x="33" y="53" width="77" height="96" rx="10" fill="#FFF2C8"/>
+<rect x="121" y="53" width="77" height="96" rx="10" fill="#DEF3EF"/>
+<rect x="209" y="53" width="77" height="96" rx="10" fill="#EAF4FB"/>
+<g fill="none" stroke-width="6"><path d="M47 129L72 73L97 129M57 108H87"/>
+<path d="M143 129V73H160Q182 74 180 89Q180 100 163 101Q185 101 182 116Q181 129 160 129Z M143 101H163"/>
+<path d="M268 82Q239 61 228 92Q218 127 247 132Q261 134 270 122"/></g>
+
+</g>
+</svg>

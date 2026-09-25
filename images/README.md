@@ -1,6 +1,6 @@
 # Ilustraciones de vocabulario
 
-Diez dibujos vectoriales originales creados expresamente para este proyecto con
+Veinte dibujos vectoriales originales creados expresamente para este proyecto con
 formas y trazados SVG, con asistencia de IA. No proceden de bancos de imágenes,
 fotografías, emojis, fuentes de iconos ni servicios externos de imágenes;
 no contienen materiales de terceros.
@@ -34,9 +34,19 @@ en español; al usar `<img>`, la interfaz debe proporcionar su propio `alt`.
 | `sweets.svg` | Dulces: caramelos envueltos dentro y fuera de un tarro. |
 | `street.svg` | Calle: calzada entre aceras y casas, con paso de peatones. |
 | `reach.svg` | Alcanzar: persona con los pies en el suelo que estira el brazo hacia una pelota en una estantería. |
+| `dolphin.svg` | Delfín con hocico, aleta dorsal y cola sobre las olas. |
+| `telephone.svg` | Teléfono de sobremesa con auricular y cable. |
+| `alphabet.svg` | Formas de las primeras letras, trazadas como vectores en bloques. |
+| `trophy.svg` | Copa dorada con asas y base. |
+| `photograph.svg` | Fotografía de un paisaje con borde de papel. |
+| `elephant.svg` | Elefante con orejas grandes, patas y trompa. |
+| `pharmacy.svg` | Tienda con cruz verde y medicamentos, sin letrero escrito. |
+| `family.svg` | Dos personas adultas y dos pequeñas reunidas en casa. |
+| `friends.svg` | Dos niños comparten una pelota. |
+| `people.svg` | Personas de distintas alturas en un parque. |
 
 Comprobación sin dependencias: `node --test tests/illustration-assets.test.js`.
-La prueba recorre los IDs reales de `data.js` y comprueba el contrato de activos;
+La prueba recorre los IDs reales de ambas listas de `lessons.js` y comprueba el contrato de activos;
 la claridad de cada significado requiere además revisión visual. En particular,
 «fácil» es una idea abstracta: el puzle es un ejemplo, no sustituye la pista verbal.
 Las láminas de revisión y los registros de pruebas se mantienen fuera del repositorio.

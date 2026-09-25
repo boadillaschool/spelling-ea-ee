@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
-import { WORDS } from '../data.js';
+import { ALL_WORDS as WORDS } from '../lessons.js';
 
 test('every curriculum word ships a nonempty local MP3 pronunciation clip', async () => {
   const folder = new URL('../audio/en-gb-v1/', import.meta.url);

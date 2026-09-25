@@ -14,7 +14,7 @@ let base = process.env.BASE;
 let server;
 if (!base) {
   const allowed = new Set([
-    'index.html', 'styles.css', 'app.js', 'data.js', 'illustrations.js', 'logic.js', 'speech.js',
+    'index.html', 'styles.css', 'app.js', 'data.js', 'lessons.js', 'illustrations.js', 'logic.js', 'speech.js',
     'spelling-timings.js', 'ink-pad.js', 'ui-helpers.js', 'focus-policy.js',
     ...WORDS.map(({ id }) => `images/words/${id}.svg`),
     ...WORDS.map(({ id }) => `audio/en-gb-v1/${id}.mp3`),
@@ -33,6 +33,7 @@ if (!base) {
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   base = `http://127.0.0.1:${server.address().port}/spelling-ea-ee/`;
 }
+base = new URL('?list=2026-09-25', base).href;
 const browser = await chromium.launch({ headless: true, ...(process.env.BROWSER_PATH ? { executablePath: process.env.BROWSER_PATH } : {}) });
 const report = { base, cases: [] };
 async function test(name, fn, viewport = { width: 412, height: 915 }) {

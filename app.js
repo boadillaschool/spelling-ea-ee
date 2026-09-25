@@ -1,4 +1,4 @@
-import { WORDS } from './data.js';
+import { LESSONS, getLesson, getLessonHref } from './lessons.js';
 import { getWordIllustration } from './illustrations.js';
 import {
   addMockScore,
@@ -33,7 +33,7 @@ import {
   scoreMock,
   shouldShowSpanishCue,
   shuffleWords,
-  splitByPattern,
+
   summarizeProgress,
 } from './logic.js';
 import { planFocus } from './focus-policy.js';
@@ -49,9 +49,11 @@ import { createSpeaker } from './speech.js';
 import { getSpellingCueIndex } from './spelling-timings.js';
 import { getAudioLabel, normalizeChildren } from './ui-helpers.js';
 
-const APP_TITLE = 'Boadilla School · Spelling: ea + ee';
-const MODULE_TITLE = 'Palabras con ea y ee';
-const MODULE_EYEBROW = 'ENGLISH · SPELLING';
+const lesson = getLesson(window.location.search);
+const WORDS = lesson?.words ?? [];
+const APP_TITLE = lesson ? `Boadilla School · Spelling: ${lesson.patterns.join(' + ')} · ${lesson.shortDate}` : 'Boadilla School · Spelling';
+const MODULE_TITLE = lesson?.title ?? 'Elige tu lista de spelling';
+const MODULE_EYEBROW = lesson ? `ENGLISH · SPELLING · ${lesson.shortDate}` : 'ENGLISH · SPELLING';
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
 const MESSAGES = {
@@ -76,6 +78,7 @@ const dom = {
   title: document.getElementById('screen-title'),
   intro: document.getElementById('module-intro'),
   back: document.getElementById('back'),
+  listPicker: document.getElementById('list-picker'),
   progressStrip: document.getElementById('progress-strip'),
   progressLabel: document.getElementById('progress-label'),
   progress: document.getElementById('progress'),
@@ -90,7 +93,7 @@ const dom = {
 /* ---------- Application state ---------- */
 
 const state = {
-  view: 'home',
+  view: lesson ? 'home' : 'catalog',
   nav: 0,
   confirmReset: false,
   familiesOpen: false,
@@ -116,7 +119,7 @@ function getStorage() {
 }
 
 const storage = getStorage();
-let progress = loadProgress(storage, WORDS);
+let progress = lesson ? loadProgress(storage, WORDS, lesson.storageKey) : createEmptyProgress(WORDS);
 
 function showStorageNote(available) {
   dom.storageNote.hidden = available;
@@ -124,7 +127,7 @@ function showStorageNote(available) {
 }
 
 function persist() {
-  showStorageNote(saveProgress(storage, progress));
+  showStorageNote(saveProgress(storage, progress, lesson.storageKey));
 }
 
 function record(wordId, wasCorrect) {
@@ -433,19 +436,22 @@ function wordPicture(item) {
 }
 
 function wordElement(item) {
-  const { before, pattern, after } = splitByPattern(item.word, item.pattern);
+  const parts = item.pattern ? item.word.split(item.pattern) : [item.word];
   const { word, text } = describeHighlightedWord(item);
-
+  const spelling = el(
+    'span',
+    { class: 'word', lang: 'en', 'aria-hidden': 'true' },
+    ...parts.flatMap((part, index) => [
+      index > 0 ? el('mark', { class: 'pattern', text: item.pattern }) : null,
+      part !== '' ? el('span', { text: part }) : null,
+    ]),
+  );
+  // Longer words need more room than the original seven-letter maximum.
+  spelling.style.setProperty('--word-fit', `${item.word.length > 7 ? 132 / item.word.length : 20}cqi`);
   return el(
     'span',
     { class: 'word-group' },
-    el(
-      'span',
-      { class: 'word', lang: 'en', 'aria-hidden': 'true' },
-      before !== '' ? el('span', { text: before }) : null,
-      el('mark', { class: 'pattern', text: pattern }),
-      after !== '' ? el('span', { text: after }) : null,
-    ),
+    spelling,
     el('span', { class: 'sr-only' }, el('span', { lang: 'en', text: word }), text.slice(word.length)),
   );
 }
@@ -526,6 +532,7 @@ const submitButton = (label) => el('button', { type: 'submit', form: 'answer-for
 /* ---------- Views, focus and rendering ---------- */
 
 const VIEW_TITLES = {
+  catalog: 'Elige tu lista de spelling',
   home: MODULE_TITLE,
   learn: 'Aprender',
   practice: 'Practicar',
@@ -606,15 +613,18 @@ function applyFocus(plan) {
 function render() {
   const viewKey = state.view === 'practice' && state.practice?.kind === 'review' ? 'review' : state.view;
   const isHome = state.view === 'home';
+  const isCatalog = state.view === 'catalog';
   const activeKey = document.activeElement?.dataset?.focusKey ?? null;
 
   dom.title.textContent = VIEW_TITLES[viewKey];
-  dom.eyebrow.textContent = isHome ? MODULE_EYEBROW : MODULE_TITLE;
-  dom.intro.hidden = !isHome;
+  dom.eyebrow.textContent = isHome || isCatalog ? MODULE_EYEBROW : `${MODULE_TITLE} · ${lesson.shortDate}`;
+  dom.intro.hidden = !isHome && !isCatalog;
+  dom.intro.textContent = isCatalog ? 'Elige una fecha. Después podrás escuchar, escribir y repasar sus palabras a tu ritmo.' : lesson.intro;
   document.body.dataset.view = viewKey;
   document.body.dataset.inputMethod = state.inputMethod;
-  document.title = isHome ? APP_TITLE : `${VIEW_TITLES[viewKey]} · ${APP_TITLE}`;
-  dom.back.hidden = isHome;
+  document.title = isHome || isCatalog ? APP_TITLE : `${VIEW_TITLES[viewKey]} · ${APP_TITLE}`;
+  dom.back.hidden = isHome || isCatalog;
+  dom.listPicker.hidden = isCatalog;
   setProgress(null);
 
   RENDERERS[state.view]();
@@ -627,6 +637,31 @@ function render() {
 }
 
 /* ---------- Home ---------- */
+
+function renderCatalog() {
+  const cards = [...LESSONS].reverse().map((entry, index) => {
+    const saved = loadProgress(storage, entry.words, entry.storageKey);
+    const summary = summarizeProgress(entry.words, saved);
+    return el('article', { class: 'card lesson-card', 'aria-labelledby': `lesson-${entry.id}` },
+      el('p', { class: 'eyebrow', text: `${entry.words.length} PALABRAS · ${entry.patterns.join(' / ')}` }),
+      el('h2', { id: `lesson-${entry.id}`, text: entry.date }),
+      el('p', { class: 'lesson-topic', text: entry.title }),
+      el('p', { class: 'lesson-preview', 'aria-label': 'Palabras de esta lista' },
+        ...entry.words.map(item => el('span', { lang: 'en-GB', text: item.word }))),
+      el('p', { class: 'muted', text: `${summary.practised} de ${summary.total} palabras practicadas en este dispositivo` }),
+      el('a', { class: `btn lesson-open${index ? ' btn-secondary' : ''}`, href: getLessonHref(entry),
+        'aria-label': `Practicar la lista del ${entry.shortDate}`, text: 'Elegir esta lista' }));
+  });
+  setView([
+    el('div', { class: 'lesson-catalog' }, ...cards),
+    el('details', { class: 'families' },
+      el('summary', {}, 'Para familias'),
+      el('div', { class: 'families-body' },
+        el('p', { text: 'Cada lista guarda su progreso por separado, solo en este dispositivo. La lista anterior conserva lo que ya has practicado.' }),
+        el('p', { text: 'Sin cuentas, anuncios ni seguimiento. No se guardan nombres ni respuestas escritas.' }))),
+    el('p', { class: 'catalog-disclaimer', text: 'Proyecto educativo independiente. No representa ni está afiliado a ningún centro escolar.' }),
+  ]);
+}
 
 function startFromMission(mission) {
   const route = getMissionRoute(mission);
@@ -653,7 +688,7 @@ function resetPanel() {
   return el(
     'div',
     { class: 'confirm', role: 'group', 'aria-labelledby': 'confirm-text' },
-    el('p', { id: 'confirm-text', text: '¿Borrar todo el progreso guardado en este dispositivo?' }),
+    el('p', { id: 'confirm-text', text: '¿Borrar el progreso de esta lista en este dispositivo? Las otras listas no cambiarán.' }),
     el(
       'div',
       { class: 'actions' },
@@ -688,7 +723,7 @@ function familiesPanel() {
 }
 
 function resetProgress() {
-  if (!clearProgress(storage)) {
+  if (!clearProgress(storage, lesson.storageKey)) {
     showStorageNote(false);
     announce(MESSAGES.clearFailed, 'blocking');
     return;
@@ -981,6 +1016,9 @@ function renderLearn() {
       ),
       [button('Mostrar la palabra', () => {
         learn.machine = advanceLearn(learn.machine, { type: 'reveal' });
+        if (item.pattern === '') {
+          learn.machine = advanceLearn(learn.machine, { type: 'family', correct: true });
+        }
         announce('');
         render();
       })],
@@ -989,14 +1027,14 @@ function renderLearn() {
   }
 
   if (phase === 'reveal') {
-    const family = el(
+    const family = item.pattern === '' ? el('p', { class: 'family', text: 'Palabra especial: fíjate en todas sus letras.' }) : el(
       'div',
       { class: 'family', role: 'group', 'aria-labelledby': 'family-q' },
       el('p', { id: 'family-q', text: familyKnown ? `Familia: ${item.pattern}` : '¿Qué letras están resaltadas?' }),
       el(
         'div',
         { class: 'family-buttons' },
-        ...['ea', 'ee'].map((pattern) =>
+        ...lesson.patterns.map((pattern) =>
           el(
             'button',
             {
@@ -1646,14 +1684,14 @@ function showResults({ kind, score, total, missedIds }) {
   const best = kind === 'mock' ? getBestScore(progress) : null;
   const missedWords = toWords(missedIds);
   state.results = { kind, score, total, missedIds, missedWords, best };
-  state.shareText = buildShareText({ kind, score, total, best, missedWords });
+  state.shareText = buildShareText({ kind, score, total, best, missedWords, title: APP_TITLE });
   announce('');
   go('results');
 }
 
 async function shareResults(fallbackArea) {
   const text = state.shareText;
-  const url = `${window.location.origin}${window.location.pathname}`;
+  const url = `${window.location.origin}${window.location.pathname}?list=${encodeURIComponent(lesson.id)}`;
   const copyText = `${text}\n${url}`;
 
   if (typeof navigator.share === 'function') {
@@ -1753,6 +1791,7 @@ function renderResults() {
 /* ---------- Boot ---------- */
 
 const RENDERERS = {
+  catalog: renderCatalog,
   home: renderHome,
   learn: renderLearn,
   practice: renderPractice,

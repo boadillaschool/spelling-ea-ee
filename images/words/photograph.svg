@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+<title id="titulo">Una fotografía en papel</title>
+<desc id="descripcion">Fotografía rectangular con borde blanco, un paisaje de montañas, sol y cielo.</desc>
+<g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+
+<rect x="57" y="27" width="207" height="151" rx="7" fill="#FFFFFF" transform="rotate(-5 160 100)"/>
+<rect x="71" y="43" width="179" height="111" rx="3" fill="#EAF4FB"/>
+<circle cx="216" cy="69" r="15" fill="#F2C14E"/>
+<path d="M71 137L120 78L164 134L193 101L250 147V154H71Z" fill="#7CAD96"/>
+<path d="M107 94L120 78L134 97L122 94L116 99Z" fill="#FFFFFF"/>
+
+</g>
+</svg>
