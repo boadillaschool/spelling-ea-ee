@@ -49,6 +49,8 @@ The interface is in Spanish (aimed at 2º de Primaria); the audio is British Eng
 - **Deletrear otra vez** and **Deletrear más despacio** are available only in teaching or feedback states.
 - **Teclado** and **Lápiz de la tablet** both keep a native text input, so Android's handwriting keyboard can supply text that the app checks normally.
 - **Cuaderno con lápiz** is a local freehand canvas with pressure-aware pointer strokes, high-DPI rendering, undo, clear, compare and self-assessment. Keyboard and switch users can choose **Comparar** without drawing. It deliberately does not claim handwriting recognition; raw ink is never saved.
+- After **Comparar**, **Volver a escribir (opcional)** offers a separate copy area with the model visible: freehand pencil by default, or a native keyboard field with **Comprobar copia**. The original attempt remains unchanged. Copying is never required to continue and does not count as recall or change progress; self-assessment still refers to the first attempt.
+- Copy drafts and ink stay in memory only. Retrying, advancing, finishing, going home, changing lists or leaving the page discards them, including cached Back navigation.
 - The optional fullscreen control is explicit and progressively enhanced. Answer fields and their submit buttons stay in one form, with `visualViewport` handling for software keyboards.
 
 ## Delayed and spaced review
@@ -115,6 +117,7 @@ Optional browser checks require Playwright as developer tooling only:
 npm install --no-save --package-lock=false playwright
 npx playwright install chromium
 npm run check:weekly
+npm run check:rewrite
 PORTAL_ROOT=../boadillaschool.github.io npm run check:migration
 npm run check:browser
 npm run check:illustrations

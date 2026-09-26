@@ -176,7 +176,7 @@ async function toggleFullscreen() {
 let viewportFrame = 0;
 
 function keepAnswerVisible() {
-  const answer = document.activeElement?.matches?.('#answer') ? document.activeElement : null;
+  const answer = document.activeElement?.matches?.('[data-answer-input]') ? document.activeElement : null;
   if (answer === null) return;
   const target = answer.closest('form') ?? answer;
   cancelAnimationFrame(viewportFrame);
@@ -209,7 +209,7 @@ dom.fullscreenToggle.addEventListener('click', toggleFullscreen);
 document.addEventListener('fullscreenchange', paintFullscreenToggle);
 document.addEventListener('webkitfullscreenchange', paintFullscreenToggle);
 document.addEventListener('focusin', (event) => {
-  if (event.target?.matches?.('#answer')) {
+  if (event.target?.matches?.('[data-answer-input]')) {
     requestAnimationFrame(() => {
       syncVisualViewport();
       keepAnswerVisible();
@@ -502,6 +502,7 @@ function answerForm({
     'aria-describedby': 'answer-hint',
     'data-autofocus': '',
     'data-focus-key': 'answer',
+    'data-answer-input': '',
     oninput: () => onInput?.(input.value),
   });
   input.value = value;
@@ -552,6 +553,7 @@ function setProgress(value, max, label) {
 }
 
 function setView(main, dockNodes = []) {
+  disconnectInkPads();
   dom.main.replaceChildren(...normalizeChildren(main));
   dom.dock.replaceChildren(...normalizeChildren(dockNodes));
 }
@@ -1103,7 +1105,12 @@ function renderLearn() {
 
 /* ---------- Notebook: freehand practice with local self-assessment ---------- */
 
-let inkResizeObserver = null;
+const inkResizeObservers = new Map();
+
+function disconnectInkPads() {
+  for (const observer of inkResizeObservers.values()) observer.disconnect();
+  inkResizeObservers.clear();
+}
 
 function startNotebook(ids) {
   const safeIds = ids.filter((id) => wordsById.has(id));
@@ -1124,10 +1131,9 @@ function startNotebook(ids) {
 
 const currentNotebookWord = () => wordsById.get(state.notebook.ids[state.notebook.index]);
 
-function drawInkCanvas(canvas) {
-  const notebook = state.notebook;
+function drawInkCanvas(canvas, ink = state.notebook?.ink) {
   const context = canvas.getContext('2d');
-  if (!context || !notebook) return;
+  if (!context || !ink) return;
   const dpr = Number(canvas.dataset.dpr) || 1;
   const width = canvas.width / dpr;
   const height = canvas.height / dpr;
@@ -1146,7 +1152,7 @@ function drawInkCanvas(canvas) {
   }
 
   context.strokeStyle = '#17324d';
-  for (const stroke of notebook.ink.strokes) {
+  for (const stroke of ink.strokes) {
     if (stroke.length === 1) {
       const point = stroke[0];
       context.beginPath();
@@ -1175,7 +1181,7 @@ function syncInkControls() {
   }
 }
 
-function mountInkPad(canvas, interactive) {
+function mountInkPad(canvas, interactive, pad = state.notebook, syncControls = syncInkControls) {
   const resize = () => {
     const rect = canvas.getBoundingClientRect();
     if (rect.width <= 0 || rect.height <= 0) return;
@@ -1183,13 +1189,14 @@ function mountInkPad(canvas, interactive) {
     canvas.dataset.dpr = String(dpr);
     canvas.width = Math.max(1, Math.round(rect.width * dpr));
     canvas.height = Math.max(1, Math.round(rect.height * dpr));
-    drawInkCanvas(canvas);
+    drawInkCanvas(canvas, pad.ink);
   };
   resize();
-  inkResizeObserver?.disconnect();
+  inkResizeObservers.get(canvas)?.disconnect();
   if (typeof ResizeObserver === 'function') {
-    inkResizeObserver = new ResizeObserver(resize);
-    inkResizeObserver.observe(canvas);
+    const observer = new ResizeObserver(resize);
+    inkResizeObservers.set(canvas, observer);
+    observer.observe(canvas);
   }
   if (!interactive) return;
 
@@ -1202,28 +1209,27 @@ function mountInkPad(canvas, interactive) {
     };
   };
   const update = (next) => {
-    state.notebook.ink = next;
-    drawInkCanvas(canvas);
-    syncInkControls();
+    pad.ink = next;
+    drawInkCanvas(canvas, pad.ink);
+    syncControls();
   };
 
   canvas.addEventListener('pointerdown', (event) => {
     if (event.pointerType === 'touch' && !event.isPrimary) return;
     event.preventDefault();
     canvas.setPointerCapture?.(event.pointerId);
-    update(startInkStroke(state.notebook.ink, event.pointerId, pointFromEvent(event)));
+    update(startInkStroke(pad.ink, event.pointerId, pointFromEvent(event)));
   });
   canvas.addEventListener('pointermove', (event) => {
-    if (state.notebook?.ink.activePointerId !== event.pointerId) return;
+    if (pad.ink.activePointerId !== event.pointerId) return;
     event.preventDefault();
     const events = typeof event.getCoalescedEvents === 'function' ? event.getCoalescedEvents() : [event];
-    let next = state.notebook.ink;
+    let next = pad.ink;
     for (const sample of events) next = appendInkPoint(next, event.pointerId, pointFromEvent(sample));
     update(next);
   });
   const finish = (event) => {
-    if (!state.notebook) return;
-    update(finishInkStroke(state.notebook.ink, event.pointerId));
+    update(finishInkStroke(pad.ink, event.pointerId));
   };
   canvas.addEventListener('pointerup', finish);
   canvas.addEventListener('pointercancel', finish);
@@ -1240,6 +1246,89 @@ function notebookCanvas(item, interactive) {
     'aria-describedby': 'ink-help',
     'data-readonly': String(!interactive),
   });
+}
+
+// This copy belongs only to this revealed screen, never to learning/progress state.
+function notebookRewrite(item) {
+  const draft = { ink: createInkState() };
+  const canvas = el('canvas', {
+    class: 'ink-pad', 'data-rewrite-ink': '', role: 'img',
+    'aria-label': `Copia a mano de ${item.word}`, 'aria-describedby': 'rewrite-help',
+  });
+  const syncControls = () => {
+    undo.disabled = clear.disabled = draft.ink.strokes.length === 0;
+  };
+  const editInk = (edit) => {
+    draft.ink = edit(draft.ink);
+    drawInkCanvas(canvas, draft.ink);
+    syncControls();
+  };
+  const undo = button('Deshacer copia', () => editInk(undoInkStroke), { kind: 'secondary', disabled: true });
+  const clear = button('Borrar copia', () => editInk(clearInk), { kind: 'secondary', disabled: true });
+  const pencil = el('div', { class: 'rewrite-body' },
+    canvas,
+    el('p', { class: 'muted', text: 'El lápiz es un dibujo: compáralo tú con el modelo.' }),
+    el('div', { class: 'ink-tools' }, undo, clear),
+  );
+  const feedback = el('p', { id: 'rewrite-feedback', class: 'feedback', role: 'status', 'aria-live': 'polite', 'aria-atomic': 'true' });
+  const input = el('input', {
+    id: 'rewrite-answer', name: 'rewrite-answer', type: 'text', lang: 'en-GB',
+    inputmode: 'text', autocomplete: 'off', autocorrect: 'off', autocapitalize: 'none',
+    spellcheck: 'false', enterkeyhint: 'done', maxlength: '30',
+    'aria-describedby': 'rewrite-help rewrite-feedback',
+    'data-answer-input': '',
+    oninput: () => { feedback.textContent = ''; },
+  });
+  const form = el('form', {
+    class: 'answer', novalidate: true,
+    onsubmit: (event) => {
+      event.preventDefault();
+      const blank = isBlankAnswer(input.value);
+      const correct = !blank && checkAnswer(input.value, item.word);
+      feedback.dataset.tone = blank ? 'info' : correct ? 'success' : 'retry';
+      feedback.textContent = blank
+        ? 'Puedes escribir para practicar o seguir sin hacerlo.'
+        : correct ? 'La copia coincide con el modelo. Es solo práctica.' : 'Mira el modelo y prueba otra vez, si quieres.';
+    },
+  },
+  el('label', { for: input.id, text: 'Escribe la palabra del modelo' }),
+  input,
+  el('div', { class: 'answer-actions' }, el('button', { type: 'submit', class: 'btn btn-secondary', text: 'Comprobar copia' })),
+  );
+  const keyboard = el('div', { class: 'rewrite-body', hidden: true }, form, feedback);
+  const methods = el('fieldset', { class: 'rewrite-method' },
+    el('legend', { text: 'Cómo quieres volver a escribir' }),
+    el('div', { class: 'input-method-options' },
+      ...[['pencil', 'Lápiz'], ['keyboard', 'Teclado']].map(([value, label]) =>
+        el('label', { class: 'input-method-option' },
+          el('input', {
+            type: 'radio', name: 'rewrite-method', value, checked: value === 'pencil',
+            onchange: () => {
+              pencil.hidden = value !== 'pencil';
+              keyboard.hidden = value !== 'keyboard';
+            },
+          }),
+          el('span', { text: label }),
+        )),
+    ),
+  );
+  const body = el('div', { id: 'notebook-rewrite', class: 'rewrite-body', hidden: true },
+    el('p', { id: 'rewrite-help', class: 'muted', text: 'Puedes copiar el modelo o seguir sin hacerlo. Esta práctica no cuenta para el progreso y no se guarda.' }),
+    methods,
+    el('div', { class: 'notebook-answer' }, wordElement(item)),
+    pencil,
+    keyboard,
+  );
+  let mounted = false;
+  const toggle = button('Volver a escribir (opcional)', () => {
+    body.hidden = !body.hidden;
+    toggle.setAttribute('aria-expanded', String(!body.hidden));
+    if (!body.hidden && !mounted) {
+      mountInkPad(canvas, true, draft, syncControls);
+      mounted = true;
+    }
+  }, { kind: 'secondary', 'aria-expanded': 'false', 'aria-controls': body.id });
+  return el('div', { class: 'notebook-rewrite' }, toggle, body);
 }
 
 function compareNotebook() {
@@ -1276,7 +1365,6 @@ function assessNotebook(wasCorrect) {
 function renderNotebook() {
   const notebook = state.notebook;
   const total = notebook.ids.length;
-  inkResizeObserver?.disconnect();
 
   if (notebook.finished) {
     setProgress(total, total, `${total} de ${total} palabras`);
@@ -1315,6 +1403,8 @@ function renderNotebook() {
         canvas,
         el('div', { class: 'notebook-answer' }, wordElement(item), sentenceElement(item)),
         spellingPanel(item),
+        notebookRewrite(item),
+        el('p', { class: 'muted', text: 'Al elegir abajo, piensa en tu primer intento, antes de ver el modelo.' }),
         feedbackSlot(),
       ),
       [
@@ -1806,7 +1896,15 @@ document.addEventListener('visibilitychange', () => {
     speaker.cancel();
   }
 });
-window.addEventListener('pagehide', () => speaker.cancel());
+window.addEventListener('pagehide', () => {
+  speaker.cancel();
+  disconnectInkPads();
+  // Do not retain the optional copy in the browser's back/forward cache.
+  document.querySelector('.notebook-rewrite')?.remove();
+});
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted && state.view === 'notebook') render();
+});
 
 showStorageNote(storage !== null);
 render();
