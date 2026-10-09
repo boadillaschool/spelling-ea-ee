@@ -31,17 +31,17 @@ const report = {base,engine,cases:[]};
 async function check(name,fn,viewport={width:412,height:915}) {
   if (process.env.QA_CASES && !new RegExp(process.env.QA_CASES).test(name)) return;
   const context = await browser.newContext({viewport,reducedMotion:'reduce'});
-  const page = await context.newPage(); page.setDefaultTimeout(5000);
+  const page = await context.newPage(); page.setDefaultTimeout(process.env.BASE ? 20000 : 5000); page.setDefaultNavigationTimeout(45000);
   const errors=[]; page.on('pageerror',e=>errors.push(e.message));
   try { await fn(page,context); assert.deepEqual(errors,[]); report.cases.push({name,passed:true}); console.log('PASS',name); }
   catch(e) { report.cases.push({name,passed:false,error:e.stack}); await page.screenshot({path:path.join(out,`${name}-failure.png`),fullPage:true}); console.log('FAIL',name,e.message); }
   finally { await context.close(); }
 }
 try {
-  await check('catalogue_and_both_dated_routes',async page=>{
+  await check('catalogue_and_all_dated_routes',async page=>{
     await page.goto(base,{waitUntil:'domcontentloaded'});
-    await page.getByRole('heading',{name:'Elige tu lista de spelling',exact:true}).waitFor();
-    assert.equal(await page.locator('.lesson-card').count(),2);
+    await page.locator('.lesson-card').first().waitFor();
+    assert.equal(await page.locator('.lesson-card').count(),LESSONS.length);
     for (const lesson of LESSONS) {
       const link=page.getByRole('link',{name:`Practicar la lista del ${lesson.shortDate}`,exact:true});
       await link.click();
@@ -100,7 +100,7 @@ try {
     await page.getByRole('link',{name:'Elegir otra lista',exact:true}).click();
     await page.getByRole('heading',{name:'Elige tu lista de spelling',exact:true}).waitFor();
     await page.locator('.lesson-card').first().waitFor();
-    assert.equal(await page.locator('.lesson-card .muted').filter({hasText:'1 de 10'}).count(),2);
+    assert.equal(await page.locator('.lesson-card .muted').filter({hasText:'1 de 10'}).count(),LESSONS.length);
     await page.getByRole('link',{name:'Practicar la lista del 02/10/2026',exact:true}).click();
     await page.goBack();
     await page.getByRole('heading',{name:'Elige tu lista de spelling',exact:true}).waitFor();

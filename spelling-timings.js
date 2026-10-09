@@ -9,6 +9,16 @@ const EMPTY_CUES = Object.freeze({
 });
 
 const CUES = Object.freeze({
+  shorts: Object.freeze({ letters: Object.freeze([0.0, 0.975667, 1.985, 2.962375, 3.958917, 4.913625]), lastLetterEndAt: 5.339292, pauseBeforeWord: 1.25, wordAt: 6.589292 }),
+  shops: Object.freeze({ letters: Object.freeze([0.0, 0.975667, 1.985, 2.962375, 3.905583]), lastLetterEndAt: 4.33125, pauseBeforeWord: 1.25, wordAt: 5.58125 }),
+  shells: Object.freeze({ letters: Object.freeze([0.0, 0.975667, 1.985, 2.9125, 3.829042, 4.745583]), lastLetterEndAt: 5.17125, pauseBeforeWord: 1.25, wordAt: 6.42125 }),
+  shoes: Object.freeze({ letters: Object.freeze([0.0, 0.975667, 1.985, 2.962375, 3.889875]), lastLetterEndAt: 4.315542, pauseBeforeWord: 1.25, wordAt: 5.565542 }),
+  chops: Object.freeze({ letters: Object.freeze([0.0, 1.033458, 2.042792, 3.020167, 3.963375]), lastLetterEndAt: 4.389042, pauseBeforeWord: 1.25, wordAt: 5.639042 }),
+  cheese: Object.freeze({ letters: Object.freeze([0.0, 1.033458, 2.042792, 2.970292, 3.897792, 4.873458]), lastLetterEndAt: 5.250958, pauseBeforeWord: 1.25, wordAt: 6.500958 }),
+  child: Object.freeze({ letters: Object.freeze([0.0, 1.033458, 2.042792, 3.002042, 3.918583]), lastLetterEndAt: 4.32, pauseBeforeWord: 1.25, wordAt: 5.57 }),
+  chess: Object.freeze({ letters: Object.freeze([0.0, 1.033458, 2.042792, 2.970292, 3.945958]), lastLetterEndAt: 4.371625, pauseBeforeWord: 1.25, wordAt: 5.621625 }),
+  you: Object.freeze({ letters: Object.freeze([0.0, 1.033833, 2.011208]), lastLetterEndAt: 2.414167, pauseBeforeWord: 1.25, wordAt: 3.664167 }),
+  your: Object.freeze({ letters: Object.freeze([0.0, 1.033833, 2.011208, 2.964167]), lastLetterEndAt: 3.410708, pauseBeforeWord: 1.25, wordAt: 4.660708 }),
   dolphin: Object.freeze({ letters: Object.freeze([0.0, 0.9752, 1.8954, 2.8363, 3.803, 4.835, 5.7473]), lastLetterEndAt: 6.1249, pauseBeforeWord: 1.25, wordAt: 7.3749 }),
   telephone: Object.freeze({ letters: Object.freeze([0.0, 0.9777, 1.9286, 2.8695, 3.8204, 4.7871, 5.8192, 6.7394, 7.667]), lastLetterEndAt: 8.0679, pauseBeforeWord: 1.25, wordAt: 9.3179 }),
   alphabet: Object.freeze({ letters: Object.freeze([0.0, 0.9574, 1.8983, 2.865, 3.897, 4.8544, 5.808, 6.759]), lastLetterEndAt: 7.1866, pauseBeforeWord: 1.25, wordAt: 8.4366 }),

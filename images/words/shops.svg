@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Tres tiendas en una calle</title>
+  <desc id="descripcion">Tres tiendas separadas tienen puertas, escaparates y toldos de rayas. Una vende fruta, otra pan y otra plantas, sin letreros escritos.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 179H303" fill="none" stroke="#A8BDB9" stroke-width="4"/>
+    <rect x="24" y="61" width="80" height="112" rx="3" fill="#FBF7EE"/>
+    <rect x="120" y="47" width="80" height="126" rx="3" fill="#FFFFFF"/>
+    <rect x="216" y="61" width="80" height="112" rx="3" fill="#FBF7EE"/>
+    <path d="M20 61L29 46H99L108 61ZM116 47L125 32H195L204 47ZM212 61L221 46H291L300 61Z" fill="#DCE6E6"/>
+    <g fill="#EAF4FB" stroke-width="2">
+      <rect x="33" y="101" width="38" height="47" rx="2"/>
+      <rect x="79" y="101" width="17" height="72" rx="2"/>
+      <rect x="129" y="91" width="38" height="57" rx="2"/>
+      <rect x="175" y="91" width="17" height="82" rx="2"/>
+      <rect x="225" y="101" width="38" height="47" rx="2"/>
+      <rect x="271" y="101" width="17" height="72" rx="2"/>
+    </g>
+    <path d="M21 75H107V91H21ZM117 65H203V81H117ZM213 75H299V91H213Z" fill="#FBF7EE"/>
+    <path d="M21 75H38V91H21ZM55 75H72V91H55ZM89 75H107V91H89Z" fill="#146B63" stroke-width="1.4"/>
+    <path d="M117 65H134V81H117ZM151 65H168V81H151ZM185 65H203V81H185Z" fill="#F2C14E" stroke-width="1.4"/>
+    <path d="M213 75H230V91H213ZM247 75H264V91H247ZM281 75H299V91H281Z" fill="#E76F51" stroke-width="1.4"/>
+    <path d="M91 133V139M187 128V134M283 133V139" fill="none"/>
+    <path d="M37 141H67M133 141H163M229 141H259" fill="none" stroke="#B99167" stroke-width="4"/>
+    <circle cx="44" cy="131" r="6" fill="#E76F51" stroke-width="1.6"/>
+    <circle cx="58" cy="131" r="6" fill="#F2C14E" stroke-width="1.6"/>
+    <path d="M43 124L46 119M57 124L60 120" fill="none" stroke="#146B63" stroke-width="2"/>
+    <path d="M134 137C130 129 144 113 153 113C164 115 153 135 143 138Z" fill="#ECD2B5" stroke-width="1.6"/>
+    <path d="M141 125L146 129M148 119L153 123" fill="none" stroke="#B99167" stroke-width="1.8"/>
+    <path d="M238 130H251L249 140H240Z" fill="#E76F51" stroke-width="1.6"/>
+    <path d="M245 130V111M244 121Q231 123 233 114Q242 110 245 120M246 117Q257 117 256 108Q247 107 246 117" fill="#7CAD96" stroke="#146B63" stroke-width="1.6"/>
+  </g>
+</svg>

@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { getSpellingCues, getSpellingCueIndex } from '../spelling-timings.js';
+import { ALL_WORDS } from '../lessons.js';
 
 const WEEKLY = [
   ['dolphin', 'The dolphin jumps out of the water.'],
@@ -15,7 +16,6 @@ const WEEKLY = [
   ['friends', 'My friends play with me.'],
   ['people', 'The people are walking in the park.'],
 ];
-const LEGACY = ['easy', 'meat', 'peanuts', 'between', 'read', 'jeans', 'heel', 'sweets', 'street', 'reach'];
 
 test('02/10/2026 ph/f has the exact twenty new clips, authored spelling cues and source sentences', () => {
   const provenance = readFileSync(new URL('../audio/README.md', import.meta.url), 'utf8');
@@ -43,7 +43,7 @@ test('02/10/2026 ph/f has the exact twenty new clips, authored spelling cues and
     }
     assert.ok(provenance.includes(`| ${id} | ${sentence} |`), `${id}: exact source sentence documented`);
   }
-  const expected = [...LEGACY, ...WEEKLY.map(([id]) => id)].map(id => `${id}.mp3`).sort();
+  const expected = ALL_WORDS.map(({ id }) => `${id}.mp3`).sort();
   for (const folder of ['en-gb-v1', 'spelling-en-gb-v1']) {
     assert.deepEqual(readdirSync(new URL(`../audio/${folder}/`, import.meta.url)).filter(name => name.endsWith('.mp3')).sort(), expected);
   }

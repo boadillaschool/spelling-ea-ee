@@ -20,6 +20,16 @@ const illustrations = new Map([
   ['family', 'Familia: dos personas adultas junto a un niño y una niña en casa.'],
   ['friends', 'Amigos: dos niños de edad parecida comparten una pelota.'],
   ['people', 'Personas de distintas alturas paseando por un parque.'],
+  ['shorts', 'Pantalones cortos: dos perneras anchas por encima de las rodillas, con bolsillos y botón.'],
+  ['shops', 'Tres tiendas con toldos de rayas y escaparates de fruta, pan y plantas.'],
+  ['shells', 'Tres conchas de mar en forma de abanico, con bordes ondulados y surcos.'],
+  ['shoes', 'Un par de zapatos verdes con cordones claros y suelas de color crema.'],
+  ['chops', 'Dos chuletas cocinadas con huesos largos visibles y marcas de parrilla en un plato.'],
+  ['cheese', 'Queso: una cuña amarilla con agujeros redondos y una corteza fina.'],
+  ['child', 'Niño o niña: una persona infantil sentada y leyendo un libro abierto.'],
+  ['chess', 'Ajedrez: un tablero de casillas claras y oscuras con un rey, una torre y un caballo.'],
+  ['you', 'Tú: la persona que escucha, señalada por la mano de quien le habla.'],
+  ['your', 'Tu (algo que te pertenece): tu mochila, que sostienes por el asa porque te pertenece.'],
 ].map(([id, alt]) => [id, Object.freeze({ src: `./images/words/${id}.svg`, alt })]));
 
 export function getWordIllustration(id) {

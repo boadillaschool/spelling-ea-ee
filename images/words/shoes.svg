@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un par de zapatos</title>
+  <desc id="descripcion">Un par de zapatos verdes con cordones claros y suelas de color crema está colocado uno junto al otro. Se ven los dos zapatos completos.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(40 39)">
+      <path d="M12 24Q29 30 46 15L70 23L96 45L139 49Q161 52 165 68L10 70Q3 57 12 24Z" fill="#146B63"/>
+      <path d="M12 24Q30 30 46 15L52 28Q30 46 11 37Z" fill="#17324D"/>
+      <path d="M51 23L70 23L96 45L81 52Z" fill="#7CAD96"/>
+      <path d="M11 65Q75 74 165 64V76Q95 89 10 79Z" fill="#FBF7EE"/>
+      <path d="M58 32L75 28M64 39L82 35M72 46L89 42" fill="none" stroke="#F1D4A2" stroke-width="3.5"/>
+      <path d="M113 50Q108 59 111 68M27 45L24 65" fill="none" stroke="#7CAD96" stroke-width="2"/>
+    </g>
+    <g transform="translate(102 96)">
+      <path d="M12 24Q29 30 46 15L70 23L96 45L139 49Q161 52 165 68L10 70Q3 57 12 24Z" fill="#146B63"/>
+      <path d="M12 24Q30 30 46 15L52 28Q30 46 11 37Z" fill="#17324D"/>
+      <path d="M51 23L70 23L96 45L81 52Z" fill="#7CAD96"/>
+      <path d="M11 65Q75 74 165 64V76Q95 89 10 79Z" fill="#FBF7EE"/>
+      <path d="M58 32L75 28M64 39L82 35M72 46L89 42" fill="none" stroke="#F1D4A2" stroke-width="3.5"/>
+      <path d="M113 50Q108 59 111 68M27 45L24 65" fill="none" stroke="#7CAD96" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

@@ -1,6 +1,6 @@
 # British English audio
 
-These forty MP3 files are bundled with the application and served from the same origin: twenty pronunciation clips in `en-gb-v1/` and twenty post-answer spelling clips in `spelling-en-gb-v1/`. The original ten ea/ee words and their audio/timings are preserved; ten ph/f words are added for 02/10/2026. No text or learner data is sent to a speech service during ordinary playback.
+Each curriculum word has a bundled pronunciation clip in `en-gb-v1/` and a post-answer spelling clip in `spelling-en-gb-v1/`, served from the same origin. The earlier ea/ee and ph/f audio and timings are preserved; sh/ch and two special words are added for 16/10/2026. No text or learner data is sent to a speech service during ordinary playback.
 
 ## Voice and pacing
 
@@ -44,5 +44,26 @@ Generation uses Edge TTS 7.2.8 and FFmpeg 8.1. Existing matching letter-name sou
 Validation: all twenty new clips decode successfully and have the expected codec, channel count, sample rate and bit rate. FFmpeg `silencedetect=noise=-45dB:d=0.9` confirms the pre-word interval in all ten spelling binaries, within codec tolerance of 1.25 s; non-silent signal is independently required after `wordAt`. Original ea/ee binaries and cue entries are preserved. These checks establish playable assets and actual silence, not human listening or a physical-device test.
 
 Recordings contain only the fixed lesson vocabulary and generic example sentences. They do not contain names, personal information, or learner responses. They are generated synthetic speech, not recordings of a person participating in the app.
+
+## Weekly sh/ch audio — 16/10/2026
+
+The new lesson adds the exact words below, using the same stock British voice `en-GB-SoniaNeural`. Pronunciation uses word segments at `-25%`, a 0.70 s PCM gap, the exact sentence at `-35%`, a 0.85 s PCM gap and the word again. Spelling uses uppercase letter names at `-10%`, 0.55 s PCM gaps between letters, a 1.25 s PCM gap before the final word at `-20%`. No phonetic substitutions are used. The forty earlier recordings and their cue entries are unchanged.
+
+| ID | Exact example sentence |
+| --- | --- |
+| shorts | I wear shorts on a sunny day. |
+| shops | There are three shops on this street. |
+| shells | We found shells on the beach. |
+| shoes | I put on my shoes. |
+| chops | There are two chops on the plate. |
+| cheese | I like cheese in my sandwich. |
+| child | The child is reading a book. |
+| chess | We play chess together. |
+| you | You are my friend. |
+| your | This is your bag. |
+
+Generated with `edge-tts` 7.2.7, FFmpeg 7.0.2 (`imageio-ffmpeg` 0.6.0), and independently inspected with FFprobe 8.1. Sources are decoded to mono 24 kHz signed 16-bit PCM and edge-trimmed forwards and backwards, retaining internal pauses. Each final clip is encoded once as mono 24 kHz / 96 kbps MP3 with metadata stripped. The new `spelling-timings.js` entries are derived from the actual integer PCM frame counts.
+
+All twenty new recordings fully decode. All ten spelling binaries contain a detected silent interval covering the authored pre-word pause and non-silent final-word audio after `wordAt`. Nineteen clips decode to the exact authored frame count; the `your` spelling clip has an additional 43 quiet codec-tail frames (1.79 ms, -84.26 dBFS), with no missing frames or changed cues. These technical checks do not claim human listening or physical-device testing. Only fixed generic words and sentences were sent for synthesis; no personal recording or learner response was uploaded.
 
 If a recording cannot be played, the application can fall back to slower browser speech and ultimately the existing visual help. The files are fetched on demand; the app does not promise offline availability before they have been loaded.

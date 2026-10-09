@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Tres conchas de mar</title>
+  <desc id="descripcion">Tres conchas separadas, de distintos colores suaves, tienen forma de abanico, bordes ondulados y surcos que llegan hasta la base.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <g transform="translate(158 65) rotate(8)">
+      <path d="M-8 39L-41 1C-48-10-39-22-29-21C-33-34-19-42-10-35C-7-48 9-48 13-35C24-42 36-34 32-22C45-24 52-9 44 1L10 39Z" fill="#F1D4A2"/>
+      <path d="M-5 30L-30-16M-2 29L-13-31M3 29L3-34M7 30L25-29M11 31L37-13" fill="none" stroke="#B99167" stroke-width="2"/>
+      <path d="M-10 35Q1 28 12 35L14 42H-12Z" fill="#ECD2B5"/>
+    </g>
+    <g transform="translate(80 126) rotate(-24)">
+      <path d="M-8 36L-36 2C-44-8-39-20-28-20C-30-32-18-39-9-33C-4-45 9-44 13-32C24-38 35-30 30-20C43-20 47-7 39 4L10 36Z" fill="#F3C6B2"/>
+      <path d="M-5 29L-29-14M-1 27L-12-28M4 27L3-32M8 28L24-26M11 30L33-12" fill="none" stroke="#BD8A73" stroke-width="2"/>
+      <path d="M-10 32Q1 26 12 32L13 39H-11Z" fill="#ECD2B5"/>
+    </g>
+    <g transform="translate(240 130) rotate(25)">
+      <path d="M-8 36L-36 2C-44-8-39-20-28-20C-30-32-18-39-9-33C-4-45 9-44 13-32C24-38 35-30 30-20C43-20 47-7 39 4L10 36Z" fill="#DEF3EF"/>
+      <path d="M-5 29L-29-14M-1 27L-12-28M4 27L3-32M8 28L24-26M11 30L33-12" fill="none" stroke="#7CAD96" stroke-width="2"/>
+      <path d="M-10 32Q1 26 12 32L13 39H-11Z" fill="#A8BDB9"/>
+    </g>
+  </g>
+</svg>

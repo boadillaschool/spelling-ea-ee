@@ -4,8 +4,9 @@ A small, static, mobile-first spelling app. The front page lets families choose 
 
 - **25 September 2026 — ea / ee:** `easy`, `meat`, `peanuts`, `between`, `read` (present /riːd/), `jeans`, `heel`, `sweets`, `street`, `reach`.
 - **2 October 2026 — ph / f:** `dolphin`, `telephone`, `alphabet`, `trophy`, `photograph`, `elephant`, `pharmacy`, `family`, `friends`, `people`.
+- **16 October 2026 — sh / ch:** `shorts`, `shops`, `shells`, `shoes`, `chops`, `cheese`, `child`, `chess`, `you`, `your`.
 
-`people` is an extra spelling word, not an example of either pattern. Its learning flow skips the pattern-choice step. Both `ph` groups are highlighted in `photograph`.
+`people`, `you` and `your` are extra spelling words, not examples of their lists' patterns. Their learning flows skip the pattern-choice step. Both `ph` groups are highlighted in `photograph`.
 
 ## Public address and publication
 
@@ -25,9 +26,9 @@ The origin and all existing lesson storage keys remain unchanged. Moving between
 
 ## Dated routes and separate progress
 
-- The root page is the list chooser. `?list=2026-09-25` and `?list=2026-10-02` open the corresponding lists; unknown IDs return to the chooser.
+- The root page is the list chooser. `?list=2026-09-25`, `?list=2026-10-02` and `?list=2026-10-16` open the corresponding lists; unknown IDs return to the chooser.
 - **Inicio** returns to the current lesson. **Elegir otra lista** opens the front page; links, reload and browser Back/Forward use ordinary same-origin navigation.
-- Each list keeps its own aggregate progress. The first list retains the original `spelling-ea-ee:v1` storage key, so existing work is not lost. The new list uses `spelling-ea-ee:list:2026-10-02:v1`.
+- Each list keeps its own aggregate progress. The first list retains the original `spelling-ea-ee:v1` storage key, so existing work is not lost. The October lists use `spelling-ea-ee:list:2026-10-02:v1` and `spelling-ea-ee:list:2026-10-16:v1`.
 - Reset clears only the current list. Sharing includes the list date and its canonical link, without unrelated query parameters.
 - Curriculum metadata is in `lessons.js`; the original inventory remains unchanged in `data.js`. No source photographs or identifying school/child information are published.
 
@@ -70,7 +71,7 @@ The interface is in Spanish (aimed at 2º de Primaria); the audio is British Eng
 
 ## Meaning illustrations
 
-- Each word in both lists has its own original, local SVG illustration, shown with the active word throughout learning, practice, error review and mock questions.
+- Each word in every list has its own original, local SVG illustration, shown with the active word throughout learning, practice, error review and mock questions.
 - The drawings explain the meaning, not the spelling: there are no English answers written inside the pictures or their Spanish alternative text.
 - Relational words use scenes: a ball between two boxes, a person reaching for a shelf, and a simple two-piece puzzle for `easy`. The `heel` illustration identifies the back of a bare foot.
 - Images load from `images/words/` on the same origin. No stock-image service, third-party request, tracking or remote font is involved.
@@ -80,7 +81,7 @@ The interface is in Spanish (aimed at 2º de Primaria); the audio is British Eng
 
 ## Modes
 
-- **Aprender**: active recall. Hear the word, reveal the spelling with the current lesson pattern highlighted, identify the family (except the extra word `people`), hide it, then type it once.
+- **Aprender**: active recall. Hear the word, reveal the spelling with the current lesson pattern highlighted, identify the family (except the special words `people`, `you` and `your`), hide it, then type it once.
 - **Practicar**: select from the ten-word list, then type each chosen word you hear. After a first mistake you can retry; after a second one the spelling is revealed, hidden again, and must be typed correctly once. A miss returns later in the same session for delayed retrieval.
 - **Cuaderno con lápiz**: write each selected word freely on a local canvas, compare it with the model and self-assess without OCR.
 - **Repasar errores**: the same flow, combining active errors with words whose spaced-review date has arrived.
@@ -117,6 +118,7 @@ Optional browser checks require Playwright as developer tooling only:
 npm install --no-save --package-lock=false playwright
 npx playwright install chromium
 npm run check:weekly
+npm run check:sh-ch
 npm run check:rewrite
 PORTAL_ROOT=../boadillaschool.github.io npm run check:migration
 npm run check:browser
@@ -139,8 +141,8 @@ The checks serve the app locally, exercise all-ten and subset sessions, keyboard
 | `ui-helpers.js` | Small pure UI helpers: nullish-safe child lists, audio button label |
 | `focus-policy.js` | Pure focus policy: focus moves on screen/step changes, not on same-step feedback |
 | `speech.js`, `spelling-timings.js` | Bundled word/spelling playback, cancellation, letter cues and slower en-GB Web Speech fallback |
-| `audio/en-gb-v1/`, `audio/spelling-en-gb-v1/` | Ten pronunciation clips and ten paced spelling clips, all same-origin |
+| `audio/en-gb-v1/`, `audio/spelling-en-gb-v1/` | Thirty pronunciation clips and thirty paced spelling clips, all same-origin |
 | `ink-pad.js` | Pure local freehand-stroke state, normalization, undo and clear logic |
-| `illustrations.js`, `images/words/` | Fixed word-to-image metadata, Spanish alt text and ten original meaning illustrations |
+| `illustrations.js`, `images/words/` | Fixed word-to-image metadata, Spanish alt text and thirty original meaning illustrations |
 | `data.js` | The ten words with cues and sentences |
 | `tests/` | Unit tests |

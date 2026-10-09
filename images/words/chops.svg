@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Dos chuletas en un plato</title>
+  <desc id="descripcion">Dos chuletas cocinadas, cada una con un hueso largo visible y marcas de parrilla, están separadas sobre un plato. La carne es marrón, sin sangre.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="160" cy="123" rx="132" ry="62" fill="#FBF7EE"/>
+    <ellipse cx="160" cy="123" rx="118" ry="49" fill="#FFFFFF" stroke="#A8BDB9" stroke-width="2"/>
+    <g transform="translate(101 120) rotate(-23)">
+      <path d="M-9-15C-7-35-11-52-23-66Q-27-72-22-74Q-18-76-15-69C2-49 4-35 1-14Z" fill="#FBF7EE"/>
+      <path d="M-38-16C-25-34-5-29 11-24C30-21 39-14 40 0C42 17 22 35 0 36C-22 36-47 9-38-16Z" fill="#ECD2B5"/>
+      <path d="M-30-12C-21-24-5-21 9-17C23-15 30-10 31 1C32 13 16 27 0 27C-17 27-35 6-30-12Z" fill="#AF7153" stroke="#865035" stroke-width="2"/>
+      <path d="M-21-9L-3 11M-5-12L15 10M11-9L27 8" fill="none" stroke="#754832" stroke-width="4"/>
+    </g>
+    <g transform="translate(218 121) rotate(23) scale(-1 1)">
+      <path d="M-9-15C-7-35-11-52-23-66Q-27-72-22-74Q-18-76-15-69C2-49 4-35 1-14Z" fill="#FBF7EE"/>
+      <path d="M-38-16C-25-34-5-29 11-24C30-21 39-14 40 0C42 17 22 35 0 36C-22 36-47 9-38-16Z" fill="#ECD2B5"/>
+      <path d="M-30-12C-21-24-5-21 9-17C23-15 30-10 31 1C32 13 16 27 0 27C-17 27-35 6-30-12Z" fill="#AF7153" stroke="#865035" stroke-width="2"/>
+      <path d="M-21-9L-3 11M-5-12L15 10M11-9L27 8" fill="none" stroke="#754832" stroke-width="4"/>
+    </g>
+  </g>
+</svg>

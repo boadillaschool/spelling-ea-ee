@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Tu mochila, el objeto que te pertenece</title>
+  <desc id="descripcion">La persona a quien se habla sostiene su mochila por el asa. Una mano desde la izquierda señala la mochila, no a la persona: es tu mochila porque te pertenece.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M224 127L219 178H233L240 142L248 178H262L257 127Z" fill="#477DA6"/>
+    <path d="M219 176L213 183H234V176M248 176V183H269L262 176" fill="#17324D"/>
+    <path d="M216 89Q240 77 264 89L269 135H211Z" fill="#146B63"/>
+    <path d="M218 96L207 105L174 89M266 97L279 128" fill="none" stroke="#E5B18A" stroke-width="12"/>
+    <path d="M216 87L210 99L222 106L229 92M253 91L260 106L272 100L266 87" fill="#146B63"/>
+    <path d="M232 73V85Q240 92 248 85V73" fill="#E5B18A"/>
+    <circle cx="218" cy="53" r="6" fill="#E5B18A"/>
+    <circle cx="262" cy="53" r="6" fill="#E5B18A"/>
+    <path d="M218 40Q221 23 241 25Q263 25 262 45V57Q260 79 240 79Q219 78 218 57Z" fill="#E5B18A"/>
+    <path d="M218 46Q212 32 225 25Q229 16 244 22Q264 20 266 36L262 46L255 35Q239 43 230 33L222 48Z" fill="#594235"/>
+    <circle cx="231" cy="54" r="1.7" fill="#17324D" stroke="none"/>
+    <circle cx="248" cy="54" r="1.7" fill="#17324D" stroke="none"/>
+    <path d="M234 66Q240 71 246 66" fill="none" stroke="#986448" stroke-width="1.8"/>
+    <path d="M120 111Q102 129 111 166M190 111Q208 129 199 166" fill="none" stroke="#B99167" stroke-width="7"/>
+    <path d="M141 101V87Q155 72 169 87V101" fill="none" stroke="#17324D" stroke-width="8"/>
+    <path d="M122 105Q154 88 187 105L195 167Q195 180 183 181H127Q115 180 115 168Z" fill="#F2C14E"/>
+    <path d="M123 109Q154 98 186 109V126Q155 139 122 126Z" fill="#FFE4A0"/>
+    <rect x="130" y="143" width="49" height="28" rx="7" fill="#ECD2B5"/>
+    <path d="M136 152H173M168 152V158" fill="none" stroke-width="1.8"/>
+    <path d="M168 84Q163 80 160 85L161 93Q164 98 168 94L174 94Q179 93 177 87Z" fill="#E5B18A"/>
+    <path d="M22 137L42 132L58 118Q66 114 72 120L95 116Q104 116 104 122Q104 127 96 129L77 133L84 140Q89 147 84 152Q85 159 77 164L63 169Q51 173 40 160L24 161Z" fill="#BE805C"/>
+    <path d="M72 139L81 144M67 149L78 154" fill="none" stroke="#865035" stroke-width="1.7"/>
+    <path d="M14 138L27 133L39 164L23 171Z" fill="#477DA6"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Tú, la persona a quien se habla</title>
+  <desc id="descripcion">Una persona que escucha está señalada por el dedo de quien le habla, cuya mano entra desde el lado izquierdo. El gesto se dirige a la persona, no a un objeto.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M191 126L187 179H203L210 140L218 179H234L230 126Z" fill="#477DA6"/>
+    <path d="M187 176L180 183H204V176M218 176V183H242L234 176" fill="#17324D"/>
+    <path d="M184 87Q210 74 236 87L241 132H179Z" fill="#146B63"/>
+    <path d="M182 95L170 125M238 95L251 125" fill="none" stroke="#E5B18A" stroke-width="13"/>
+    <path d="M183 85L177 100L189 104L195 89M226 89L233 104L245 100L238 85" fill="#146B63"/>
+    <path d="M201 72V84Q210 93 219 84V72" fill="#E5B18A"/>
+    <circle cx="186" cy="51" r="6" fill="#E5B18A"/>
+    <circle cx="234" cy="51" r="6" fill="#E5B18A"/>
+    <path d="M186 38Q189 19 211 22Q235 22 234 43V55Q232 78 210 78Q187 77 186 55Z" fill="#E5B18A"/>
+    <path d="M186 45Q179 30 193 22Q197 12 214 18Q235 16 238 33L234 45L226 32Q209 40 199 30L190 46Z" fill="#594235"/>
+    <circle cx="200" cy="51" r="1.8" fill="#17324D" stroke="none"/>
+    <circle cx="219" cy="51" r="1.8" fill="#17324D" stroke="none"/>
+    <path d="M203 64Q210 70 217 64" fill="none" stroke="#986448" stroke-width="2"/>
+    <path d="M32 119L63 109L79 95Q87 89 96 96L132 88Q142 87 143 93Q144 99 135 101L106 109L116 113Q125 118 121 123Q125 130 119 135Q120 143 112 148L88 158Q77 162 63 151L43 153Z" fill="#BE805C"/>
+    <path d="M104 115L117 122M102 126L116 132M98 137L110 143" fill="none" stroke="#865035" stroke-width="1.7"/>
+    <path d="M22 121L41 114L57 153L38 162Z" fill="#F2C14E"/>
+    <path d="M150 91L169 88" fill="none" stroke="#146B63" stroke-width="2.5" stroke-dasharray="3 5"/>
+  </g>
+</svg>

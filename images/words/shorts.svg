@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Pantalones cortos</title>
+  <desc id="descripcion">Unos pantalones cortos azules tienen cintura con botón, dos bolsillos y dos perneras anchas que terminan por encima de las rodillas.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M98 39H222L239 160H175L160 112L145 160H81Z" fill="#477DA6"/>
+    <path d="M98 39H222L225 60H95Z" fill="#35658C"/>
+    <path d="M130 62Q128 85 92 88M190 62Q192 85 228 88" fill="none"/>
+    <path d="M116 40H123V62H116ZM197 40H204V62H197Z" fill="#6896B7" stroke-width="1.8"/>
+    <circle cx="159" cy="50" r="3.5" fill="#F2C14E" stroke-width="1.6"/>
+    <path d="M159 63V111M167 65V91Q167 99 161 100" fill="none" stroke-width="2"/>
+    <path d="M83 149H148L145 160H81ZM172 149H237L239 160H175Z" fill="#6896B7"/>
+    <g fill="none" stroke="#F1D4A2" stroke-width="1.6" stroke-dasharray="3 4">
+      <path d="M124 65Q121 79 96 82M196 65Q199 79 224 82M95 101L89 141M225 101L231 141M91 155H138M182 155H230"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un niño o niña leyendo</title>
+  <desc id="descripcion">Una persona infantil está sentada en un taburete y leyendo un libro abierto que sostiene con ambas manos. Sus ojos miran hacia las páginas.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M125 140L119 181M195 140L201 181" fill="none" stroke="#B99167" stroke-width="7"/>
+    <rect x="119" y="132" width="82" height="13" rx="5" fill="#ECD2B5"/>
+    <path d="M134 130L136 165H150L156 136L164 136L170 165H184L185 130Z" fill="#477DA6"/>
+    <path d="M136 160V171M180 160V171" fill="none" stroke="#BE805C" stroke-width="10"/>
+    <path d="M136 169Q125 169 123 178H151V169ZM172 169V178H199Q196 168 184 169Z" fill="#146B63"/>
+    <path d="M132 91Q160 77 188 91L193 130H127Z" fill="#F2C14E"/>
+    <path d="M151 77V89Q160 97 169 89V77" fill="#BE805C"/>
+    <circle cx="132" cy="59" r="7" fill="#BE805C"/>
+    <circle cx="188" cy="59" r="7" fill="#BE805C"/>
+    <path d="M133 44Q139 27 160 28Q184 27 187 46V61Q185 85 160 85Q135 84 133 61Z" fill="#BE805C"/>
+    <path d="M133 53Q124 39 137 28Q139 15 152 22Q165 12 174 24Q191 21 191 42L187 53L178 39Q163 46 151 35Q142 50 133 53Z" fill="#594235"/>
+    <path d="M144 60Q149 63 153 60M168 60Q172 63 177 60" fill="none" stroke-width="2"/>
+    <path d="M149 63V65M172 63V65" fill="none" stroke-width="2.8"/>
+    <path d="M155 74Q161 78 167 73" fill="none" stroke="#865035" stroke-width="1.8"/>
+    <path d="M132 96L119 117M188 96L201 117" fill="none" stroke="#BE805C" stroke-width="12"/>
+    <path d="M108 97Q135 94 160 107Q185 94 212 97L207 142Q180 138 160 149Q137 138 113 142Z" fill="#146B63"/>
+    <path d="M115 94Q139 94 160 105V141Q140 130 119 131ZM160 105Q181 94 205 94L201 131Q180 130 160 141Z" fill="#FBF7EE"/>
+    <path d="M129 110L148 116M130 121L148 127M173 116L192 110M173 127L190 121" fill="none" stroke="#A8BDB9" stroke-width="2"/>
+    <path d="M115 118Q103 115 108 128L115 132Q122 131 120 126ZM205 118Q217 115 212 128L205 132Q198 131 200 126Z" fill="#BE805C"/>
+  </g>
+</svg>
