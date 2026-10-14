@@ -644,7 +644,8 @@ function renderCatalog() {
   const cards = [...LESSONS].reverse().map((entry, index) => {
     const saved = loadProgress(storage, entry.words, entry.storageKey);
     const summary = summarizeProgress(entry.words, saved);
-    return el('article', { class: 'card lesson-card', 'aria-labelledby': `lesson-${entry.id}` },
+    return el('article', { class: `card lesson-card${index === 0 ? ' lesson-card--latest' : ''}`, 'aria-labelledby': `lesson-${entry.id}` },
+      index === 0 ? el('p', { class: 'lesson-recency', text: 'Lista más reciente' }) : null,
       el('p', { class: 'eyebrow', text: `${entry.words.length} PALABRAS · ${entry.patterns.join(' / ')}` }),
       el('h2', { id: `lesson-${entry.id}`, text: entry.date }),
       el('p', { class: 'lesson-topic', text: entry.title }),

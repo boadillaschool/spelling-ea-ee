@@ -17,15 +17,16 @@
   <script type="module" src="app.js"></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
   <div class="app" id="app">
     <header class="brand-bar">
-      <p class="lockup">
+      <a class="lockup" href="/" aria-label="Boadilla School, inicio">
         <svg class="lockup-mark" viewBox="0 0 32 28" width="32" height="28" aria-hidden="true" focusable="false">
           <rect class="lockup-tab" x="21" y="1.5" width="5" height="7" rx="1" stroke="currentColor" stroke-width="1.5"/>
           <path d="M16 8C13 5.8 8.5 5 3 5.6V22.4C8.5 21.8 13 22.6 16 24.8C19 22.6 23.5 21.8 29 22.4V5.6C23.5 5 19 5.8 16 8ZM16 8V24.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         <span class="wordmark">Boadilla School</span>
-      </p>
+      </a>
       <div class="brand-actions">
         <p class="brand-context">English · 2.º Primaria</p>
         <button type="button" class="fullscreen-toggle" id="fullscreen-toggle" aria-label="Activar pantalla completa" aria-pressed="false" hidden>
@@ -55,7 +56,7 @@
       <progress id="progress" max="10" value="0"></progress>
     </div>
 
-    <main id="main" class="main">
+    <main id="main" class="main" tabindex="-1">
       <p class="loading">Cargando…</p>
     </main>
 
