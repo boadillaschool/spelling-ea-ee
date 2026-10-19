@@ -486,7 +486,7 @@ export function getSpeechText(item) {
  */
 export function getSpellingText(item) {
   const word = item.word;
-  const letters = word.toUpperCase().split('').map((letter) => `${letter}.`).join(' ');
+  const letters = word.toUpperCase().split('').map((letter) => letter === ' ' ? 'Space.' : `${letter}.`).join(' ');
   return `${letters} ${word[0].toUpperCase()}${word.slice(1)}.`;
 }
 

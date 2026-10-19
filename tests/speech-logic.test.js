@@ -66,6 +66,10 @@ test('getSpeechText is defined for every word and contains its sentence', () => 
   }
 });
 
+test('getSpellingText names a phrase boundary explicitly without treating it as a letter', () => {
+  assert.equal(getSpellingText({ word: 'tied up' }), 'T. I. E. D. Space. U. P. Tied up.');
+});
+
 test('getSpellingText names every letter separately before repeating the word', () => {
   const easy = WORDS.find(({ id }) => id === 'easy');
   const read = WORDS.find(({ id }) => id === 'read');

@@ -5,6 +5,7 @@ A small, static, mobile-first spelling app. The front page lets families choose 
 - **25 September 2026 — ea / ee:** `easy`, `meat`, `peanuts`, `between`, `read` (present /riːd/), `jeans`, `heel`, `sweets`, `street`, `reach`.
 - **2 October 2026 — ph / f:** `dolphin`, `telephone`, `alphabet`, `trophy`, `photograph`, `elephant`, `pharmacy`, `family`, `friends`, `people`.
 - **16 October 2026 — sh / ch:** `shorts`, `shops`, `shells`, `shoes`, `chops`, `cheese`, `child`, `chess`, `you`, `your`.
+- **Added 19 October 2026 — /aɪ/ with ie / igh / y:** `cried`, `tied up`, `lied`, `night`, `frighten`, `light`, `tights`, `sky`, `fly`, `dry`. This date records receipt of the list, not an assessment date. `tied up` is one practice item; its space is pronounced as “Space” during spelling feedback.
 
 `people`, `you` and `your` are extra spelling words, not examples of their lists' patterns. Their learning flows skip the pattern-choice step. Both `ph` groups are highlighted in `photograph`.
 
@@ -26,9 +27,9 @@ The origin and all existing lesson storage keys remain unchanged. Moving between
 
 ## Dated routes and separate progress
 
-- The root page is the list chooser. `?list=2026-09-25`, `?list=2026-10-02` and `?list=2026-10-16` open the corresponding lists; unknown IDs return to the chooser.
+- The root page is the list chooser. `?list=2026-09-25`, `?list=2026-10-02`, `?list=2026-10-16` and `?list=2026-10-19` open the corresponding lists; unknown IDs return to the chooser.
 - **Inicio** returns to the current lesson. **Elegir otra lista** opens the front page; links, reload and browser Back/Forward use ordinary same-origin navigation.
-- Each list keeps its own aggregate progress. The first list retains the original `spelling-ea-ee:v1` storage key, so existing work is not lost. The October lists use `spelling-ea-ee:list:2026-10-02:v1` and `spelling-ea-ee:list:2026-10-16:v1`.
+- Each list keeps its own aggregate progress. The first list retains the original `spelling-ea-ee:v1` storage key, so existing work is not lost. The October lists use `spelling-ea-ee:list:2026-10-02:v1`, `spelling-ea-ee:list:2026-10-16:v1` and `spelling-ea-ee:list:2026-10-19:v1`.
 - Reset clears only the current list. Sharing includes the list date and its canonical link, without unrelated query parameters.
 - Curriculum metadata is in `lessons.js`; the original inventory remains unchanged in `data.js`. No source photographs or identifying school/child information are published.
 

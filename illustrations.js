@@ -1,5 +1,15 @@
 // Original, same-origin illustrations. No learner text or remote image requests.
 const illustrations = new Map([
+  ["cried", "Lloró: Un bebé sentado tiene lágrimas en las mejillas y la boca abierta al llorar. Lleva una camiseta verde y un pañal claro."],
+  ["tied-up", "Até con cuerda: Un paquete de papel marrón está atado con cuerda. Dos vueltas de cuerda se cruzan sobre la caja y quedan sujetas por un nudo con lazada."],
+  ["lied", "Mintió: Un niño niega haber comido una galleta: su bocadillo contiene una galleta tachada. Tiene migas junto a la boca y un plato vacío delante; la contradicción representa que mintió."],
+  ["night", "Noche: Un cielo oscuro de noche tiene una luna creciente y estrellas claras sobre dos colinas tranquilas."],
+  ["frighten", "Asustar: Un gato da un pequeño sobresalto junto a una tapa metálica caída. Las líneas alrededor de la tapa representan ruido; el gato tiene los ojos abiertos y la cola levantada, sin peligro."],
+  ["light", "Luz: Una lámpara de mesa encendida proyecta luz amarilla hacia abajo. Varias rayas cortas alrededor de la pantalla indican que está iluminando."],
+  ["tights", "Leotardos: Unos leotardos azules de una sola pieza tienen cintura elástica, dos piernas largas y los pies cubiertos."],
+  ["sky", "Cielo: Un amplio cielo azul tiene dos nubes blancas y un sol pequeño en una esquina. Una franja de colinas verdes queda abajo."],
+  ["fly", "Volar: Un pájaro está volando en el cielo con las alas extendidas. Sus patas están recogidas, hay nubes alrededor y líneas curvas detrás que sugieren movimiento."],
+  ["dry", "Seco: Una toalla seca cuelga de una barra. Un sol y el símbolo de una gota tachada indican que no está mojada; no caen gotas de la tela."],
   ['easy', 'Fácil: un puzle sencillo de solo dos piezas que encajan.'],
   ['meat', 'Carne: un filete servido en un plato.'],
   ['peanuts', 'Cacahuetes con su cáscara estrecha en el centro y algunos granos pelados.'],

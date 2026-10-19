@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un paquete atado con cuerda</title>
+  <desc id="descripcion">Un paquete de papel marrón está atado con cuerda. Dos vueltas de cuerda se cruzan sobre la caja y quedan sujetas por un nudo con lazada.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="162" cy="178" rx="97" ry="8" fill="#E2EAE6" stroke="none"/>
+    <path d="M72 73L190 41L253 75L136 111Z" fill="#ECD2B5"/>
+    <path d="M72 73L136 111V174L72 137Z" fill="#B99167"/>
+    <path d="M136 111L253 75V138L136 174Z" fill="#D8B48B"/>
+    <path d="M103 57L165 95V165M211 52L96 88V151" fill="none" stroke="#594235" stroke-width="7"/>
+    <path d="M103 57L165 95V165M211 52L96 88V151" fill="none" stroke="#FBF7EE" stroke-width="3.5"/>
+    <path d="M150 77Q115 73 123 59Q136 47 150 77Q163 46 176 55Q192 70 150 77Z" fill="none" stroke="#594235" stroke-width="6"/>
+    <path d="M150 77Q115 73 123 59Q136 47 150 77Q163 46 176 55Q192 70 150 77ZM149 79L134 91M154 80L176 85" fill="none" stroke="#FBF7EE" stroke-width="3"/>
+    <circle cx="151" cy="77" r="4" fill="#FBF7EE" stroke="#594235"/>
+    <path d="M145 122L154 119M230 100L240 97" fill="none" stroke="#B99167" stroke-width="1.6"/>
+  </g>
+</svg>

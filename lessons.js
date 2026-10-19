@@ -26,6 +26,19 @@ const SH_CH_WORDS = Object.freeze([
   { id: 'your', word: 'your', pattern: '', cue: 'tu (algo que te pertenece)', sentence: 'This is your bag.' },
 ].map(Object.freeze));
 
+const LONG_I_WORDS = Object.freeze([
+  { id: 'cried', word: 'cried', pattern: 'ie', cue: 'lloró', sentence: 'The baby cried.' },
+  { id: 'tied-up', word: 'tied up', pattern: 'ie', cue: 'até con cuerda', sentence: 'I tied up the parcel with string.' },
+  { id: 'lied', word: 'lied', pattern: 'ie', cue: 'mintió', sentence: 'He lied about eating the last biscuit.' },
+  { id: 'night', word: 'night', pattern: 'igh', cue: 'noche', sentence: 'The stars shine at night.' },
+  { id: 'frighten', word: 'frighten', pattern: 'igh', cue: 'asustar', sentence: 'Loud noises can frighten the cat.' },
+  { id: 'light', word: 'light', pattern: 'igh', cue: 'luz', sentence: 'Please turn on the light.' },
+  { id: 'tights', word: 'tights', pattern: 'igh', cue: 'leotardos', sentence: 'She wears blue tights.' },
+  { id: 'sky', word: 'sky', pattern: 'y', cue: 'cielo', sentence: 'The sky is blue.' },
+  { id: 'fly', word: 'fly', pattern: 'y', cue: 'volar', sentence: 'Birds can fly.' },
+  { id: 'dry', word: 'dry', pattern: 'y', cue: 'seco', sentence: 'The towel is dry.' },
+].map(Object.freeze));
+
 export const LESSONS = Object.freeze([
   Object.freeze({
     id: '2026-09-25', date: 'Viernes 25 de septiembre de 2026', shortDate: '25/09/2026',
@@ -44,6 +57,12 @@ export const LESSONS = Object.freeze([
     title: 'Palabras con sh y ch', patterns: Object.freeze(['sh', 'ch']),
     intro: 'Escucha la diferencia entre sh en «shorts» y ch en «chess». También practicamos «you» y «your», dos palabras especiales.',
     words: SH_CH_WORDS, storageKey: 'spelling-ea-ee:list:2026-10-16:v1',
+  }),
+  Object.freeze({
+    id: '2026-10-19', date: 'Añadida el 19 de octubre de 2026', shortDate: '19/10/2026',
+    title: 'El sonido /aɪ/: ie, igh y y', patterns: Object.freeze(['ie', 'igh', 'y']),
+    intro: 'El sonido /aɪ/ se escribe de distintas formas: ie en «cried», igh en «night» y y en «sky». «Tied up» es una sola expresión: recuerda el espacio.',
+    words: LONG_I_WORDS, storageKey: 'spelling-ea-ee:list:2026-10-19:v1',
   }),
 ]);
 

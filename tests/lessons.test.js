@@ -5,7 +5,7 @@ import { WORDS } from '../data.js';
 const curriculum = await import('../lessons.js').catch(() => ({ LESSONS: [] }));
 
 test('the Friday registry preserves the original and the exact supplied ph/f words', () => {
-  assert.deepEqual(curriculum.LESSONS.map(x => x.id), ['2026-09-25', '2026-10-02', '2026-10-16']);
+  assert.deepEqual(curriculum.LESSONS.map(x => x.id), ['2026-09-25', '2026-10-02', '2026-10-16', '2026-10-19']);
   assert.deepEqual(curriculum.LESSONS[0].words, WORDS);
   assert.deepEqual(curriculum.LESSONS[1].words.map(x => x.word), [
     'dolphin', 'telephone', 'alphabet', 'trophy', 'photograph',
@@ -14,7 +14,7 @@ test('the Friday registry preserves the original and the exact supplied ph/f wor
   assert.deepEqual(curriculum.LESSONS[1].patterns, ['ph', 'f']);
   assert.equal(curriculum.LESSONS[1].words.at(-1).pattern, '');
   assert.ok(curriculum.LESSONS[1].words.every(x => x.word.includes(x.pattern)));
-  assert.equal(curriculum.ALL_WORDS.length, 30);
+  assert.equal(curriculum.ALL_WORDS.length, 40);
 });
 
 test('lesson routing allowlists IDs and gives each list its own progress without migrating the original key', () => {

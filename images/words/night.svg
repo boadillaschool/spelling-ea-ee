@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">La luna y las estrellas de noche</title>
+  <desc id="descripcion">Un cielo oscuro de noche tiene una luna creciente y estrellas claras sobre dos colinas tranquilas.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="30" y="19" width="260" height="162" rx="22" fill="#17324D"/>
+    <path d="M225 41Q206 66 231 87Q201 91 191 69Q183 46 205 34Q213 31 221 34Z" fill="#F2C14E" stroke="#F2C14E"/>
+    <g fill="#FBF7EE" stroke="#FBF7EE" stroke-width="1.5">
+    <path d="M86 41L89 50L98 53L89 56L86 65L83 56L74 53L83 50Z"/>
+    <path d="M144 73L147 81L155 84L147 87L144 95L141 87L133 84L141 81Z"/>
+    <path d="M251 106L254 113L261 116L254 119L251 126L248 119L241 116L248 113Z"/>
+    <circle cx="130" cy="40" r="2"/><circle cx="61" cy="99" r="2"/><circle cx="107" cy="117" r="2"/><circle cx="179" cy="108" r="2"/><circle cx="260" cy="52" r="2"/>
+    </g>
+    <path d="M31 155Q78 116 141 154Q203 120 289 146V159Q289 181 267 181H53Q31 181 31 159Z" fill="#35658C"/>
+    <path d="M31 165Q100 144 159 170Q215 149 289 164Q287 181 267 181H53Q35 181 31 165Z" fill="#146B63"/>
+  </g>
+</svg>

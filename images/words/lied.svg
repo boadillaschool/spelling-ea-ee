@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Negar haber comido una galleta</title>
+  <desc id="descripcion">Un niño niega haber comido una galleta: su bocadillo contiene una galleta tachada. Tiene migas junto a la boca y un plato vacío delante; la contradicción representa que mintió.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M35 31H114Q126 31 126 43V85Q126 97 114 97H106L117 112L91 97H35Q23 97 23 85V43Q23 31 35 31Z" fill="#FBF7EE"/>
+    <circle cx="74" cy="64" r="22" fill="#ECD2B5"/>
+    <g fill="#865035" stroke="none"><circle cx="66" cy="55" r="3"/><circle cx="82" cy="57" r="3"/><circle cx="72" cy="72" r="3"/><circle cx="86" cy="71" r="2.5"/><circle cx="60" cy="67" r="2"/></g>
+    <path d="M48 89L99 39" fill="none" stroke="#FBF7EE" stroke-width="9"/>
+    <path d="M48 89L99 39" fill="none" stroke="#B65D52" stroke-width="4.5"/>
+    <path d="M169 116Q197 99 223 116L232 157H160Z" fill="#477DA6"/>
+    <path d="M170 122L147 142M221 123L244 141" fill="none" stroke="#BE805C" stroke-width="12"/>
+    <circle cx="166" cy="77" r="7" fill="#BE805C"/>
+    <circle cx="227" cy="77" r="7" fill="#BE805C"/>
+    <path d="M167 60Q168 35 196 35Q224 35 226 60V82Q223 109 197 110Q169 107 167 82Z" fill="#BE805C"/>
+    <path d="M166 66Q157 45 172 37Q179 22 192 31Q208 22 218 36Q235 39 227 65L217 51Q194 60 181 48Z" fill="#594235"/>
+    <path d="M178 72L185 70M209 70L216 72M178 84H184M208 84H214M191 96H204" fill="none"/>
+    <g fill="#ECD2B5" stroke="#865035" stroke-width="1"><circle cx="211" cy="99" r="2.5"/><circle cx="216" cy="104" r="2"/><circle cx="207" cy="105" r="1.5"/></g>
+    <rect x="89" y="151" width="192" height="28" rx="8" fill="#ECD2B5"/>
+    <ellipse cx="192" cy="163" rx="43" ry="11" fill="#FBF7EE"/>
+    <ellipse cx="192" cy="163" rx="32" ry="6" fill="none" stroke="#A8BDB9" stroke-width="1.6"/>
+    <g fill="#B99167" stroke="none"><circle cx="182" cy="163" r="2"/><circle cx="193" cy="160" r="2"/><circle cx="201" cy="165" r="1.5"/></g>
+  </g>
+</svg>

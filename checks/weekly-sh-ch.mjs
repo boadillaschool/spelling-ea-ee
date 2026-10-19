@@ -62,7 +62,7 @@ try {
     await page.goto(base, { waitUntil:'domcontentloaded' });
     await page.locator('.lesson-card').first().waitFor();
     assert.equal(await page.locator('.lesson-card').count(), LESSONS.length);
-    assert.match(await page.locator('.lesson-card').first().innerText(), /Viernes 16 de octubre de 2026/);
+    assert.ok((await page.locator('.lesson-card').first().innerText()).includes(LESSONS.at(-1).date));
     await page.getByRole('link', { name:'Practicar la lista del 16/10/2026', exact:true }).click();
     await page.getByRole('checkbox').first().waitFor();
     assert.deepEqual(await page.getByRole('checkbox').evaluateAll(ns => ns.map(n => n.value)), lesson.words.map(w => w.id));
@@ -114,7 +114,7 @@ try {
     assert.equal(await page.locator('.result-summary').innerText(), '10 de 10 palabras bien');
   });
   await check('previous_progress_survives_new_work_chooser_unknown_route_and_reset', async page => {
-    for (const old of LESSONS.slice(0, -1)) {
+    for (const old of LESSONS.filter(x => x.id !== lesson.id)) {
       await home(page, old.id); await select(page, [old.words[0].id]);
       await page.getByRole('button', { name:'Practicar 1 palabra', exact:true }).click();
       await page.locator('#answer').fill(old.words[0].word);

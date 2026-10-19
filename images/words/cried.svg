@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un bebé con lágrimas</title>
+  <desc id="descripcion">Un bebé sentado tiene lágrimas en las mejillas y la boca abierta al llorar. Lleva una camiseta verde y un pañal claro.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="160" cy="178" rx="65" ry="7" fill="#E2EAE6" stroke="none"/>
+    <path d="M141 149Q120 143 112 159Q105 174 123 177L148 168M179 149Q200 143 208 159Q215 174 197 177L172 168" fill="#ECD2B5"/>
+    <path d="M133 106Q115 104 112 90Q107 81 101 87Q98 103 111 116L135 127M187 106Q205 104 208 90Q213 81 219 87Q222 103 209 116L185 127" fill="#ECD2B5"/>
+    <path d="M135 98Q160 87 185 98L192 143H128Z" fill="#146B63"/>
+    <path d="M129 139H191L184 164Q160 177 136 164Z" fill="#FBF7EE"/>
+    <path d="M134 147L149 155M186 147L171 155" fill="none" stroke="#A8BDB9"/>
+    <circle cx="126" cy="64" r="7" fill="#ECD2B5"/>
+    <circle cx="194" cy="64" r="7" fill="#ECD2B5"/>
+    <ellipse cx="160" cy="61" rx="35" ry="38" fill="#ECD2B5"/>
+    <path d="M158 26Q147 17 159 15Q170 14 164 23" fill="none" stroke="#B99167"/>
+    <path d="M139 54L149 58M171 58L181 54M140 64Q145 59 150 64M170 64Q175 59 180 64" fill="none"/>
+    <ellipse cx="160" cy="81" rx="6" ry="8" fill="#865035"/>
+    <path d="M139 67Q130 79 139 81Q148 80 139 67ZM181 67Q172 79 181 81Q190 80 181 67Z" fill="#6896B7" stroke-width="1.6"/>
+  </g>
+</svg>

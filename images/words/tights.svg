@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Unos leotardos azules</title>
+  <desc id="descripcion">Unos leotardos azules de una sola pieza tienen cintura elástica, dos piernas largas y los pies cubiertos.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="160" cy="181" rx="91" ry="6" fill="#E2EAE6" stroke="none"/>
+    <path d="M111 22H209L211 57L197 151Q198 159 215 163Q228 166 225 176Q222 183 208 180L178 174Q170 172 171 160L177 79L160 66L143 79L149 160Q150 172 142 174L112 180Q98 183 95 176Q92 166 105 163Q122 159 123 151L109 57Z" fill="#477DA6"/>
+    <path d="M111 22H209L210 39H110Z" fill="#35658C"/>
+    <path d="M119 26V35M129 26V35M139 26V35M149 26V35M159 26V35M169 26V35M179 26V35M189 26V35M199 26V35" fill="none" stroke="#6896B7" stroke-width="1.5"/>
+    <path d="M160 41V64M119 54L134 148M201 54L186 148" fill="none" stroke="#6896B7" stroke-width="2"/>
+    <path d="M106 165Q112 169 110 179M214 165Q208 169 210 179" fill="none" stroke="#35658C"/>
+    <path d="M131 155Q140 159 144 166M189 155Q180 159 176 166" fill="none" stroke="#35658C" stroke-width="1.5"/>
+  </g>
+</svg>

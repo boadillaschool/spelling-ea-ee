@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un cielo azul con nubes</title>
+  <desc id="descripcion">Un amplio cielo azul tiene dos nubes blancas y un sol pequeño en una esquina. Una franja de colinas verdes queda abajo.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="30" y="19" width="260" height="162" rx="22" fill="#CFE3EC"/>
+    <circle cx="244" cy="57" r="18" fill="#F2C14E" stroke="#B99167" stroke-width="1.8"/>
+    <path d="M244 31V26M244 88V83M218 57H213M275 57H270M224 37L220 33M264 37L268 33M224 77L220 81M264 77L268 81" fill="none" stroke="#F2C14E"/>
+    <path d="M67 74Q52 72 55 61Q56 49 71 50Q74 31 92 34Q105 34 111 47Q127 41 135 53Q152 52 154 64Q155 75 142 76H67Z" fill="#FBF7EE" stroke="#6896B7" stroke-width="1.8"/>
+    <path d="M165 123Q152 123 153 113Q153 104 164 103Q167 89 182 90Q194 88 201 101Q216 98 219 111Q234 113 230 122Q227 128 218 128H171Z" fill="#FBF7EE" stroke="#6896B7" stroke-width="1.8"/>
+    <path d="M31 166Q92 148 155 167Q222 152 289 163Q289 181 267 181H53Q34 181 31 166Z" fill="#A8BDB9"/>
+    <path d="M38 176Q92 167 141 180H53Q43 180 38 176Z" fill="#146B63" stroke="none"/>
+  </g>
+</svg>

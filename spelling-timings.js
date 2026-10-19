@@ -9,6 +9,16 @@ const EMPTY_CUES = Object.freeze({
 });
 
 const CUES = Object.freeze({
+  "cried": Object.freeze({ letters: Object.freeze([0.0, 1.069292, 2.093667, 3.083, 4.040792]), lastLetterEndAt: 4.47575, pauseBeforeWord: 1.25, wordAt: 5.72575 }),
+  "tied-up": Object.freeze({ letters: Object.freeze([0.0, 0.9815, 1.970833, 2.928625, 3.913583, 5.214, 6.1995]), lastLetterEndAt: 6.623208, pauseBeforeWord: 1.25, wordAt: 7.873208 }),
+  "lied": Object.freeze({ letters: Object.freeze([0.0, 0.947417, 1.93675, 2.894542]), lastLetterEndAt: 3.3295, pauseBeforeWord: 1.25, wordAt: 4.5795 }),
+  "night": Object.freeze({ letters: Object.freeze([0.0, 0.94825, 1.937583, 2.938875, 3.977125]), lastLetterEndAt: 4.408625, pauseBeforeWord: 1.25, wordAt: 5.658625 }),
+  "frighten": Object.freeze({ letters: Object.freeze([0.0, 0.997042, 2.021417, 3.01075, 4.012042, 5.050292, 6.031792, 6.989583]), lastLetterEndAt: 7.387833, pauseBeforeWord: 1.25, wordAt: 8.637833 }),
+  "light": Object.freeze({ letters: Object.freeze([0.0, 0.947417, 1.93675, 2.938042, 3.976292]), lastLetterEndAt: 4.407792, pauseBeforeWord: 1.25, wordAt: 5.657792 }),
+  "tights": Object.freeze({ letters: Object.freeze([0.0, 0.9815, 1.970833, 2.972125, 4.010375, 4.991875]), lastLetterEndAt: 5.45225, pauseBeforeWord: 1.25, wordAt: 6.70225 }),
+  "sky": Object.freeze({ letters: Object.freeze([0.0, 1.010375, 2.007708]), lastLetterEndAt: 2.520167, pauseBeforeWord: 1.25, wordAt: 3.770167 }),
+  "fly": Object.freeze({ letters: Object.freeze([0.0, 0.997042, 1.944458]), lastLetterEndAt: 2.456917, pauseBeforeWord: 1.25, wordAt: 3.706917 }),
+  "dry": Object.freeze({ letters: Object.freeze([0.0, 0.984958, 2.009333]), lastLetterEndAt: 2.521792, pauseBeforeWord: 1.25, wordAt: 3.771792 }),
   shorts: Object.freeze({ letters: Object.freeze([0.0, 0.975667, 1.985, 2.962375, 3.958917, 4.913625]), lastLetterEndAt: 5.339292, pauseBeforeWord: 1.25, wordAt: 6.589292 }),
   shops: Object.freeze({ letters: Object.freeze([0.0, 0.975667, 1.985, 2.962375, 3.905583]), lastLetterEndAt: 4.33125, pauseBeforeWord: 1.25, wordAt: 5.58125 }),
   shells: Object.freeze({ letters: Object.freeze([0.0, 0.975667, 1.985, 2.9125, 3.829042, 4.745583]), lastLetterEndAt: 5.17125, pauseBeforeWord: 1.25, wordAt: 6.42125 }),

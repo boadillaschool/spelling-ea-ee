@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un pájaro volando</title>
+  <desc id="descripcion">Un pájaro está volando en el cielo con las alas extendidas. Sus patas están recogidas, hay nubes alrededor y líneas curvas detrás que sugieren movimiento.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M35 143Q25 143 27 135Q28 127 40 127Q43 114 57 117Q68 117 71 128Q86 126 88 137Q88 145 77 145Z" fill="#FBF7EE" stroke="#A8BDB9" stroke-width="1.8"/>
+    <path d="M240 61Q230 60 232 52Q234 44 245 46Q248 32 262 35Q274 34 277 47Q290 46 293 56Q294 65 281 65Z" fill="#FBF7EE" stroke="#A8BDB9" stroke-width="1.8"/>
+    <path d="M133 108Q97 96 91 39Q117 43 135 64L170 99Z" fill="#6896B7"/>
+    <path d="M139 102Q114 83 106 58M144 95Q132 74 121 63" fill="none" stroke="#477DA6" stroke-width="2"/>
+    <path d="M126 114L89 105L101 127L90 141L132 135Z" fill="#146B63"/>
+    <path d="M124 111Q150 91 177 103Q180 80 199 82Q219 84 218 103Q221 122 202 126Q172 151 142 139Q131 135 124 125Z" fill="#146B63"/>
+    <path d="M153 120Q149 149 131 173Q174 173 194 131Z" fill="#6896B7"/>
+    <path d="M166 138Q158 154 145 163M178 140Q172 155 160 162" fill="none" stroke="#477DA6" stroke-width="2"/>
+    <path d="M217 97L238 104L217 111Z" fill="#F2C14E"/>
+    <circle cx="203" cy="95" r="3" fill="#17324D" stroke="none"/>
+    <path d="M190 134L185 144L191 145M179 140L175 148L181 149" fill="none" stroke="#B99167" stroke-width="2"/>
+    <path d="M52 83Q65 77 80 82M61 96Q71 92 82 95M55 166Q67 159 83 160" fill="none" stroke="#A8BDB9"/>
+  </g>
+</svg>

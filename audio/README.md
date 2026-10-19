@@ -1,6 +1,25 @@
 # British English audio
 
-Each curriculum word has a bundled pronunciation clip in `en-gb-v1/` and a post-answer spelling clip in `spelling-en-gb-v1/`, served from the same origin. The earlier ea/ee and ph/f audio and timings are preserved; sh/ch and two special words are added for 16/10/2026. No text or learner data is sent to a speech service during ordinary playback.
+Each curriculum word has a bundled pronunciation clip in `en-gb-v1/` and a post-answer spelling clip in `spelling-en-gb-v1/`, served from the same origin. The earlier ea/ee and ph/f audio and timings are preserved; sh/ch and two special words were added for 16/10/2026. The list received on 19/10/2026 adds `cried`, `tied up`, `lied`, `night`, `frighten`, `light`, `tights`, `sky`, `fly`, and `dry` without changing any of the preceding 60 recordings or 30 timing entries. No text or learner data is sent to a speech service during ordinary playback.
+
+## Added /aɪ/ audio — 19/10/2026
+
+The ten entries received on this date use the same British-English voice and pacing documented below. These new recordings were synthesized with the Microsoft Edge speech service, composed from PCM segments, and encoded with FFmpeg as mono 24 kHz / 96 kb/s MP3 without embedded tags. `tied-up` is only an asset ID: the spoken phrase is **tied up**, and its spelling explicitly says **space** between D and U. Its timing map has seven entries, including that boundary.
+
+| ID | Exact example sentence |
+| --- | --- |
+| cried | The baby cried. |
+| tied-up | I tied up the parcel with string. |
+| lied | He lied about eating the last biscuit. |
+| night | The stars shine at night. |
+| frighten | Loud noises can frighten the cat. |
+| light | Please turn on the light. |
+| tights | She wears blue tights. |
+| sky | The sky is blue. |
+| fly | Birds can fly. |
+| dry | The towel is dry. |
+
+All twenty files were decoded and their hashes checked. Cue alignment and the authored 1.25 s pre-word silence were independently measured. Three MP3 decodes include a measured quiet codec tail of 20, 23 or 41 frames: these are not claimed to be sample-identical to the authored PCM. No missing samples or shifted speech were accepted. This is technical validation, not a claim of listening on a physical tablet.
 
 ## Voice and pacing
 

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una toalla seca</title>
+  <desc id="descripcion">Una toalla seca cuelga de una barra. Un sol y el símbolo de una gota tachada indican que no está mojada; no caen gotas de la tela.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M51 62H219" fill="none" stroke="#17324D" stroke-width="8"/>
+    <path d="M51 62H219" fill="none" stroke="#B99167" stroke-width="4"/>
+    <circle cx="49" cy="62" r="5" fill="#B99167"/>
+    <circle cx="221" cy="62" r="5" fill="#B99167"/>
+    <path d="M79 62Q82 52 94 54H187Q197 54 197 67V165H79Z" fill="#A8BDB9"/>
+    <path d="M92 54Q82 55 82 65V174H181V65Q181 54 190 54Z" fill="#146B63"/>
+    <path d="M93 69V143M106 69V143M119 69V143M132 69V143M145 69V143M158 69V143M171 69V143" fill="none" stroke="#A8BDB9" stroke-width="1.3"/>
+    <path d="M83 151H180M83 160H180" fill="none" stroke="#FBF7EE" stroke-width="4"/>
+    <path d="M89 174V181M102 174V181M115 174V181M128 174V181M141 174V181M154 174V181M167 174V181M178 174V181" fill="none" stroke="#146B63" stroke-width="2"/>
+    <circle cx="249" cy="38" r="14" fill="#F2C14E" stroke="#B99167" stroke-width="1.5"/>
+    <path d="M249 16V10M249 66V60M227 38H221M277 38H271M233 22L229 18M265 22L269 18M233 54L229 58M265 54L269 58" fill="none" stroke="#F2C14E"/>
+    <circle cx="247" cy="126" r="29" fill="#FBF7EE" stroke="#A8BDB9" stroke-width="1.8"/>
+    <path d="M247 107Q229 128 236 136Q247 147 258 136Q265 128 247 107Z" fill="#6896B7" stroke-width="1.8"/>
+    <path d="M224 148L270 104" fill="none" stroke="#FBF7EE" stroke-width="9"/>
+    <path d="M224 148L270 104" fill="none" stroke="#B65D52" stroke-width="4"/>
+  </g>
+</svg>
