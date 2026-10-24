@@ -15,7 +15,7 @@ const expected = [
   ['line', 'línea', 'Línea: un único trazo recto horizontal, con un punto en cada extremo.'],
   ['kite', 'cometa', 'Cometa: un juguete de rombo con cuatro paneles de color, una cola con lazos y un cordel.'],
   ['nine', 'nueve', 'Nueve: nueve estrellas separadas, ordenadas en tres filas de tres para poder contarlas.'],
-  ['side', 'lado', 'Lado: dos personas de pie, una al lado de la otra; una marca suave destaca el costado junto a su acompañante.'],
+  ['slide', 'tobogán', 'Tobogán: una escalera con peldaños lleva a una plataforma alta y a una rampa curva para deslizarse.'],
 ];
 const newIds = expected.map(([id]) => id);
 const permittedElements = new Set(['svg', 'title', 'desc', 'g', 'path', 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon']);
@@ -34,7 +34,7 @@ const meaningDetails = {
   line: [/trazo recto/i, /horizontal/i],
   kite: [/cometa/i, /rombo/i, /cola/i, /cordel/i],
   nine: [/nueve estrellas/i, /tres filas de tres/i],
-  side: [/dos personas/i, /al lado/i, /costado/i],
+  slide: [/escalera/i, /peldaños/i, /rampa/i],
 };
 
 // Restricted parser for this project's authored shape-only SVGs, not a sanitizer.
@@ -130,7 +130,7 @@ test('2026-10-30 canonical IDs resolve to exact immutable local mappings with Sp
   }
   assert.equal(sources.size, newIds.length);
   const noCoercion = { toString() { throw new Error('Do not turn unknown input into a path'); } };
-  for (const input of ['', 'mouse', 'kites', 'MICE', '../mice', 'rice.svg', 'side#answer', 'nine?x=1',
+  for (const input of ['', 'mouse', 'kites', 'MICE', '../mice', 'rice.svg', 'side', 'slide#answer', 'nine?x=1',
     './images/words/bike.svg', 'https://invalid.example/pine.svg', '__proto__', 'constructor',
     null, undefined, 0, ['five'], noCoercion]) assert.equal(getWordIllustration(input), null);
 });
@@ -194,8 +194,8 @@ test('nine means exactly nine five-pointed stars in a spaced three-by-three arra
   assert.equal(new Set(locations.map(pair => pair.join(','))).size, 9);
 });
 
-test('plural animals and side-by-side people remain two distinct drawn subjects', () => {
-  for (const [id, prefix] of [['mice', 'raton'], ['side', 'persona']]) {
+test('plural mice remain two distinct drawn subjects', () => {
+  for (const [id, prefix] of [['mice', 'raton']]) {
     const { nodes } = readSvg(id);
     const subjects = nodes.filter(node => node.tag === 'g' && new RegExp(`^${prefix}-\\d+$`).test(node.attrs.id || ''));
     assert.deepEqual(subjects.map(node => node.attrs.id), [`${prefix}-1`, `${prefix}-2`]);

@@ -7,7 +7,7 @@ A small, static, mobile-first spelling app. The front page lets families choose 
 - **16 October 2026 — sh / ch:** `shorts`, `shops`, `shells`, `shoes`, `chops`, `cheese`, `child`, `chess`, `you`, `your`.
 - **Added 19 October 2026 — /aɪ/ with ie / igh / y:** `cried`, `tied up`, `lied`, `night`, `frighten`, `light`, `tights`, `sky`, `fly`, `dry`. This date records receipt of the list, not an assessment date. `tied up` is one practice item; its space is pronounced as “Space” during spelling feedback.
 
-- **30 October 2026 — i…e:** `mice`, `rice`, `fire`, `bike`, `pine`, `five`, `line`, `kite`, `nine`, `side`. The separated `i` and final `e` are highlighted; the middle consonant is not. Listen to each word, including the British pronunciation of `fire`.
+- **30 October 2026 — i…e:** `mice`, `rice`, `fire`, `bike`, `pine`, `five`, `line`, `kite`, `nine`, `slide`. The separated `i` and final `e` are highlighted; the middle consonant is not. Listen to each word, including the British pronunciation of `fire`.
 
 `people`, `you` and `your` are extra spelling words, not examples of their lists' patterns. Their learning flows skip the pattern-choice step. Both `ph` groups are highlighted in `photograph`.
 

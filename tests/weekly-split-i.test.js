@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { LESSONS, ALL_WORDS, getLesson, getLessonHref } from '../lessons.js';
 import { getContextSentence } from '../logic.js';
 
-const WORDS = ['mice','rice','fire','bike','pine','five','line','kite','nine','side'];
-const SENTENCES = ['The mice eat cheese.','I eat rice with my lunch.','The fire keeps us warm.','I ride my bike in the park.','The pine tree is tall.','I have five pencils.','Draw a straight line.','My kite flies in the sky.','There are nine stars.','Stand by my side.'];
+const WORDS = ['mice','rice','fire','bike','pine','five','line','kite','nine','slide'];
+const SENTENCES = ['The mice eat cheese.','I eat rice with my lunch.','The fire keeps us warm.','I ride my bike in the park.','The pine tree is tall.','I have five pencils.','Draw a straight line.','My kite flies in the sky.','There are nine stars.','I go down the slide.'];
 
 test('30 October adds the exact photographed vocabulary, date and independent progress', () => {
   const lesson = getLesson('?list=2026-10-30');

@@ -42,8 +42,8 @@ const confirmed = [
     "There are nine stars."
   ],
   [
-    "side",
-    "Stand by my side."
+    "slide",
+    "I go down the slide."
   ]
 ];
 const retained = ["alphabet", "between", "cheese", "chess", "child", "chops", "cried", "dolphin", "dry", "easy", "elephant", "family", "fly", "friends", "frighten", "heel", "jeans", "lied", "light", "meat", "night", "peanuts", "people", "pharmacy", "photograph", "reach", "read", "shells", "shoes", "shops", "shorts", "sky", "street", "sweets", "telephone", "tied-up", "tights", "trophy", "you", "your"];

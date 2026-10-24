@@ -102,7 +102,7 @@ This audio-only addition uses the ten confirmed words and exact sentences below.
 | line | Draw a straight line. |
 | kite | My kite flies in the sky. |
 | nine | There are nine stars. |
-| side | Stand by my side. |
+| slide | I go down the slide. |
 
 The stock British voice is `en-GB-SoniaNeural`, generated using the Microsoft Edge speech service through `edge-tts` 7.3.1. FFmpeg 6.1.1 composes and encodes the clips. Pronunciation is word at `-25%`, 0.70 s of added PCM silence, the exact sentence at `-35%`, 0.85 s of added PCM silence, then the same word again. Spelling uses individual uppercase English letter names at `-10%`, 0.55 s of real PCM silence between letters, and 1.25 s of real PCM silence before the final whole word at `-20%`. No synthesis-only text substitutions are used for this lesson.
 
@@ -111,5 +111,7 @@ Twelve matching letter segments were reused from validated PCM after checking ex
 Technical validation fully decodes all twenty new clips and checks their format, signal, metadata and hashes. FFmpeg `silencedetect=noise=-45dB:d=0.9` confirms a silent interval covering the authored 1.25 s pre-word gap in all ten spelling binaries, and every final whole-word segment has non-silent signal aligned with its PCM-derived cue. Detected silence can include quiet speech edges in addition to the inserted zeros.
 
 Eighteen clips decode to the exact authored frame count. The `mice` spelling clip has 28 extra quiet codec-tail frames, and the `line` pronunciation clip has 5; independently measured tail peaks are below -80 dBFS. Diagnostic encodings and a waveform-offset search confirm an end-only codec tail, not missing samples or shifted speech. These two decodes are not claimed to be sample-exact, and neither the delivered clips nor their cues were padded to hide the difference.
+
+The corrected `slide` entry uses two newly composed recordings: pronunciation with “I go down the slide.” and the five letter names S–L–I–D–E followed by the whole word. Its five onset cues are derived from the new PCM composition. Matching letter PCM is reused with checked provenance; all other recordings and cue entries remain unchanged.
 
 Only fixed vocabulary and generic sentences were sent for synthesis. No learner responses, names or private recording were uploaded. This handoff does not claim human listening, browser integration, physical-device testing or publication.

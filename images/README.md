@@ -66,9 +66,9 @@ manuscrito del alumnado.
 
 La lista del 19/10/2026 añade `cried`, `tied-up`, `lied`, `night`, `frighten`,
 `light`, `tights`, `sky`, `fly` y `dry`. La del 30/10/2026 añade `mice`, `rice`,
-`fire`, `bike`, `pine`, `five`, `line`, `kite`, `nine` y `side`: ratones, arroz,
+`fire`, `bike`, `pine`, `five`, `line`, `kite`, `nine` y `slide`: ratones, arroz,
 fuego en una chimenea, bicicleta, pino, cinco lápices, línea recta, cometa,
-nueve estrellas y dos personas una al lado de la otra. Los dibujos de cantidades
+nueve estrellas y un tobogán con escalera, plataforma y rampa curva. Los dibujos de cantidades
 permiten contar los objetos y las palabras relacionales conservan su pista en español.
 
 Comprobación sin dependencias adicionales:

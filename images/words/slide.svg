@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Tobogán</title>
+  <desc id="descripcion">Una escalera con peldaños lleva a una plataforma alta y a una rampa curva para deslizarse.</desc>
+  <ellipse cx="179" cy="176" rx="113" ry="8" fill="#E5EDE8"/>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <g id="soportes" fill="#137A73">
+      <rect x="128" y="69" width="10" height="102" rx="3"/>
+      <rect x="149" y="69" width="10" height="102" rx="3"/>
+      <path d="M133 105L154 147M154 105L133 147" fill="none"/>
+    </g>
+    <g id="escalera" fill="none">
+      <path d="M78 171L115 64M104 171L141 64" stroke="#137A73" stroke-width="9"/>
+      <path d="M78 171L115 64M104 171L141 64"/>
+      <path d="M84 153H110M91 133H117M98 113H124M105 93H131" stroke="#17324D" stroke-width="6"/>
+    </g>
+    <rect x="112" y="60" width="51" height="14" rx="4" fill="#137A73"/>
+    <path id="rampa" d="M154 64C179 69 200 124 231 143Q251 154 282 154L284 169Q247 171 223 155C191 134 174 93 151 81Z" fill="#F5C65D"/>
+    <path d="M157 70C181 80 202 132 230 150Q250 162 280 161" fill="none" stroke="#D28A32" stroke-width="3"/>
+    <path d="M113 59V41Q113 35 120 35H151Q158 35 158 42V60" fill="none" stroke="#137A73" stroke-width="7"/>
+    <path d="M113 59V41Q113 35 120 35H151Q158 35 158 42V60" fill="none"/>
+    <path d="M164 65C189 74 210 128 239 143Q256 151 283 151" fill="none" stroke="#137A73" stroke-width="5"/>
+  </g>
+</svg>

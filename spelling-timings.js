@@ -58,7 +58,7 @@ const CUES = Object.freeze({
   "line": Object.freeze({ letters: Object.freeze([0.0, 0.9474166666666667, 1.93675, 2.885]), lastLetterEndAt: 3.2927916666666666, pauseBeforeWord: 1.25, wordAt: 4.542791666666667 }),
   "kite": Object.freeze({ letters: Object.freeze([0.0, 0.9973333333333333, 1.9866666666666666, 2.968166666666667]), lastLetterEndAt: 3.375958333333333, pauseBeforeWord: 1.25, wordAt: 4.625958333333333 }),
   "nine": Object.freeze({ letters: Object.freeze([0.0, 0.94825, 1.9375833333333334, 2.8858333333333333]), lastLetterEndAt: 3.293625, pauseBeforeWord: 1.25, wordAt: 4.543625 }),
-  "side": Object.freeze({ letters: Object.freeze([0.0, 1.010375, 1.9997083333333334, 2.9846666666666666]), lastLetterEndAt: 3.3924583333333334, pauseBeforeWord: 1.25, wordAt: 4.642458333333333 }),
+  "slide": Object.freeze({ letters: Object.freeze([0.0, 1.010375, 1.9577916666666666, 2.947125, 3.9320833333333334]), lastLetterEndAt: 4.339875, pauseBeforeWord: 1.25, wordAt: 5.589875 }),
 });
 
 export function getSpellingCues(item) {

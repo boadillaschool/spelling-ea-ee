@@ -9,7 +9,7 @@ const illustrations = new Map([
   ['line', 'Línea: un único trazo recto horizontal, con un punto en cada extremo.'],
   ['kite', 'Cometa: un juguete de rombo con cuatro paneles de color, una cola con lazos y un cordel.'],
   ['nine', 'Nueve: nueve estrellas separadas, ordenadas en tres filas de tres para poder contarlas.'],
-  ['side', 'Lado: dos personas de pie, una al lado de la otra; una marca suave destaca el costado junto a su acompañante.'],
+  ['slide', 'Tobogán: una escalera con peldaños lleva a una plataforma alta y a una rampa curva para deslizarse.'],
   ["cried", "Lloró: Un bebé sentado tiene lágrimas en las mejillas y la boca abierta al llorar. Lleva una camiseta verde y un pañal claro."],
   ["tied-up", "Até con cuerda: Un paquete de papel marrón está atado con cuerda. Dos vueltas de cuerda se cruzan sobre la caja y quedan sujetas por un nudo con lazada."],
   ["lied", "Mintió: Un niño niega haber comido una galleta: su bocadillo contiene una galleta tachada. Tiene migas junto a la boca y un plato vacío delante; la contradicción representa que mintió."],

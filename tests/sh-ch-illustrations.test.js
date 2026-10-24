@@ -18,7 +18,7 @@ const previousIds = [
 // acceptable merely because the total number of drawings is correct.
 test('2026-10-16 adds exactly the ten confirmed illustrations and preserves the previous inventory', () => {
   const actual = readdirSync(new URL('../images/words/', import.meta.url)).sort();
-  const laterIds = ['cried', 'tied-up', 'lied', 'night', 'frighten', 'light', 'tights', 'sky', 'fly', 'dry', 'mice', 'rice', 'fire', 'bike', 'pine', 'five', 'line', 'kite', 'nine', 'side'];
+  const laterIds = ['cried', 'tied-up', 'lied', 'night', 'frighten', 'light', 'tights', 'sky', 'fly', 'dry', 'mice', 'rice', 'fire', 'bike', 'pine', 'five', 'line', 'kite', 'nine', 'slide'];
   const expected = [...previousIds, ...newIds, ...laterIds].map(id => `${id}.svg`).sort();
   const missing = expected.filter(file => !actual.includes(file));
   assert.deepEqual(missing, [], `Missing illustrations: ${missing.join(', ')}`);

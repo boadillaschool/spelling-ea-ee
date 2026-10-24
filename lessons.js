@@ -49,7 +49,7 @@ const SPLIT_I_WORDS = Object.freeze([
   { id: 'line', word: 'line', pattern: 'i…e', cue: 'línea', sentence: 'Draw a straight line.' },
   { id: 'kite', word: 'kite', pattern: 'i…e', cue: 'cometa', sentence: 'My kite flies in the sky.' },
   { id: 'nine', word: 'nine', pattern: 'i…e', cue: 'nueve', sentence: 'There are nine stars.' },
-  { id: 'side', word: 'side', pattern: 'i…e', cue: 'lado', sentence: 'Stand by my side.' },
+  { id: 'slide', word: 'slide', pattern: 'i…e', cue: 'tobogán', sentence: 'I go down the slide.' },
 ].map(Object.freeze));
 
 export const LESSONS = Object.freeze([
