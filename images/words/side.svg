@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una persona al lado de otra</title>
+  <desc id="descripcion">Dos personas están de pie, una al lado de la otra, mirando hacia delante. Una marca curva suave destaca el costado de una persona junto a su acompañante.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M76 180H246" fill="none" stroke="#7CAD96" stroke-width="4"/>
+    <g id="persona-1" transform="translate(116 109)">
+      <path d="M-13 20L-16 61H-3L1 31L6 61H19L13 20" fill="#526272"/>
+      <path d="M-16 61H-3V68H-22Q-23 61 -16 61ZM6 61H19Q26 61 26 68H6Z" fill="#17324D"/>
+      <path d="M-18 -20Q0 -29 18 -20L22 24H-22Z" fill="#146B63"/>
+      <path d="M-18 -16L-27 16M18 -16L27 16" fill="none" stroke="#E5B18A" stroke-width="9"/>
+      <circle cy="-44" r="18" fill="#E5B18A"/>
+      <path d="M-17 -48Q-16 -67 1 -64Q20 -63 18 -46Q9 -48 4 -56Q-6 -46 -17 -48" fill="#594235"/>
+      <path d="M-7 -43H-6M6 -43H7M-5 -35Q0 -30 5 -35" fill="none"/>
+    </g>
+    <g id="persona-2" transform="translate(206 109)">
+      <path d="M-13 20L-16 61H-3L1 31L6 61H19L13 20" fill="#526272"/>
+      <path d="M-16 61H-3V68H-22Q-23 61 -16 61ZM6 61H19Q26 61 26 68H6Z" fill="#17324D"/>
+      <path d="M-18 -20Q0 -29 18 -20L22 24H-22Z" fill="#35658C"/>
+      <path d="M-18 -16L-27 16M18 -16L27 16" fill="none" stroke="#BE805C" stroke-width="9"/>
+      <circle cy="-44" r="18" fill="#BE805C"/>
+      <path d="M-17 -48Q-16 -67 1 -64Q20 -63 18 -46Q9 -48 4 -56Q-6 -46 -17 -48" fill="#17324D"/>
+      <path d="M-7 -43H-6M6 -43H7M-5 -35Q0 -30 5 -35" fill="none"/>
+    </g>
+    <path d="M150 94Q157 115 150 136" fill="none" stroke="#F2C14E" stroke-width="5"/>
+  </g>
+</svg>

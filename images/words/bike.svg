@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una bicicleta verde</title>
+  <desc id="descripcion">Una bicicleta tiene dos ruedas grandes, un cuadro verde triangular, sillín, manillar y pedales. No lleva motor.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="85" cy="132" r="42" fill="#FBF7EE" stroke-width="4"/>
+    <circle cx="235" cy="132" r="42" fill="#FBF7EE" stroke-width="4"/>
+    <g fill="none" stroke="#94A6B3" stroke-width="1.5">
+      <path d="M85 93V171M46 132H124M57 104L113 160M57 160L113 104"/>
+      <path d="M235 93V171M196 132H274M207 104L263 160M207 160L263 104"/>
+    </g>
+    <path d="M85 132L125 80L164 132ZM125 80H208L164 132M208 80L235 132" fill="none" stroke="#146B63" stroke-width="7"/>
+    <path d="M125 80L121 65M208 80L201 52H225Q233 52 233 60" fill="none" stroke-width="4"/>
+    <path d="M108 65H134" fill="none" stroke-width="8"/>
+    <circle cx="85" cy="132" r="4" fill="#17324D"/>
+    <circle cx="235" cy="132" r="4" fill="#17324D"/>
+    <circle cx="164" cy="132" r="10" fill="#FBF7EE"/>
+    <path d="M164 132L177 117H187M164 132L153 147H143" fill="none" stroke-width="3.5"/>
+    <path d="M143 147H154M177 117H188" fill="none" stroke-width="5"/>
+  </g>
+</svg>

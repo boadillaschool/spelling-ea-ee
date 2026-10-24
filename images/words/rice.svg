@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un cuenco de arroz</title>
+  <desc id="descripcion">Un cuenco verde contiene arroz blanco. Los granos alargados se distinguen sobre un pequeño montón que sobresale del borde.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="160" cy="105" rx="90" ry="26" fill="#FBF7EE"/>
+    <path d="M79 103Q79 89 96 86Q101 72 119 75Q126 61 146 65Q162 54 179 66Q197 62 208 77Q229 76 235 94L240 104Q160 131 79 103Z" fill="#FBF7EE"/>
+    <g fill="none" stroke="#B6AA91" stroke-width="2.4">
+      <path d="M96 96L104 92M115 86L124 89M137 77L144 80M159 70L167 73M180 77L188 75M204 88L212 91M224 99L232 101"/>
+      <path d="M111 101L118 106M133 95L141 92M153 87L160 90M172 96L179 91M190 99L198 102M208 107L216 105"/>
+      <path d="M131 110L139 108M153 104L160 108M173 112L181 109M151 117L159 117"/>
+    </g>
+    <path d="M70 106Q78 170 160 177Q242 170 250 106Q160 143 70 106Z" fill="#146B63"/>
+    <path d="M93 130Q102 148 122 155" fill="none" stroke="#7CAD96" stroke-width="4"/>
+    <path d="M128 174Q160 184 192 174" fill="none" stroke-width="4"/>
+  </g>
+</svg>

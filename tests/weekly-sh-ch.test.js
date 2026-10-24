@@ -30,7 +30,7 @@ test('16 October keeps the supplied sh/ch list in order with two special words',
   assert.equal(lesson.storageKey, 'spelling-ea-ee:list:2026-10-16:v1');
   assert.equal(new Set(LESSONS.map(x => x.storageKey)).size, LESSONS.length);
   assert.equal(getLessonHref(lesson), './?list=2026-10-16');
-  assert.equal(ALL_WORDS.length, 40);
+  assert.equal(ALL_WORDS.length, 50);
   assert.ok(Object.isFrozen(lesson) && Object.isFrozen(lesson.words));
   assert.ok(lesson.words.every(Object.isFrozen));
 });

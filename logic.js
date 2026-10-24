@@ -527,8 +527,29 @@ export function splitByPattern(word, pattern) {
  * @param {{ word: string, pattern: string }} item
  * @returns {{ word: string, letters: string, text: string }}
  */
+/** Return display segments without losing repeated or separated pattern letters. */
+export function getHighlightedParts(word, pattern) {
+  if (pattern === 'i…e') {
+    const match = /^(.*)(i)([^aeiou])(e)$/.exec(word);
+    if (!match) return [{ text: word, highlighted: false }];
+    return [
+      { text: match[1], highlighted: false },
+      { text: match[2], highlighted: true },
+      { text: match[3], highlighted: false },
+      { text: match[4], highlighted: true },
+    ].filter(part => part.text !== '');
+  }
+  if (!pattern) return [{ text: word, highlighted: false }];
+  return word.split(pattern).flatMap((text, index) => [
+    ...(index > 0 ? [{ text: pattern, highlighted: true }] : []),
+    ...(text ? [{ text, highlighted: false }] : []),
+  ]);
+}
+
 export function describeHighlightedWord({ word, pattern }) {
-  const { pattern: found } = splitByPattern(word, pattern);
+  const found = pattern === 'i…e'
+    ? getHighlightedParts(word, pattern).filter(part => part.highlighted).map(part => part.text).join('')
+    : splitByPattern(word, pattern).pattern;
   const letters = [...found].join('-');
 
   return {

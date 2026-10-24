@@ -86,3 +86,30 @@ Generated with `edge-tts` 7.2.7, FFmpeg 7.0.2 (`imageio-ffmpeg` 0.6.0), and inde
 All twenty new recordings fully decode. All ten spelling binaries contain a detected silent interval covering the authored pre-word pause and non-silent final-word audio after `wordAt`. Nineteen clips decode to the exact authored frame count; the `your` spelling clip has an additional 43 quiet codec-tail frames (1.79 ms, -84.26 dBFS), with no missing frames or changed cues. These technical checks do not claim human listening or physical-device testing. Only fixed generic words and sentences were sent for synthesis; no personal recording or learner response was uploaded.
 
 If a recording cannot be played, the application can fall back to slower browser speech and ultimately the existing visual help. The files are fetched on demand; the app does not promise offline availability before they have been loaded.
+
+## Weekly i…e audio — 30/10/2026
+
+This audio-only addition uses the ten confirmed words and exact sentences below. All eighty earlier MP3 files and forty cue entries are preserved. No curriculum, application code or playback mapping is changed by this asset handoff.
+
+| ID | Exact example sentence |
+| --- | --- |
+| mice | The mice eat cheese. |
+| rice | I eat rice with my lunch. |
+| fire | The fire keeps us warm. |
+| bike | I ride my bike in the park. |
+| pine | The pine tree is tall. |
+| five | I have five pencils. |
+| line | Draw a straight line. |
+| kite | My kite flies in the sky. |
+| nine | There are nine stars. |
+| side | Stand by my side. |
+
+The stock British voice is `en-GB-SoniaNeural`, generated using the Microsoft Edge speech service through `edge-tts` 7.3.1. FFmpeg 6.1.1 composes and encodes the clips. Pronunciation is word at `-25%`, 0.70 s of added PCM silence, the exact sentence at `-35%`, 0.85 s of added PCM silence, then the same word again. Spelling uses individual uppercase English letter names at `-10%`, 0.55 s of real PCM silence between letters, and 1.25 s of real PCM silence before the final whole word at `-20%`. No synthesis-only text substitutions are used for this lesson.
+
+Twelve matching letter segments were reused from validated PCM after checking exact text, voice, rate, format, trimming provenance and sample hashes. Three missing letters and all new word/sentence segments were synthesized separately. New source speech is decoded to mono 24 kHz signed 16-bit PCM and trimmed only at its outside edges: the first and last samples above -50 dBFS retain 240 leading and 480 trailing guard frames, without deleting internal pauses. Timing entries are calculated from the integer sample counts of the actual assembled PCM. Each final file is encoded once as mono 24 kHz / 96 kbps MP3 with embedded metadata stripped.
+
+Technical validation fully decodes all twenty new clips and checks their format, signal, metadata and hashes. FFmpeg `silencedetect=noise=-45dB:d=0.9` confirms a silent interval covering the authored 1.25 s pre-word gap in all ten spelling binaries, and every final whole-word segment has non-silent signal aligned with its PCM-derived cue. Detected silence can include quiet speech edges in addition to the inserted zeros.
+
+Eighteen clips decode to the exact authored frame count. The `mice` spelling clip has 28 extra quiet codec-tail frames, and the `line` pronunciation clip has 5; independently measured tail peaks are below -80 dBFS. Diagnostic encodings and a waveform-offset search confirm an end-only codec tail, not missing samples or shifted speech. These two decodes are not claimed to be sample-exact, and neither the delivered clips nor their cues were padded to hide the difference.
+
+Only fixed vocabulary and generic sentences were sent for synthesis. No learner responses, names or private recording were uploaded. This handoff does not claim human listening, browser integration, physical-device testing or publication.

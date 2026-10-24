@@ -1,6 +1,6 @@
 # Ilustraciones de vocabulario
 
-Treinta dibujos vectoriales originales creados expresamente para este proyecto con
+Cincuenta dibujos vectoriales originales creados expresamente para este proyecto con
 formas y trazados SVG, con asistencia de IA. No proceden de bancos de imágenes,
 fotografías, emojis, fuentes de iconos ni servicios externos de imágenes;
 no contienen materiales de terceros.
@@ -55,7 +55,7 @@ en español; al usar `<img>`, la interfaz debe proporcionar su propio `alt`.
 | `you.svg` | Tú: la mano de quien habla señala a la persona interlocutora. |
 | `your.svg` | Tu mochila: la persona interlocutora sostiene su mochila por el asa y otra mano señala ese objeto. |
 
-Las diez últimas ilustraciones corresponden al inventario confirmado del
+Las diez ilustraciones de `shorts` a `your` corresponden al inventario confirmado del
 16/10/2026. Los plurales se representan visualmente: tres tiendas, tres conchas,
 un par de zapatos y dos chuletas. «Tú» y «tu» usan una escena relacionada
 pero un referente distinto: se señala a la persona en «tú» y a la mochila que
@@ -63,6 +63,13 @@ le pertenece en «tu mochila». La posesión y la interlocución son ideas que
 requieren también la pista verbal en español; un dibujo aislado no las define
 por completo. No se han usado nombres, fotografías personales ni material
 manuscrito del alumnado.
+
+La lista del 19/10/2026 añade `cried`, `tied-up`, `lied`, `night`, `frighten`,
+`light`, `tights`, `sky`, `fly` y `dry`. La del 30/10/2026 añade `mice`, `rice`,
+`fire`, `bike`, `pine`, `five`, `line`, `kite`, `nine` y `side`: ratones, arroz,
+fuego en una chimenea, bicicleta, pino, cinco lápices, línea recta, cometa,
+nueve estrellas y dos personas una al lado de la otra. Los dibujos de cantidades
+permiten contar los objetos y las palabras relacionales conservan su pista en español.
 
 Comprobación sin dependencias adicionales:
 `node --test tests/illustration-assets.test.js tests/illustrations.test.js tests/sh-ch-illustrations.test.js`.

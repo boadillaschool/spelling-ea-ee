@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una línea recta</title>
+  <desc id="descripcion">Una línea consiste en un único trazo recto horizontal. Un punto en cada extremo permite ver claramente dónde empieza y dónde termina.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M60 100H260" fill="none" stroke="#146B63" stroke-width="6"/>
+    <circle cx="60" cy="100" r="5" fill="#17324D"/>
+    <circle cx="260" cy="100" r="5" fill="#17324D"/>
+  </g>
+</svg>

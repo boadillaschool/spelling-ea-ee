@@ -39,6 +39,19 @@ const LONG_I_WORDS = Object.freeze([
   { id: 'dry', word: 'dry', pattern: 'y', cue: 'seco', sentence: 'The towel is dry.' },
 ].map(Object.freeze));
 
+const SPLIT_I_WORDS = Object.freeze([
+  { id: 'mice', word: 'mice', pattern: 'i…e', cue: 'ratones', sentence: 'The mice eat cheese.' },
+  { id: 'rice', word: 'rice', pattern: 'i…e', cue: 'arroz', sentence: 'I eat rice with my lunch.' },
+  { id: 'fire', word: 'fire', pattern: 'i…e', cue: 'fuego', sentence: 'The fire keeps us warm.' },
+  { id: 'bike', word: 'bike', pattern: 'i…e', cue: 'bicicleta', sentence: 'I ride my bike in the park.' },
+  { id: 'pine', word: 'pine', pattern: 'i…e', cue: 'pino', sentence: 'The pine tree is tall.' },
+  { id: 'five', word: 'five', pattern: 'i…e', cue: 'cinco', sentence: 'I have five pencils.' },
+  { id: 'line', word: 'line', pattern: 'i…e', cue: 'línea', sentence: 'Draw a straight line.' },
+  { id: 'kite', word: 'kite', pattern: 'i…e', cue: 'cometa', sentence: 'My kite flies in the sky.' },
+  { id: 'nine', word: 'nine', pattern: 'i…e', cue: 'nueve', sentence: 'There are nine stars.' },
+  { id: 'side', word: 'side', pattern: 'i…e', cue: 'lado', sentence: 'Stand by my side.' },
+].map(Object.freeze));
+
 export const LESSONS = Object.freeze([
   Object.freeze({
     id: '2026-09-25', date: 'Viernes 25 de septiembre de 2026', shortDate: '25/09/2026',
@@ -63,6 +76,12 @@ export const LESSONS = Object.freeze([
     title: 'El sonido /aɪ/: ie, igh y y', patterns: Object.freeze(['ie', 'igh', 'y']),
     intro: 'El sonido /aɪ/ se escribe de distintas formas: ie en «cried», igh en «night» y y en «sky». «Tied up» es una sola expresión: recuerda el espacio.',
     words: LONG_I_WORDS, storageKey: 'spelling-ea-ee:list:2026-10-19:v1',
+  }),
+  Object.freeze({
+    id: '2026-10-30', date: 'Viernes 30 de octubre de 2026', shortDate: '30/10/2026',
+    title: 'Palabras con i…e', patterns: Object.freeze(['i…e']),
+    intro: 'Fíjate en la i y la e final: entre ellas hay otra letra. Escucha cada palabra y recuerda las dos letras separadas.',
+    words: SPLIT_I_WORDS, storageKey: 'spelling-ea-ee:list:2026-10-30:v1',
   }),
 ]);
 

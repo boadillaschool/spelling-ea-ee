@@ -66,7 +66,7 @@ try {
   await check('exact_newest_list_and_all_ten_learning_gates', async page => {
     await page.goto(base, { waitUntil:'domcontentloaded' }); await page.locator('.lesson-card').first().waitFor();
     assert.equal(await page.locator('.lesson-card').count(), LESSONS.length);
-    assert.ok((await page.locator('.lesson-card').first().innerText()).includes(lesson.date));
+    assert.ok((await page.locator('.lesson-card').first().innerText()).includes(LESSONS.at(-1).date));
     await page.getByRole('link', { name:`Practicar la lista del ${lesson.shortDate}`, exact:true }).click();
     await page.getByRole('checkbox').first().waitFor();
     assert.deepEqual(await page.getByRole('checkbox').evaluateAll(ns => ns.map(n => n.value)), lesson.words.map(w => w.id));

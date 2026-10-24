@@ -1,5 +1,15 @@
 // Original, same-origin illustrations. No learner text or remote image requests.
 const illustrations = new Map([
+  ['mice', 'Ratones: dos ratones pequeños con orejas redondas, bigotes y colas largas, uno junto al otro.'],
+  ['rice', 'Arroz: un cuenco lleno de arroz blanco, con muchos granos alargados visibles.'],
+  ['fire', 'Fuego: una llama pequeña sobre leños dentro de una chimenea de ladrillo, detrás de una rejilla protectora.'],
+  ['bike', 'Bicicleta: dos ruedas unidas por un cuadro verde, con sillín, manillar y pedales.'],
+  ['pine', 'Pino: un árbol de hojas perennes con copa verde en pisos puntiagudos, tronco marrón y una piña.'],
+  ['five', 'Cinco: cinco lápices separados, colocados en una fila para poder contarlos.'],
+  ['line', 'Línea: un único trazo recto horizontal, con un punto en cada extremo.'],
+  ['kite', 'Cometa: un juguete de rombo con cuatro paneles de color, una cola con lazos y un cordel.'],
+  ['nine', 'Nueve: nueve estrellas separadas, ordenadas en tres filas de tres para poder contarlas.'],
+  ['side', 'Lado: dos personas de pie, una al lado de la otra; una marca suave destaca el costado junto a su acompañante.'],
   ["cried", "Lloró: Un bebé sentado tiene lágrimas en las mejillas y la boca abierta al llorar. Lleva una camiseta verde y un pañal claro."],
   ["tied-up", "Até con cuerda: Un paquete de papel marrón está atado con cuerda. Dos vueltas de cuerda se cruzan sobre la caja y quedan sujetas por un nudo con lazada."],
   ["lied", "Mintió: Un niño niega haber comido una galleta: su bocadillo contiene una galleta tachada. Tiene migas junto a la boca y un plato vacío delante; la contradicción representa que mintió."],

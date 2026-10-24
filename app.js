@@ -19,6 +19,7 @@ import {
   getContextSentence,
   getDailyMission,
   getDueWordIds,
+  getHighlightedParts,
   getMissionRoute,
   getSpeechText,
   getSpellingText,
@@ -436,15 +437,14 @@ function wordPicture(item) {
 }
 
 function wordElement(item) {
-  const parts = item.pattern ? item.word.split(item.pattern) : [item.word];
+  const parts = getHighlightedParts(item.word, item.pattern);
   const { word, text } = describeHighlightedWord(item);
   const spelling = el(
     'span',
     { class: 'word', lang: 'en', 'aria-hidden': 'true' },
-    ...parts.flatMap((part, index) => [
-      index > 0 ? el('mark', { class: 'pattern', text: item.pattern }) : null,
-      part !== '' ? el('span', { text: part }) : null,
-    ]),
+    ...parts.map(part => part.highlighted
+      ? el('mark', { class: 'pattern', text: part.text })
+      : el('span', { text: part.text })),
   );
   // Longer words need more room than the original seven-letter maximum.
   spelling.style.setProperty('--word-fit', `${item.word.length > 7 ? 132 / item.word.length : 20}cqi`);

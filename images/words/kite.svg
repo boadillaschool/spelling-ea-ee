@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una cometa de juguete</title>
+  <desc id="descripcion">Una cometa en forma de rombo tiene cuatro paneles de color, una cola con lazos y un cordel largo que llega a una pequeña bobina.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M160 68Q82 103 101 156Q108 172 93 175" fill="none" stroke="#526272" stroke-width="1.8"/>
+    <path d="M160 116Q205 124 190 144Q177 164 223 176Q239 180 251 173" fill="none" stroke="#146B63" stroke-width="2.6"/>
+    <path d="M160 24L216 65L160 116L104 65Z" fill="#F2C14E"/>
+    <path d="M160 24V65H104Z" fill="#146B63"/>
+    <path d="M160 65H216L160 116Z" fill="#35658C"/>
+    <path d="M160 24V116M104 65H216" fill="none" stroke="#FBF7EE" stroke-width="2.6"/>
+    <path d="M180 129L170 121L167 135ZM180 129L191 121L194 135Z" fill="#E76F51" stroke-width="1.8"/>
+    <path d="M191 154L180 147L178 161ZM191 154L202 147L204 161Z" fill="#F2C14E" stroke-width="1.8"/>
+    <path d="M224 176L214 168L211 181ZM224 176L234 168L238 181Z" fill="#E76F51" stroke-width="1.8"/>
+    <rect x="75" y="166" width="25" height="13" rx="3" fill="#E5B18A"/>
+    <path d="M83 167V178M88 167V178M93 167V178" fill="none" stroke="#FBF7EE" stroke-width="2"/>
+  </g>
+</svg>

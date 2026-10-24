@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Cinco lápices para contar</title>
+  <desc id="descripcion">Cinco lápices completos y separados están en una fila. Cada lápiz tiene una goma, un cuerpo de color y su propia punta, sin números escritos.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <g id="lapiz-1" transform="translate(60 0)">
+      <rect x="0" y="26" width="20" height="18" rx="4" fill="#E5B18A"/>
+      <rect x="0" y="39" width="20" height="101" rx="1" fill="#146B63"/>
+      <path d="M6 49V131" fill="none" stroke="#FBF7EE" stroke-width="1.6"/>
+      <rect x="0" y="36" width="20" height="8" fill="#D8DDE2"/>
+      <polygon points="0,140 20,140 10,166" fill="#E5B18A"/>
+      <polygon points="7,158 13,158 10,166" fill="#17324D" stroke-width="1.4"/>
+    </g>
+    <g id="lapiz-2" transform="translate(105 0)">
+      <rect x="0" y="26" width="20" height="18" rx="4" fill="#E5B18A"/>
+      <rect x="0" y="39" width="20" height="101" rx="1" fill="#F2C14E"/>
+      <path d="M6 49V131" fill="none" stroke="#FBF7EE" stroke-width="1.6"/>
+      <rect x="0" y="36" width="20" height="8" fill="#D8DDE2"/>
+      <polygon points="0,140 20,140 10,166" fill="#E5B18A"/>
+      <polygon points="7,158 13,158 10,166" fill="#17324D" stroke-width="1.4"/>
+    </g>
+    <g id="lapiz-3" transform="translate(150 0)">
+      <rect x="0" y="26" width="20" height="18" rx="4" fill="#E5B18A"/>
+      <rect x="0" y="39" width="20" height="101" rx="1" fill="#35658C"/>
+      <path d="M6 49V131" fill="none" stroke="#FBF7EE" stroke-width="1.6"/>
+      <rect x="0" y="36" width="20" height="8" fill="#D8DDE2"/>
+      <polygon points="0,140 20,140 10,166" fill="#E5B18A"/>
+      <polygon points="7,158 13,158 10,166" fill="#17324D" stroke-width="1.4"/>
+    </g>
+    <g id="lapiz-4" transform="translate(195 0)">
+      <rect x="0" y="26" width="20" height="18" rx="4" fill="#E5B18A"/>
+      <rect x="0" y="39" width="20" height="101" rx="1" fill="#E76F51"/>
+      <path d="M6 49V131" fill="none" stroke="#FBF7EE" stroke-width="1.6"/>
+      <rect x="0" y="36" width="20" height="8" fill="#D8DDE2"/>
+      <polygon points="0,140 20,140 10,166" fill="#E5B18A"/>
+      <polygon points="7,158 13,158 10,166" fill="#17324D" stroke-width="1.4"/>
+    </g>
+    <g id="lapiz-5" transform="translate(240 0)">
+      <rect x="0" y="26" width="20" height="18" rx="4" fill="#E5B18A"/>
+      <rect x="0" y="39" width="20" height="101" rx="1" fill="#146B63"/>
+      <path d="M6 49V131" fill="none" stroke="#FBF7EE" stroke-width="1.6"/>
+      <rect x="0" y="36" width="20" height="8" fill="#D8DDE2"/>
+      <polygon points="0,140 20,140 10,166" fill="#E5B18A"/>
+      <polygon points="7,158 13,158 10,166" fill="#17324D" stroke-width="1.4"/>
+    </g>
+  </g>
+</svg>

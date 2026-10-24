@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un pino de copa puntiaguda</title>
+  <desc id="descripcion">Un pino tiene una copa verde de hojas perennes en pisos puntiagudos y un tronco marrón. Una piña pequeña descansa junto al tronco.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M73 180H250" fill="none" stroke="#7CAD96" stroke-width="4"/>
+    <rect x="149" y="132" width="22" height="46" rx="3" fill="#9E6B4A"/>
+    <path d="M157 151V172" fill="none" stroke="#594235" stroke-width="1.8"/>
+    <path d="M160 22L193 65H182L218 104H198L242 148Q200 157 160 149Q120 157 78 148L122 104H102L138 65H127Z" fill="#146B63"/>
+    <path d="M139 66Q160 73 181 66M123 105Q160 116 197 105" fill="none" stroke="#7CAD96" stroke-width="2.6"/>
+    <path d="M154 45L160 51L166 45M144 85L150 91L156 85M172 85L178 91L184 85M122 128L128 134L134 128M153 127L160 134L167 127M186 128L192 134L198 128" fill="none" stroke="#7CAD96" stroke-width="1.8"/>
+    <ellipse cx="222" cy="163" rx="13" ry="17" fill="#9E6B4A"/>
+    <path d="M214 153L222 158L230 153M210 161L218 166L226 161L234 166M214 171L222 175L230 170" fill="none" stroke="#594235" stroke-width="1.8"/>
+  </g>
+</svg>

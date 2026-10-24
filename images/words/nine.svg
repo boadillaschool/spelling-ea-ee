@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Nueve estrellas para contar</title>
+  <desc id="descripcion">Nueve estrellas amarillas están separadas y ordenadas en tres filas de tres. Todas tienen cinco puntas y no hay estrellas adicionales ni números escritos.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <polygon id="estrella-1" transform="translate(90 45)" points="0,-19 5.6,-6.2 19,-6.2 8.4,3 12,17 0,9 -12,17 -8.4,3 -19,-6.2 -5.6,-6.2" fill="#F2C14E"/>
+    <polygon id="estrella-2" transform="translate(160 45)" points="0,-19 5.6,-6.2 19,-6.2 8.4,3 12,17 0,9 -12,17 -8.4,3 -19,-6.2 -5.6,-6.2" fill="#F2C14E"/>
+    <polygon id="estrella-3" transform="translate(230 45)" points="0,-19 5.6,-6.2 19,-6.2 8.4,3 12,17 0,9 -12,17 -8.4,3 -19,-6.2 -5.6,-6.2" fill="#F2C14E"/>
+    <polygon id="estrella-4" transform="translate(90 100)" points="0,-19 5.6,-6.2 19,-6.2 8.4,3 12,17 0,9 -12,17 -8.4,3 -19,-6.2 -5.6,-6.2" fill="#F2C14E"/>
+    <polygon id="estrella-5" transform="translate(160 100)" points="0,-19 5.6,-6.2 19,-6.2 8.4,3 12,17 0,9 -12,17 -8.4,3 -19,-6.2 -5.6,-6.2" fill="#F2C14E"/>
+    <polygon id="estrella-6" transform="translate(230 100)" points="0,-19 5.6,-6.2 19,-6.2 8.4,3 12,17 0,9 -12,17 -8.4,3 -19,-6.2 -5.6,-6.2" fill="#F2C14E"/>
+    <polygon id="estrella-7" transform="translate(90 155)" points="0,-19 5.6,-6.2 19,-6.2 8.4,3 12,17 0,9 -12,17 -8.4,3 -19,-6.2 -5.6,-6.2" fill="#F2C14E"/>
+    <polygon id="estrella-8" transform="translate(160 155)" points="0,-19 5.6,-6.2 19,-6.2 8.4,3 12,17 0,9 -12,17 -8.4,3 -19,-6.2 -5.6,-6.2" fill="#F2C14E"/>
+    <polygon id="estrella-9" transform="translate(230 155)" points="0,-19 5.6,-6.2 19,-6.2 8.4,3 12,17 0,9 -12,17 -8.4,3 -19,-6.2 -5.6,-6.2" fill="#F2C14E"/>
+  </g>
+</svg>

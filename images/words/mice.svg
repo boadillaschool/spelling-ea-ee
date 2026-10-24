@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Dos ratones juntos</title>
+  <desc id="descripcion">Dos ratones pequeños están uno junto al otro. Tienen grandes orejas redondas, hocicos con bigotes y colas largas y curvadas.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <g id="raton-1">
+      <path d="M44 130C17 115 20 161 49 153" fill="none" stroke="#BE805C" stroke-width="4"/>
+      <path d="M57 148H70M99 148H111" fill="none" stroke="#BE805C" stroke-width="5"/>
+      <ellipse cx="82" cy="125" rx="39" ry="26" fill="#D8DDE2"/>
+      <circle cx="101" cy="88" r="14" fill="#D8DDE2"/>
+      <circle cx="127" cy="87" r="12" fill="#D8DDE2"/>
+      <circle cx="101" cy="88" r="8" fill="#E5B18A" stroke="none"/>
+      <circle cx="127" cy="87" r="6" fill="#E5B18A" stroke="none"/>
+      <path d="M105 104Q115 95 132 104L146 115Q145 126 130 130Q110 129 105 113Z" fill="#D8DDE2"/>
+      <circle cx="127" cy="109" r="2.4" fill="#17324D" stroke="none"/>
+      <circle cx="146" cy="116" r="3.2" fill="#BE805C"/>
+      <path d="M139 120L156 124M138 124L152 131" fill="none" stroke-width="1.7"/>
+    </g>
+    <g id="raton-2" transform="translate(320 0) scale(-1 1)">
+      <path d="M44 130C17 115 20 161 49 153" fill="none" stroke="#BE805C" stroke-width="4"/>
+      <path d="M57 148H70M99 148H111" fill="none" stroke="#BE805C" stroke-width="5"/>
+      <ellipse cx="82" cy="125" rx="39" ry="26" fill="#E6E9EB"/>
+      <circle cx="101" cy="88" r="14" fill="#E6E9EB"/>
+      <circle cx="127" cy="87" r="12" fill="#E6E9EB"/>
+      <circle cx="101" cy="88" r="8" fill="#E5B18A" stroke="none"/>
+      <circle cx="127" cy="87" r="6" fill="#E5B18A" stroke="none"/>
+      <path d="M105 104Q115 95 132 104L146 115Q145 126 130 130Q110 129 105 113Z" fill="#E6E9EB"/>
+      <circle cx="127" cy="109" r="2.4" fill="#17324D" stroke="none"/>
+      <circle cx="146" cy="116" r="3.2" fill="#BE805C"/>
+      <path d="M139 120L156 124M138 124L152 131" fill="none" stroke-width="1.7"/>
+    </g>
+  </g>
+</svg>
