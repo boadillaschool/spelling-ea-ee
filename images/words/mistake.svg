@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una hoja con un error</title>
+  <desc id="descripcion">Una hoja de ejercicios tiene cuatro respuestas: tres están marcadas como correctas y una tiene una cruz roja porque es un error. Al lado hay una goma de borrar para corregirla.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="160" cy="186" rx="120" ry="7" fill="#E2EAE6" stroke="none"/>
+    <rect x="70" y="16" width="140" height="166" rx="6" fill="#FFFFFF"/>
+    <g fill="none" stroke="#94A6B3" stroke-width="5">
+      <path d="M90 46H156M90 82H150M90 118H160M90 154H146"/>
+    </g>
+    <g fill="none" stroke="#287A52" stroke-width="5">
+      <path d="M170 44L178 52L194 34M170 80L178 88L194 70M170 152L178 160L194 142"/>
+    </g>
+    <path d="M170 108L192 130M192 108L170 130" fill="none" stroke="#B1433B" stroke-width="6"/>
+    <circle cx="181" cy="119" r="18" fill="none" stroke="#B1433B" stroke-width="2.4"/>
+    <path d="M232 150L262 108L292 128L262 170Z" fill="#F0A9A0"/>
+    <path d="M232 150L247 129L277 149L262 170Z" fill="#146B63"/>
+  </g>
+</svg>

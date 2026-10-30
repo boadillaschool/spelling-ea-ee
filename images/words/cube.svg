@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un cubito de hielo</title>
+  <desc id="descripcion">Un cubito de hielo azul claro con forma de cubo: todas sus caras son cuadradas e iguales y se ven tres de ellas. Brilla y suelta una gota de agua fría.</desc>
+  <g stroke="#17324D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="160" cy="182" rx="80" ry="8" fill="#E2EAE6" stroke="none"/>
+    <path d="M160 30L230 62L160 94L90 62Z" fill="#E8F4FA"/>
+    <path d="M90 62L160 94V174L90 142Z" fill="#B7DCEC"/>
+    <path d="M230 62L160 94V174L230 142Z" fill="#8FC6DE"/>
+    <path d="M112 76L128 84M108 96L120 102" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+    <path d="M150 48L170 56" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+    <path d="M246 150Q240 160 246 166Q252 160 246 150Z" fill="#8FC6DE" stroke-width="2"/>
+    <path d="M72 40L78 46M84 34V42M66 52H74" fill="none" stroke="#F2C14E" stroke-width="3"/>
+  </g>
+</svg>

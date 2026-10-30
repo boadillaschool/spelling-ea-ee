@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una niña tarareando una melodía</title>
+  <desc id="descripcion">Una niña con los ojos cerrados tararea con la boca pequeña. De su boca salen varias notas musicales que suben y bajan, formando una canción alegre.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M50 196Q52 150 92 146Q132 150 134 196Z" fill="#146B63"/>
+    <circle cx="92" cy="104" r="36" fill="#F1C9A5"/>
+    <path d="M56 104Q54 62 92 62Q130 62 128 104Q120 80 92 78Q66 80 56 104Z" fill="#6B4A32"/>
+    <path d="M56 100Q46 130 60 140M128 100Q138 130 124 140" fill="none" stroke="#6B4A32" stroke-width="7"/>
+    <path d="M74 100Q80 96 86 100M100 100Q106 96 112 100" fill="none" stroke-width="2.4"/>
+    <circle cx="106" cy="120" r="4" fill="#C8553D" stroke-width="2"/>
+    <circle cx="74" cy="114" r="5" fill="#F0A9A0" stroke="none"/>
+    <g fill="#17324D">
+      <ellipse cx="156" cy="108" rx="8" ry="6" transform="rotate(-20 156 108)"/>
+      <path d="M163 106V74" fill="none"/>
+      <ellipse cx="196" cy="86" rx="8" ry="6" transform="rotate(-20 196 86)"/>
+      <ellipse cx="226" cy="74" rx="8" ry="6" transform="rotate(-20 226 74)"/>
+      <path d="M203 84V50L233 40V72" fill="none"/>
+      <path d="M203 50L233 40V48L203 58Z"/>
+      <ellipse cx="270" cy="96" rx="8" ry="6" transform="rotate(-20 270 96)"/>
+      <path d="M277 94V62Q286 70 290 76" fill="none"/>
+    </g>
+    <path d="M140 116Q170 120 186 100T240 84T296 108" fill="none" stroke="#F2C14E" stroke-width="3" stroke-dasharray="2 8"/>
+  </g>
+</svg>

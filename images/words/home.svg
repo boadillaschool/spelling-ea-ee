@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una casa acogedora</title>
+  <desc id="descripcion">Una casa familiar con tejado, puerta abierta y ventanas iluminadas. Un camino lleva hasta la entrada y hay un corazón sobre la puerta: es el lugar donde vive la familia.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="160" cy="186" rx="120" ry="7" fill="#E2EAE6" stroke="none"/>
+    <rect x="92" y="96" width="136" height="88" fill="#FBF7EE"/>
+    <path d="M76 100L160 38L244 100Z" fill="#146B63"/>
+    <rect x="144" y="130" width="32" height="54" rx="3" fill="#F2C14E"/>
+    <path d="M144 130L132 136V184H144" fill="#C99A2E"/>
+    <circle cx="170" cy="158" r="2.5" fill="#17324D"/>
+    <rect x="104" y="116" width="28" height="26" rx="2" fill="#F8E3A3"/>
+    <rect x="188" y="116" width="28" height="26" rx="2" fill="#F8E3A3"/>
+    <path d="M118 116V142M104 129H132M202 116V142M188 129H216" fill="none" stroke-width="1.6"/>
+    <path d="M160 120C156 112 146 114 148 121C149 125 160 130 160 130C160 130 171 125 172 121C174 114 164 112 160 120Z" fill="#C8553D" stroke-width="1.8"/>
+    <path d="M140 196L150 184H170L180 196" fill="#D8D1C4" stroke-width="2"/>
+  </g>
+</svg>

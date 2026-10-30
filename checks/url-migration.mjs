@@ -84,7 +84,7 @@ try {
   }
   await page.getByRole('link',{name:'Elegir otra lista',exact:true}).click();
   await page.locator('.lesson-card').first().waitFor();
-  assert.equal(await page.locator('.lesson-card .muted').filter({hasText:'1 de 10'}).count(), LESSONS.length);
+  assert.equal(await page.locator('.lesson-card .muted').filter({hasText:/^1 de 1[02] /}).count(), LESSONS.length);
   results.push({name:stage,passed:true}); console.log('PASS',stage);
 
   stage = 'legacy_root_index_unknown_query_and_no_redirect_loop';

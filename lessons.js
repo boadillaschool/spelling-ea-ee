@@ -52,6 +52,21 @@ const SPLIT_I_WORDS = Object.freeze([
   { id: 'slide', word: 'slide', pattern: 'i…e', cue: 'tobogán', sentence: 'I go down the slide.' },
 ].map(Object.freeze));
 
+const MAGIC_E_WORDS = Object.freeze([
+  { id: 'smoke', word: 'smoke', pattern: 'o…e', cue: 'humo', sentence: 'Smoke comes out of the chimney.' },
+  { id: 'home', word: 'home', pattern: 'o…e', cue: 'casa', sentence: 'I go home after school.' },
+  { id: 'bone', word: 'bone', pattern: 'o…e', cue: 'hueso', sentence: 'The dog has a big bone.' },
+  { id: 'phone', word: 'phone', pattern: 'o…e', cue: 'teléfono', sentence: 'Mum is talking on the phone.' },
+  { id: 'mule', word: 'mule', pattern: 'u…e', cue: 'mula', sentence: 'The mule carries a heavy bag.' },
+  { id: 'cube', word: 'cube', pattern: 'u…e', cue: 'cubo', sentence: 'I put an ice cube in my drink.' },
+  { id: 'tune', word: 'tune', pattern: 'u…e', cue: 'melodía', sentence: 'She hums a happy tune.' },
+  { id: 'wake-up', word: 'wake up', pattern: 'a…e', cue: 'despertarse', sentence: 'I wake up at seven o’clock.' },
+  { id: 'came', word: 'came', pattern: 'a…e', cue: 'vino', sentence: 'My friend came to my party.' },
+  { id: 'mistake', word: 'mistake', pattern: 'a…e', cue: 'error', sentence: 'It is OK to make a mistake.' },
+  { id: 'because', word: 'because', pattern: '', cue: 'porque', sentence: 'I am happy because it is sunny.' },
+  { id: 'should', word: 'should', pattern: '', cue: 'debería', sentence: 'You should brush your teeth.' },
+].map(Object.freeze));
+
 export const LESSONS = Object.freeze([
   Object.freeze({
     id: '2026-09-25', date: 'Viernes 25 de septiembre de 2026', shortDate: '25/09/2026',
@@ -82,6 +97,12 @@ export const LESSONS = Object.freeze([
     title: 'Palabras con i…e', patterns: Object.freeze(['i…e']),
     intro: 'Fíjate en la i y la e final: entre ellas hay otra letra. Escucha cada palabra y recuerda las dos letras separadas.',
     words: SPLIT_I_WORDS, storageKey: 'spelling-ea-ee:list:2026-10-30:v1',
+  }),
+  Object.freeze({
+    id: '2026-11-06', date: 'Viernes 6 de noviembre de 2026', shortDate: '06/11/2026',
+    title: 'La e mágica: o…e y u…e', patterns: Object.freeze(['o…e', 'u…e', 'a…e']),
+    intro: 'La e final no suena, pero hace que la vocal diga su nombre: o…e en «home», u…e en «cube» y a…e en «came». También practicamos «because» y «should», dos palabras especiales.',
+    words: MAGIC_E_WORDS, storageKey: 'spelling-ea-ee:list:2026-11-06:v1',
   }),
 ]);
 

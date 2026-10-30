@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una amiga que vino a la fiesta</title>
+  <desc id="descripcion">Una niña con un regalo ya ha llegado a la puerta de una fiesta con globos. Detrás de ella, unas huellas muestran el camino por el que vino.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="160" cy="186" rx="140" ry="7" fill="#E2EAE6" stroke="none"/>
+    <rect x="214" y="44" width="78" height="140" fill="#FBF7EE"/>
+    <rect x="236" y="86" width="40" height="98" rx="3" fill="#146B63"/>
+    <circle cx="268" cy="136" r="3" fill="#F2C14E"/>
+    <path d="M230 52Q226 70 232 84M258 46Q262 66 256 84" fill="none" stroke-width="1.6"/>
+    <ellipse cx="230" cy="34" rx="13" ry="17" fill="#C8553D"/>
+    <ellipse cx="258" cy="28" rx="13" ry="17" fill="#F2C14E"/>
+    <path d="M227 51L233 51L230 55ZM255 45L261 45L258 49Z" fill="#17324D" stroke-width="1.4"/>
+    <path d="M170 184L172 150M190 184L188 150" fill="none" stroke-width="7"/>
+    <path d="M160 152Q160 116 180 116Q200 116 200 152Z" fill="#F2C14E"/>
+    <circle cx="180" cy="94" r="18" fill="#F1C9A5"/>
+    <path d="M162 92Q160 72 180 72Q200 72 198 92Q194 80 180 80Q166 80 162 92Z" fill="#2D2A28"/>
+    <circle cx="186" cy="94" r="2.4" fill="#17324D"/>
+    <path d="M182 102Q188 106 192 101" fill="none" stroke-width="2"/>
+    <rect x="194" y="122" width="24" height="22" rx="2" fill="#C8553D"/>
+    <path d="M206 122V144M194 133H218M206 122Q198 112 202 112Q206 112 206 122Q206 112 210 112Q214 112 206 122" fill="none" stroke-width="2"/>
+    <g fill="#94A6B3" stroke="none">
+      <ellipse cx="40" cy="176" rx="6" ry="4"/>
+      <ellipse cx="66" cy="182" rx="6" ry="4"/>
+      <ellipse cx="92" cy="176" rx="6" ry="4"/>
+      <ellipse cx="118" cy="182" rx="6" ry="4"/>
+      <ellipse cx="144" cy="176" rx="6" ry="4"/>
+    </g>
+  </g>
+</svg>

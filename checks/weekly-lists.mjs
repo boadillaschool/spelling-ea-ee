@@ -47,7 +47,7 @@ try {
       await link.click();
       await page.getByRole('heading',{name:lesson.title,exact:true}).waitFor();
       assert.deepEqual(await page.getByRole('checkbox').evaluateAll(ns=>ns.map(n=>n.value)),lesson.words.map(w=>w.id));
-      assert.equal(await page.locator('input:checked').count(),11);
+      assert.equal(await page.locator('input:checked').count(),lesson.words.length+1);
       assert.ok((await page.locator('#eyebrow').innerText()).includes(lesson.shortDate));
       await page.getByRole('link',{name:'Elegir otra lista',exact:true}).click();
       await page.getByRole('heading',{name:'Elige tu lista de spelling',exact:true}).waitFor();
@@ -100,7 +100,7 @@ try {
     await page.getByRole('link',{name:'Elegir otra lista',exact:true}).click();
     await page.getByRole('heading',{name:'Elige tu lista de spelling',exact:true}).waitFor();
     await page.locator('.lesson-card').first().waitFor();
-    assert.equal(await page.locator('.lesson-card .muted').filter({hasText:'1 de 10'}).count(),LESSONS.length);
+    assert.equal(await page.locator('.lesson-card .muted').filter({hasText:/^1 de 1[02] /}).count(),LESSONS.length);
     await page.getByRole('link',{name:'Practicar la lista del 02/10/2026',exact:true}).click();
     await page.goBack();
     await page.getByRole('heading',{name:'Elige tu lista de spelling',exact:true}).waitFor();

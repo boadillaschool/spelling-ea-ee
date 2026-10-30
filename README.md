@@ -8,6 +8,7 @@ A small, static, mobile-first spelling app. The front page lets families choose 
 - **Added 19 October 2026 — /aɪ/ with ie / igh / y:** `cried`, `tied up`, `lied`, `night`, `frighten`, `light`, `tights`, `sky`, `fly`, `dry`. This date records receipt of the list, not an assessment date. `tied up` is one practice item; its space is pronounced as “Space” during spelling feedback.
 
 - **30 October 2026 — i…e:** `mice`, `rice`, `fire`, `bike`, `pine`, `five`, `line`, `kite`, `nine`, `slide`. The separated `i` and final `e` are highlighted; the middle consonant is not. Listen to each word, including the British pronunciation of `fire`.
+- **6 November 2026 — magic e (o…e / u…e, plus a…e):** `smoke`, `home`, `bone`, `phone`, `mule`, `cube`, `tune`, `wake up`, `came`, `mistake`, `because`, `should`. Twelve items; the vowel and the final `e` are highlighted, the consonant between them is not. `wake up` is one practice item. `because` and `should` are special words without a pattern.
 
 `people`, `you` and `your` are extra spelling words, not examples of their lists' patterns. Their learning flows skip the pattern-choice step. Both `ph` groups are highlighted in `photograph`.
 
@@ -29,9 +30,9 @@ The origin and all existing lesson storage keys remain unchanged. Moving between
 
 ## Dated routes and separate progress
 
-- The root page is the list chooser. `?list=2026-09-25`, `?list=2026-10-02`, `?list=2026-10-16` `?list=2026-10-19` and `?list=2026-10-30` open the corresponding lists; unknown IDs return to the chooser.
+- The root page is the list chooser. `?list=2026-09-25`, `?list=2026-10-02`, `?list=2026-10-16` `?list=2026-10-19`, `?list=2026-10-30` and `?list=2026-11-06` open the corresponding lists; unknown IDs return to the chooser.
 - **Inicio** returns to the current lesson. **Elegir otra lista** opens the front page; links, reload and browser Back/Forward use ordinary same-origin navigation.
-- Each list keeps its own aggregate progress. The first list retains the original `spelling-ea-ee:v1` storage key, so existing work is not lost. The October lists use `spelling-ea-ee:list:2026-10-02:v1`, `spelling-ea-ee:list:2026-10-16:v1` `spelling-ea-ee:list:2026-10-19:v1` and `spelling-ea-ee:list:2026-10-30:v1`.
+- Each list keeps its own aggregate progress. The first list retains the original `spelling-ea-ee:v1` storage key, so existing work is not lost. The October lists use `spelling-ea-ee:list:2026-10-02:v1`, `spelling-ea-ee:list:2026-10-16:v1` `spelling-ea-ee:list:2026-10-19:v1`, `spelling-ea-ee:list:2026-10-30:v1` and `spelling-ea-ee:list:2026-11-06:v1`.
 - Reset clears only the current list. Sharing includes the list date and its canonical link, without unrelated query parameters.
 - Curriculum metadata is in `lessons.js`; the original inventory remains unchanged in `data.js`. No source photographs or identifying school/child information are published.
 
@@ -146,8 +147,8 @@ The checks serve the app locally, exercise all-ten and subset sessions, keyboard
 | `ui-helpers.js` | Small pure UI helpers: nullish-safe child lists, audio button label |
 | `focus-policy.js` | Pure focus policy: focus moves on screen/step changes, not on same-step feedback |
 | `speech.js`, `spelling-timings.js` | Bundled word/spelling playback, cancellation, letter cues and slower en-GB Web Speech fallback |
-| `audio/en-gb-v1/`, `audio/spelling-en-gb-v1/` | Fifty pronunciation clips and fifty paced spelling clips, all same-origin |
+| `audio/en-gb-v1/`, `audio/spelling-en-gb-v1/` | Sixty-two pronunciation clips and sixty-two paced spelling clips, all same-origin |
 | `ink-pad.js` | Pure local freehand-stroke state, normalization, undo and clear logic |
-| `illustrations.js`, `images/words/` | Fixed word-to-image metadata, Spanish alt text and fifty original meaning illustrations |
+| `illustrations.js`, `images/words/` | Fixed word-to-image metadata, Spanish alt text and sixty-two original meaning illustrations |
 | `data.js` | The ten words with cues and sentences |
 | `tests/` | Unit tests |

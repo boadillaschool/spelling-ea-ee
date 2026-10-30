@@ -115,3 +115,24 @@ Eighteen clips decode to the exact authored frame count. The `mice` spelling cli
 The corrected `slide` entry uses two newly composed recordings: pronunciation with “I go down the slide.” and the five letter names S–L–I–D–E followed by the whole word. Its five onset cues are derived from the new PCM composition. Matching letter PCM is reused with checked provenance; all other recordings and cue entries remain unchanged.
 
 Only fixed vocabulary and generic sentences were sent for synthesis. No learner responses, names or private recording were uploaded. This handoff does not claim human listening, browser integration, physical-device testing or publication.
+
+## Weekly magic e audio — 6/11/2026
+
+Twelve entries: `o…e`, `u…e` and `a…e` words plus the special words `because` and `should`. All earlier MP3 files and cue entries are preserved. `wake-up` is only an asset ID: the spoken phrase is **wake up**, and its spelling says **space** between E and U, giving seven timing entries.
+
+| ID | Exact example sentence |
+| --- | --- |
+| smoke | Smoke comes out of the chimney. |
+| home | I go home after school. |
+| bone | The dog has a big bone. |
+| phone | Mum is talking on the phone. |
+| mule | The mule carries a heavy bag. |
+| cube | I put an ice cube in my drink. |
+| tune | She hums a happy tune. |
+| wake-up | I wake up at seven o’clock. |
+| came | My friend came to my party. |
+| mistake | It is OK to make a mistake. |
+| because | I am happy because it is sunny. |
+| should | You should brush your teeth. |
+
+Same voice and pacing as 30/10/2026: `en-GB-SoniaNeural` via `edge-tts` 7.3.1, FFmpeg 6.1.1. Pronunciation is word at `-25%`, 0.70 s of PCM silence, sentence at `-35%`, 0.85 s, word again. Spelling uses uppercase letter names at `-10%` with 0.55 s between letters and 1.25 s before the whole word at `-20%`. Segments are decoded to mono 24 kHz s16 PCM, edge-trimmed at -50 dBFS with 240/480 guard frames, and each clip is encoded once as mono 24 kHz / 96 kbps MP3 without metadata. Cues come from the integer sample counts of the assembled PCM. A speech-to-text spot check confirmed the `mule` and `wake-up` pronunciations and the `wake-up` and `should` spellings; no human listening or physical-device testing is claimed. Only fixed vocabulary and generic sentences were sent for synthesis.

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Humo saliendo de una chimenea</title>
+  <desc id="descripcion">Una casa con tejado rojo tiene una chimenea de ladrillo. De la chimenea sale humo gris en nubes redondas que suben hacia el cielo.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="150" cy="186" rx="110" ry="7" fill="#E2EAE6" stroke="none"/>
+    <rect x="70" y="112" width="150" height="72" fill="#FBF7EE"/>
+    <path d="M56 116L145 62L234 116Z" fill="#C8553D"/>
+    <rect x="176" y="60" width="26" height="40" fill="#B5654A"/>
+    <path d="M176 73H202M176 86H202M189 60V73M183 73V86M195 86V100" fill="none" stroke-width="1.6"/>
+    <rect x="171" y="54" width="36" height="9" rx="2" fill="#8C4A36"/>
+    <rect x="128" y="140" width="30" height="44" rx="3" fill="#146B63"/>
+    <rect x="86" y="130" width="28" height="26" rx="2" fill="#CFE3EC"/>
+    <rect x="176" y="130" width="28" height="26" rx="2" fill="#CFE3EC"/>
+    <g fill="#B8C0C4" stroke="#7E8A90" stroke-width="2">
+      <circle cx="194" cy="40" r="11"/>
+      <circle cx="210" cy="26" r="14"/>
+      <circle cx="232" cy="18" r="12"/>
+      <circle cx="252" cy="12" r="9"/>
+    </g>
+  </g>
+</svg>

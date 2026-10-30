@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un teléfono móvil sonando</title>
+  <desc id="descripcion">Un teléfono móvil con pantalla iluminada y un botón redondo. Unas ondas curvas a los lados indican que está sonando una llamada.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="160" cy="188" rx="70" ry="6" fill="#E2EAE6" stroke="none"/>
+    <rect x="122" y="18" width="76" height="160" rx="14" fill="#17324D"/>
+    <rect x="130" y="34" width="60" height="112" rx="4" fill="#CFE3EC" stroke="none"/>
+    <circle cx="160" cy="162" r="7" fill="#FBF7EE"/>
+    <path d="M150 26H170" fill="none" stroke="#94A6B3" stroke-width="3"/>
+    <circle cx="160" cy="76" r="17" fill="#146B63" stroke="none"/>
+    <path d="M151 70Q151 66 155 66L158 72L155 75Q157 81 163 84L166 81L172 84Q172 88 168 88Q151 87 151 70Z" fill="#FBF7EE" stroke="none"/>
+    <rect x="140" y="110" width="40" height="12" rx="6" fill="#287A52" stroke="none"/>
+    <g fill="none" stroke="#F2C14E" stroke-width="5">
+      <path d="M104 62Q92 88 104 114"/>
+      <path d="M88 50Q70 88 88 126"/>
+      <path d="M216 62Q228 88 216 114"/>
+      <path d="M232 50Q250 88 232 126"/>
+    </g>
+  </g>
+</svg>

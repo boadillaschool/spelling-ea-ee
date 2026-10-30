@@ -866,7 +866,7 @@ function renderHome() {
         : 'Nada pendiente por ahora. Volverán cuando toque recordarlas.',
       run: () => startPractice(reviewIds, 'review'),
     },
-    { name: 'Simulacro tranquilo', desc: '10 palabras con dibujos, sin corregir hasta el final.', run: startMock },
+    { name: 'Simulacro tranquilo', desc: `${WORDS.length} palabras con dibujos, sin corregir hasta el final.`, run: startMock },
   ];
 
   const main = [
@@ -1713,7 +1713,7 @@ function renderMock() {
           text:
             unanswered > 0
               ? `Te faltan ${plural(unanswered, 'palabra', 'palabras')} por responder. Puedes cambiarlas o entregar así.`
-              : 'Has respondido las 10 palabras. Puedes cambiar alguna o entregar.',
+              : `Has respondido las ${WORDS.length} palabras. Puedes cambiar alguna o entregar.`,
         }),
         el(
           'ol',

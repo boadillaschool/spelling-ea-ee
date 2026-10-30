@@ -47,6 +47,7 @@ const confirmed = [
   ]
 ];
 const retained = ["alphabet", "between", "cheese", "chess", "child", "chops", "cried", "dolphin", "dry", "easy", "elephant", "family", "fly", "friends", "frighten", "heel", "jeans", "lied", "light", "meat", "night", "peanuts", "people", "pharmacy", "photograph", "reach", "read", "shells", "shoes", "shops", "shorts", "sky", "street", "sweets", "telephone", "tied-up", "tights", "trophy", "you", "your"];
+const later = ["smoke", "home", "bone", "phone", "mule", "cube", "tune", "wake-up", "came", "mistake", "because", "should"];
 
 test('30 October audio contains every confirmed clip, PCM-derived cue and exact sentence', () => {
   const provenance = readFileSync(new URL('../audio/README.md', import.meta.url), 'utf8');
@@ -79,7 +80,7 @@ test('30 October audio contains every confirmed clip, PCM-derived cue and exact 
   }
   for (const directory of ['en-gb-v1', 'spelling-en-gb-v1']) {
     const actual = readdirSync(new URL(`../audio/${directory}/`, import.meta.url)).filter(name => name.endsWith('.mp3')).sort();
-    const expected = [...retained, ...confirmed.map(([id]) => id)].map(id => `${id}.mp3`).sort();
+    const expected = [...retained, ...confirmed.map(([id]) => id), ...later].map(id => `${id}.mp3`).sort();
     assert.deepEqual(actual, expected, `${directory}: retained plus new inventory only`);
   }
 });

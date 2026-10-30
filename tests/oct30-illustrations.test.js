@@ -137,7 +137,8 @@ test('2026-10-30 canonical IDs resolve to exact immutable local mappings with Sp
 
 test('2026-10-30 adds exactly the confirmed ten illustrations to the unchanged previous inventory', () => {
   const actual = readdirSync(new URL('../images/words/', import.meta.url)).sort();
-  const expectedFiles = [...previousIds, ...newIds].map(id => `${id}.svg`).sort();
+  const laterIds = ['smoke', 'home', 'bone', 'phone', 'mule', 'cube', 'tune', 'wake-up', 'came', 'mistake', 'because', 'should'];
+  const expectedFiles = [...previousIds, ...newIds, ...laterIds].map(id => `${id}.svg`).sort();
   const missing = expectedFiles.filter(file => !actual.includes(file));
   assert.deepEqual(missing, [], `Missing confirmed illustrations: ${missing.join(', ')}`);
   assert.deepEqual(actual, expectedFiles, 'No substitutions, unconfirmed illustrations or scratch files');

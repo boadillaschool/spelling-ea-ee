@@ -1,5 +1,17 @@
 // Original, same-origin illustrations. No learner text or remote image requests.
 const illustrations = new Map([
+  ['smoke', 'Humo: nubes grises que salen de la chimenea de ladrillo de una casa y suben hacia el cielo.'],
+  ['home', 'Casa: una casa familiar con la puerta abierta, ventanas iluminadas y un corazón sobre la entrada.'],
+  ['bone', 'Hueso: un hueso blanco grande en el suelo, delante de un perro marrón sentado que lo mira.'],
+  ['phone', 'Teléfono: un teléfono móvil con la pantalla encendida y ondas a los lados porque está sonando.'],
+  ['mule', 'Mula: un animal gris de orejas largas que lleva dos bolsas pesadas sobre el lomo.'],
+  ['cube', 'Cubo: un cubito de hielo con caras cuadradas iguales; se ven tres de ellas.'],
+  ['tune', 'Melodía: una niña tararea con los ojos cerrados y de su boca salen notas musicales.'],
+  ['wake-up', 'Despertarse: un niño se sienta en la cama y estira los brazos mientras suena el despertador y sale el sol.'],
+  ['came', 'Vino (llegó): una niña con un regalo ha llegado a la puerta de una fiesta; sus huellas muestran el camino por el que vino.'],
+  ['mistake', 'Error: una hoja con tres respuestas correctas y una marcada con una cruz roja, junto a una goma de borrar.'],
+  ['because', 'Porque: una flecha va del sol a una niña sonriente; está contenta porque hace sol.'],
+  ['should', 'Debería: cepillo, pasta y vaso con una marca verde; es lo que se debería hacer cada noche antes de dormir.'],
   ['mice', 'Ratones: dos ratones pequeños con orejas redondas, bigotes y colas largas, uno junto al otro.'],
   ['rice', 'Arroz: un cuenco lleno de arroz blanco, con muchos granos alargados visibles.'],
   ['fire', 'Fuego: una llama pequeña sobre leños dentro de una chimenea de ladrillo, detrás de una rejilla protectora.'],

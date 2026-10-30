@@ -1,6 +1,6 @@
 # Ilustraciones de vocabulario
 
-Cincuenta dibujos vectoriales originales creados expresamente para este proyecto con
+Sesenta y dos dibujos vectoriales originales creados expresamente para este proyecto con
 formas y trazados SVG, con asistencia de IA. No proceden de bancos de imágenes,
 fotografías, emojis, fuentes de iconos ni servicios externos de imágenes;
 no contienen materiales de terceros.
@@ -70,6 +70,13 @@ La lista del 19/10/2026 añade `cried`, `tied-up`, `lied`, `night`, `frighten`,
 fuego en una chimenea, bicicleta, pino, cinco lápices, línea recta, cometa,
 nueve estrellas y un tobogán con escalera, plataforma y rampa curva. Los dibujos de cantidades
 permiten contar los objetos y las palabras relacionales conservan su pista en español.
+
+La lista del 06/11/2026 añade `smoke`, `home`, `bone`, `phone`, `mule`, `cube`,
+`tune`, `wake-up`, `came`, `mistake`, `because` y `should`: humo de una chimenea,
+una casa, un perro con un hueso, un móvil sonando, una mula con alforjas, un cubito
+de hielo, una niña tarareando, un niño despertándose, una amiga que llega a una
+fiesta, una hoja con un error, la relación causa-efecto del sol y una niña
+contenta, y el cepillado de dientes con una marca de «lo correcto».
 
 Comprobación sin dependencias adicionales:
 `node --test tests/illustration-assets.test.js tests/illustrations.test.js tests/sh-ch-illustrations.test.js`.

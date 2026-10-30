@@ -529,14 +529,17 @@ export function splitByPattern(word, pattern) {
  */
 /** Return display segments without losing repeated or separated pattern letters. */
 export function getHighlightedParts(word, pattern) {
-  if (pattern === 'i…e') {
-    const match = /^(.*)(i)([^aeiou])(e)$/.exec(word);
+  const split = /^([aeiou])…e$/.exec(pattern ?? '');
+  if (split) {
+    // The final e may end the word or a word inside a phrase, as in `wake up`.
+    const match = new RegExp(`^(.*)(${split[1]})([^aeiou\\s])(e)(\\s.*)?$`).exec(word);
     if (!match) return [{ text: word, highlighted: false }];
     return [
       { text: match[1], highlighted: false },
       { text: match[2], highlighted: true },
       { text: match[3], highlighted: false },
       { text: match[4], highlighted: true },
+      { text: match[5] ?? '', highlighted: false },
     ].filter(part => part.text !== '');
   }
   if (!pattern) return [{ text: word, highlighted: false }];
@@ -547,7 +550,7 @@ export function getHighlightedParts(word, pattern) {
 }
 
 export function describeHighlightedWord({ word, pattern }) {
-  const found = pattern === 'i…e'
+  const found = /^[aeiou]…e$/.test(pattern ?? '')
     ? getHighlightedParts(word, pattern).filter(part => part.highlighted).map(part => part.text).join('')
     : splitByPattern(word, pattern).pattern;
   const letters = [...found].join('-');
