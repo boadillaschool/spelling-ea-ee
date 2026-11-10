@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Poner en remojo</title>
+  <desc id="descripcion">Poner en remojo: un paño está sumergido en el agua de un recipiente transparente, con pliegues visibles y ondas de agua a su alrededor.</desc>
+  <ellipse cx="160" cy="177" rx="111" ry="8" fill="#D8D1C4" opacity="0.4"/>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path id="recipiente" d="M57 58 Q160 34 263 58 L250 152 Q246 177 160 178 Q74 177 70 152 Z" fill="#FBF7EE"/>
+    <path id="agua" d="M61 77 Q160 53 259 77 L248 150 Q245 169 160 170 Q75 169 72 150 Z" fill="#CFE3EC"/>
+    <g id="pano-sumergido">
+      <path d="M100 86 Q139 77 174 87 L215 111 L204 148 Q163 157 118 145 L93 119 Z" fill="#F2C14E"/>
+      <path d="M100 86 L125 110 Q164 101 215 111 L204 148 Q163 157 118 145 L125 110" fill="#F1D4A2"/>
+      <path d="M112 95 L135 119 Q169 113 205 120 M131 132 Q165 140 201 132 M119 145 L124 122" fill="none"/>
+    </g>
+    <path id="agua-delante" d="M63 88 Q99 80 128 88 Q160 97 191 88 Q225 80 257 88 L248 150 Q245 169 160 170 Q75 169 72 150 Z" fill="#CFE3EC" opacity="0.35"/>
+    <path d="M62 77 Q160 102 258 77 M82 107 Q93 103 105 108 M220 117 Q233 112 244 117 M86 145 Q98 142 108 147" fill="none" stroke="#146B63"/>
+    <ellipse cx="160" cy="58" rx="103" ry="19" fill="none"/>
+    <path d="M78 79 L85 142 M242 79 L235 142" fill="none" stroke="#FBF7EE"/>
+  </g>
+</svg>

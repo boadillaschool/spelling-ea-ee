@@ -9,6 +9,13 @@ const EMPTY_CUES = Object.freeze({
 });
 
 const CUES = Object.freeze({
+  "rat": Object.freeze({ letters: Object.freeze([0.0, 1.024375, 1.9924583333333334]), lastLetterEndAt: 2.423958333333333, pauseBeforeWord: 1.25, wordAt: 3.673958333333333 }),
+  "gate": Object.freeze({ letters: Object.freeze([0.0, 1.0012916666666667, 1.969375, 2.950875]), lastLetterEndAt: 3.3586666666666667, pauseBeforeWord: 1.25, wordAt: 4.608666666666666 }),
+  "bed": Object.freeze({ letters: Object.freeze([0.0, 0.9713333333333334, 1.929125]), lastLetterEndAt: 2.3640833333333333, pauseBeforeWord: 1.25, wordAt: 3.6140833333333333 }),
+  "beads": Object.freeze({ letters: Object.freeze([0.0, 0.9713333333333334, 1.929125, 2.8972083333333334, 3.8821666666666665]), lastLetterEndAt: 4.3425416666666665, pauseBeforeWord: 1.25, wordAt: 5.5925416666666665 }),
+  "pin": Object.freeze({ letters: Object.freeze([0.0, 0.9737083333333333, 1.9630416666666666]), lastLetterEndAt: 2.361291666666667, pauseBeforeWord: 1.25, wordAt: 3.611291666666667 }),
+  "socks": Object.freeze({ letters: Object.freeze([0.0, 1.010375, 2.0120833333333334, 3.081375, 4.078708333333333]), lastLetterEndAt: 4.539083333333333, pauseBeforeWord: 1.25, wordAt: 5.789083333333333 }),
+  "soak": Object.freeze({ letters: Object.freeze([0.0, 1.010375, 2.0120833333333334, 2.980166666666667]), lastLetterEndAt: 3.4275, pauseBeforeWord: 1.25, wordAt: 4.6775 }),
   "cried": Object.freeze({ letters: Object.freeze([0.0, 1.069292, 2.093667, 3.083, 4.040792]), lastLetterEndAt: 4.47575, pauseBeforeWord: 1.25, wordAt: 5.72575 }),
   "tied-up": Object.freeze({ letters: Object.freeze([0.0, 0.9815, 1.970833, 2.928625, 3.913583, 5.214, 6.1995]), lastLetterEndAt: 6.623208, pauseBeforeWord: 1.25, wordAt: 7.873208 }),
   "lied": Object.freeze({ letters: Object.freeze([0.0, 0.947417, 1.93675, 2.894542]), lastLetterEndAt: 3.3295, pauseBeforeWord: 1.25, wordAt: 4.5795 }),

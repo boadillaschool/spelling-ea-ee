@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una cama con almohada y manta</title>
+  <desc id="descripcion">Una cama vacía tiene cabecero de madera, una almohada clara, un colchón y una manta verde doblada arriba. Sus patas la mantienen separada del suelo.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M49 150V173H61V151M247 153V173H259V152" fill="#B5864F"/>
+    <path id="cabecero" d="M49 148V63Q49 52 60 52H97Q109 52 109 63V124Z" fill="#B5864F"/>
+    <path d="M63 66H94M63 77H94" fill="none" stroke="#F1D4A2"/>
+    <path d="M65 101L101 82L262 108L273 140H65Z" fill="#FBF7EE"/>
+    <path id="colchon" d="M65 132H273V149H65Z" fill="#FBF7EE"/>
+    <path id="manta" d="M132 88L262 108L273 140V155H121V118Z" fill="#146B63"/>
+    <path d="M132 88L262 108L264 119L128 99Z" fill="#7CAD96"/>
+    <path d="M135 117V144M248 124L255 145" fill="none" stroke="#7CAD96" stroke-width="2"/>
+    <path id="almohada" d="M76 101Q71 95 80 89L102 78Q109 75 118 79L143 89Q149 94 140 99L117 111Q109 114 101 111Z" fill="#FBF7EE"/>
+    <path d="M85 99L106 88Q110 86 115 88L131 94" fill="none" stroke="#D8D1C4" stroke-width="1.7"/>
+    <path d="M59 153H271V163H59Z" fill="#B5864F"/>
+    <rect x="49" y="96" width="13" height="79" rx="4" fill="#B5864F"/>
+    <rect x="266" y="112" width="13" height="63" rx="4" fill="#B5864F"/>
+    <path d="M64 182H264" fill="none" stroke="#D8D1C4"/>
+  </g>
+</svg>

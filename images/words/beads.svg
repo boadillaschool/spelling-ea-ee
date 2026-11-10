@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Cuentas de collar en una cuerda</title>
+  <desc id="descripcion">Varias cuentas de collar redondas de colores están ensartadas en una cuerda curvada. Cada cuenta tiene un agujero visible en el centro por el que pasa la cuerda.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path id="cuerda" d="M78 37C63 65 70 104 90 125C113 151 135 157 160 157C189 157 211 147 233 118C247 98 253 61 241 37" fill="none" stroke-width="3"/>
+    <g id="cuenta-1">
+      <circle cx="74" cy="80" r="14.5" fill="#146B63"/>
+      <circle cx="74" cy="80" r="4.5" fill="#FBF7EE" stroke-width="1.7"/>
+      <line x1="74" y1="77" x2="74" y2="83" stroke="#94A6B3" stroke-width="2"/>
+    </g>
+    <g id="cuenta-2">
+      <circle cx="85" cy="117" r="14.5" fill="#F2C14E"/>
+      <circle cx="85" cy="117" r="4.5" fill="#FBF7EE" stroke-width="1.7"/>
+      <line x1="83" y1="114" x2="87" y2="120" stroke="#94A6B3" stroke-width="2"/>
+    </g>
+    <g id="cuenta-3">
+      <circle cx="119" cy="146" r="14.5" fill="#C8553D"/>
+      <circle cx="119" cy="146" r="4.5" fill="#FBF7EE" stroke-width="1.7"/>
+      <line x1="116" y1="144" x2="122" y2="148" stroke="#94A6B3" stroke-width="2"/>
+    </g>
+    <g id="cuenta-4">
+      <circle cx="160" cy="157" r="14.5" fill="#146B63"/>
+      <circle cx="160" cy="157" r="4.5" fill="#FBF7EE" stroke-width="1.7"/>
+      <line x1="157" y1="157" x2="163" y2="157" stroke="#94A6B3" stroke-width="2"/>
+    </g>
+    <g id="cuenta-5">
+      <circle cx="201" cy="146" r="14.5" fill="#C8553D"/>
+      <circle cx="201" cy="146" r="4.5" fill="#FBF7EE" stroke-width="1.7"/>
+      <line x1="198" y1="148" x2="204" y2="144" stroke="#94A6B3" stroke-width="2"/>
+    </g>
+    <g id="cuenta-6">
+      <circle cx="233" cy="118" r="14.5" fill="#F2C14E"/>
+      <circle cx="233" cy="118" r="4.5" fill="#FBF7EE" stroke-width="1.7"/>
+      <line x1="231" y1="121" x2="235" y2="115" stroke="#94A6B3" stroke-width="2"/>
+    </g>
+    <g id="cuenta-7">
+      <circle cx="247" cy="80" r="14.5" fill="#146B63"/>
+      <circle cx="247" cy="80" r="4.5" fill="#FBF7EE" stroke-width="1.7"/>
+      <line x1="247" y1="77" x2="247" y2="83" stroke="#94A6B3" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

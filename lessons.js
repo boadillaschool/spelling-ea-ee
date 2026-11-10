@@ -67,6 +67,19 @@ const MAGIC_E_WORDS = Object.freeze([
   { id: 'should', word: 'should', pattern: '', cue: 'debería', sentence: 'You should brush your teeth.' },
 ].map(Object.freeze));
 
+const VOWEL_WORDS = Object.freeze([
+  Object.freeze({ id: 'rat', word: 'rat', pattern: 'a', cue: 'rata', sentence: 'The rat has a long tail.' }),
+  Object.freeze({ id: 'gate', word: 'gate', pattern: 'a…e', cue: 'puerta de jardín', sentence: 'Please close the garden gate.' }),
+  Object.freeze({ id: 'bed', word: 'bed', pattern: 'e', cue: 'cama', sentence: 'My bed is soft and warm.' }),
+  Object.freeze({ id: 'beads', word: 'beads', pattern: 'ea', cue: 'cuentas de collar', sentence: 'The beads are on a string.' }),
+  Object.freeze({ id: 'pin', word: 'pin', pattern: 'i', cue: 'alfiler', sentence: 'The pin has a round head.' }),
+  SPLIT_I_WORDS.find(item => item.id === 'pine'),
+  Object.freeze({ id: 'socks', word: 'socks', pattern: 'o', cue: 'calcetines', sentence: 'I put on my socks.' }),
+  Object.freeze({ id: 'soak', word: 'soak', pattern: 'oa', cue: 'poner en remojo', sentence: 'I soak the cloth in water.' }),
+  SH_CH_WORDS.find(item => item.id === 'you'),
+  SH_CH_WORDS.find(item => item.id === 'your'),
+]);
+
 export const LESSONS = Object.freeze([
   Object.freeze({
     id: '2026-09-25', date: 'Viernes 25 de septiembre de 2026', shortDate: '25/09/2026',
@@ -104,9 +117,18 @@ export const LESSONS = Object.freeze([
     intro: 'La e final no suena, pero hace que la vocal diga su nombre: o…e en «home», u…e en «cube» y a…e en «came». También practicamos «because» y «should», dos palabras especiales.',
     words: MAGIC_E_WORDS, storageKey: 'spelling-ea-ee:list:2026-11-06:v1',
   }),
+  Object.freeze({
+    id: '2026-11-13', date: 'Viernes 13 de noviembre de 2026', shortDate: '13/11/2026',
+    title: 'Escucha y compara las vocales', patterns: Object.freeze(['a', 'a…e', 'e', 'ea', 'i', 'i…e', 'o', 'oa']),
+    intro: 'Escucha y compara: rat y gate, bed y beads, pin y pine, socks y soak. Fíjate en las letras de cada vocal. También repasamos «you» y «your».',
+    words: VOWEL_WORDS, storageKey: 'spelling-ea-ee:list:2026-11-13:v1',
+  }),
 ]);
 
-export const ALL_WORDS = Object.freeze(LESSONS.flatMap(lesson => lesson.words));
+// A repeated weekly word shares its unchanged media; progress remains lesson-scoped.
+export const ALL_WORDS = Object.freeze([...new Map(
+  LESSONS.flatMap(lesson => lesson.words).map(item => [item.id, item]),
+).values()]);
 
 export function getLesson(search) {
   const id = new URLSearchParams(search).get('list');

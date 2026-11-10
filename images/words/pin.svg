@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un alfiler de cabeza redonda</title>
+  <desc id="descripcion">Un alfiler recto está colocado en diagonal. Tiene una cabeza redonda roja en un extremo y una varilla metálica fina que termina en una punta afilada en el otro.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path id="varilla" d="M109 63L115 57L239 173Z" fill="#D8DDE2"/>
+    <path d="M119 68L222 157" fill="none" stroke="#FBF7EE" stroke-width="1.5"/>
+    <circle id="cabeza" cx="102" cy="53" r="22" fill="#C8553D"/>
+    <circle cx="95" cy="46" r="6" fill="#F1D4A2" stroke="none"/>
+  </g>
+</svg>

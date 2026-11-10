@@ -23,7 +23,7 @@ test('6 November adds the twelve photographed words, date and independent progre
   assert.equal(new Set(LESSONS.map(x => x.storageKey)).size, LESSONS.length);
   assert.equal(new Set(ALL_WORDS.map(x => x.id)).size, ALL_WORDS.length);
   assert.equal(getLessonHref(lesson), './?list=2026-11-06');
-  assert.equal(LESSONS.at(-1), lesson);
+  assert.equal(LESSONS.find(l => l.id === '2026-11-06'), lesson);
   assert.ok(Object.isFrozen(lesson) && Object.isFrozen(lesson.words));
   assert.ok(lesson.words.every(Object.isFrozen));
 });

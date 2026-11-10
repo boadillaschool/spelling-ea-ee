@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un par de calcetines</title>
+  <desc id="descripcion">Un par de calcetines verdes completos y separados tiene puños claros de canalé, talones y punteras amarillos. Los dos calcetines están colocados uno junto al otro.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <g id="calcetin-1">
+      <path d="M74 46H117V119Q117 139 104 148L65 167Q45 176 34 161Q25 145 42 136L72 120Z" fill="#146B63"/>
+      <path d="M42 136L54 129Q56 151 72 164L65 167Q45 176 34 161Q25 145 42 136Z" fill="#F2C14E"/>
+      <path d="M94 115H117V119Q117 139 104 148L92 154Q103 135 94 115Z" fill="#F2C14E"/>
+      <rect x="72" y="32" width="46" height="24" rx="4" fill="#FBF7EE"/>
+      <path d="M81 37V51M90 37V51M99 37V51M108 37V51" fill="none" stroke="#94A6B3" stroke-width="1.7"/>
+      <path d="M81 68H108M81 76H108" fill="none" stroke="#7CAD96" stroke-width="3"/>
+    </g>
+    <g id="calcetin-2" transform="translate(320 0) scale(-1 1)">
+      <path d="M74 46H117V119Q117 139 104 148L65 167Q45 176 34 161Q25 145 42 136L72 120Z" fill="#146B63"/>
+      <path d="M42 136L54 129Q56 151 72 164L65 167Q45 176 34 161Q25 145 42 136Z" fill="#F2C14E"/>
+      <path d="M94 115H117V119Q117 139 104 148L92 154Q103 135 94 115Z" fill="#F2C14E"/>
+      <rect x="72" y="32" width="46" height="24" rx="4" fill="#FBF7EE"/>
+      <path d="M81 37V51M90 37V51M99 37V51M108 37V51" fill="none" stroke="#94A6B3" stroke-width="1.7"/>
+      <path d="M81 68H108M81 76H108" fill="none" stroke="#7CAD96" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

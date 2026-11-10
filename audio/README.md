@@ -136,3 +136,27 @@ Twelve entries: `o…e`, `u…e` and `a…e` words plus the special words `becau
 | should | You should brush your teeth. |
 
 Same voice and pacing as 30/10/2026: `en-GB-SoniaNeural` via `edge-tts` 7.3.1, FFmpeg 6.1.1. Pronunciation is word at `-25%`, 0.70 s of PCM silence, sentence at `-35%`, 0.85 s, word again. Spelling uses uppercase letter names at `-10%` with 0.55 s between letters and 1.25 s before the whole word at `-20%`. Segments are decoded to mono 24 kHz s16 PCM, edge-trimmed at -50 dBFS with 240/480 guard frames, and each clip is encoded once as mono 24 kHz / 96 kbps MP3 without metadata. Cues come from the integer sample counts of the assembled PCM. A speech-to-text spot check confirmed the `mule` and `wake-up` pronunciations and the `wake-up` and `should` spellings; no human listening or physical-device testing is claimed. Only fixed vocabulary and generic sentences were sent for synthesis.
+
+## Weekly audio — 13/11/2026
+
+Seven new IDs are added below, with fourteen recordings and seven PCM-derived timing entries. The existing `pine`, `you` and `your` recordings and cues are reused without modification. All 124 preceding MP3s, 62 preceding cue entries and the rest of the application remain unchanged in this audio-only handoff.
+
+| ID | Exact example sentence |
+| --- | --- |
+| rat | The rat has a long tail. |
+| gate | Please close the garden gate. |
+| bed | My bed is soft and warm. |
+| beads | The beads are on a string. |
+| pin | The pin has a round head. |
+| socks | I put on my socks. |
+| soak | I soak the cloth in water. |
+
+Stock British voice `en-GB-SoniaNeural`, generated with Microsoft's Edge speech service through `edge-tts` 7.3.1 and composed/encoded with FFmpeg 6.1.1. Pronunciation is the word at `-25%`, 0.70 s of PCM silence, the exact sentence at `-35%`, 0.85 s of PCM silence and the same word again. Spelling uses individually synthesized uppercase English letter names at `-10%`, 0.55 s of PCM silence between letters, then 1.25 s of PCM silence before the whole word at `-20%`. No synthesis-only substitutions are used.
+
+Previous source caches were unavailable: all 35 required source segments (14 unique letters and 21 word/sentence segments) were synthesized into private scratch storage, not extracted or re-trimmed from older final recordings. Sources are decoded to mono 24 kHz signed 16-bit PCM, trimmed only outside their first and last samples above -50 dBFS, with 240 leading and 480 trailing guard frames. Internal pauses are retained. Cues use the integer sample counts of the assembled PCM; each final clip is encoded once as mono 24 kHz / 96 kbps MP3 without embedded tags.
+
+All fourteen final worktree files fully decode and pass format, metadata, signal and SHA-256 checks. Independent PCM reconstruction and zero-offset waveform checks verify the segment alignment. FFmpeg `silencedetect` confirms the inserted pronunciation gaps, inter-letter gaps and a covering silent interval for every authored 1.25 s pre-word pause; each final whole word has non-silent signal after its cue. Detected silence also includes quiet speech edges and is not asserted to equal the inserted zero samples exactly.
+
+Twelve recordings decode to the exact authored frame count. The `rat` pronunciation has 37 extra quiet codec-tail frames (peak below -79 dBFS), and the `pin` spelling has 25 (peak below -95 dBFS). Independent decode, zero-shift speech alignment and separate diagnostic encodings with known trailing zeros confirm end-only frame-boundary padding. No frames are missing; neither the delivered PCM nor the cues or MP3s were changed to hide the difference. These two files are explicitly not sample-exact decodes.
+
+Only the fixed vocabulary, English letter names and generic sentences were sent for synthesis. No learner responses or private recordings were uploaded. This asset validation does not claim human listening, browser/device integration or publication; curriculum registration and any older exact-inventory assertions remain the integrator's responsibility.

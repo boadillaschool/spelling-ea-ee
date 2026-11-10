@@ -1,5 +1,12 @@
 // Original, same-origin illustrations. No learner text or remote image requests.
 const illustrations = new Map([
+  ['soak', 'Poner en remojo: un paño está sumergido en el agua de un recipiente transparente, con pliegues visibles y ondas de agua a su alrededor.'],
+  ['socks', 'Calcetines: un par de calcetines verdes separados, con puños de canalé claros, talones y punteras amarillos.'],
+  ['pin', 'Alfiler: un alfiler recto con una cabeza redonda roja, una varilla metálica fina y una punta afilada.'],
+  ['beads', 'Cuentas de collar: varias cuentas redondas de colores tienen agujeros visibles por los que pasa una cuerda curvada.'],
+  ['bed', 'Cama: una cama vacía con cabecero de madera, almohada clara, colchón y manta verde, apoyada sobre sus patas.'],
+  ['gate', 'Puerta de jardín: una puerta de listones verdes entre dos postes, con bisagras y pestillo, da paso a un sendero entre plantas.'],
+  ['rat', 'Rata: una rata gris de cuerpo robusto, orejas pequeñas, hocico alargado, bigotes y cola larga y curvada.'],
   ['smoke', 'Humo: nubes grises que salen de la chimenea de ladrillo de una casa y suben hacia el cielo.'],
   ['home', 'Casa: una casa familiar con la puerta abierta, ventanas iluminadas y un corazón sobre la entrada.'],
   ['bone', 'Hueso: un hueso blanco grande en el suelo, delante de un perro marrón sentado que lo mira.'],

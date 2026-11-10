@@ -1,6 +1,6 @@
 # Ilustraciones de vocabulario
 
-Sesenta y dos dibujos vectoriales originales creados expresamente para este proyecto con
+Sesenta y nueve dibujos vectoriales originales creados expresamente para este proyecto con
 formas y trazados SVG, con asistencia de IA. No proceden de bancos de imágenes,
 fotografías, emojis, fuentes de iconos ni servicios externos de imágenes;
 no contienen materiales de terceros.
@@ -77,6 +77,17 @@ una casa, un perro con un hueso, un móvil sonando, una mula con alforjas, un cu
 de hielo, una niña tarareando, un niño despertándose, una amiga que llega a una
 fiesta, una hoja con un error, la relación causa-efecto del sol y una niña
 contenta, y el cepillado de dientes con una marca de «lo correcto».
+
+La lista del 13/11/2026 añade siete dibujos originales: `rat`, `gate`, `bed`,
+`beads`, `pin`, `socks` y `soak`. Representan una rata de cola larga, una puerta
+con bisagras y pestillo en un jardín, una cama vacía, varias cuentas perforadas
+atravesadas por un cordel, un alfiler recto de cabeza redonda, dos calcetines
+separados y un paño sumergido en un recipiente de agua. El paño conserva sus
+pliegues visibles bajo una capa de agua translúcida; no se representa lluvia.
+Se reutilizan sin cambios `pine`, `you` y `your`. Todos los dibujos nuevos
+siguen el mismo contrato SVG local, la paleta y los metadatos en español;
+no contienen texto inglés visible ni referencias externas.
+La regresión específica es `node --test tests/nov13-illustrations.test.js`.
 
 Comprobación sin dependencias adicionales:
 `node --test tests/illustration-assets.test.js tests/illustrations.test.js tests/sh-ch-illustrations.test.js`.

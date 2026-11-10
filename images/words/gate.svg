@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una puerta de jardín</title>
+  <desc id="descripcion">Una puerta de jardín de listones verdes está entre dos postes. Tiene bisagras a la izquierda y un pestillo a la derecha. Detrás se ve un sendero rodeado de plantas.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M139 102H183L216 182H105Z" fill="#F1D4A2" stroke="none"/>
+    <path d="M21 163V129Q17 111 31 107Q30 88 45 92Q58 90 61 110Q80 106 81 124V163Z" fill="#7CAD96"/>
+    <path d="M239 163V125Q240 106 254 108Q260 87 274 94Q289 94 287 113Q303 113 299 132V163Z" fill="#7CAD96"/>
+    <path d="M33 153L42 134M284 151L275 131" fill="none" stroke="#146B63"/>
+    <rect x="57" y="48" width="19" height="123" rx="3" fill="#B5864F"/>
+    <rect x="244" y="48" width="19" height="123" rx="3" fill="#B5864F"/>
+    <path d="M54 48L67 36L80 48ZM240 48L254 36L267 48Z" fill="#F1D4A2"/>
+    <g id="hoja-puerta" fill="#146B63">
+      <rect x="79" y="98" width="161" height="12" rx="2"/>
+      <rect x="79" y="143" width="161" height="12" rx="2"/>
+      <path d="M84 81L94 71L104 81V156H84ZM117 68L127 58L137 68V156H117ZM150 63L160 53L170 63V156H150ZM183 68L193 58L203 68V156H183ZM216 81L226 71L236 81V156H216Z"/>
+      <path d="M89 143L221 103L225 112L93 153Z" fill="#7CAD96"/>
+    </g>
+    <g id="bisagras" fill="#D8DDE2">
+      <rect x="71" y="88" width="21" height="7" rx="2"/>
+      <rect x="71" y="132" width="21" height="7" rx="2"/>
+    </g>
+    <path id="pestillo" d="M225 116H249M236 112V121" fill="none" stroke-width="4"/>
+    <path d="M19 173H91M229 173H301" fill="none" stroke="#7CAD96"/>
+  </g>
+</svg>

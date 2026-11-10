@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Una rata de cola larga</title>
+  <desc id="descripcion">Una rata gris de cuerpo robusto tiene orejas pequeñas, hocico alargado, bigotes y una cola larga que se curva detrás del cuerpo. Está apoyada sobre sus patas.</desc>
+  <g stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path id="cola-larga" d="M108 140C79 161 45 171 30 147C18 126 30 105 48 109C34 110 27 127 36 141C50 160 77 151 101 130Z" fill="#BE805C"/>
+    <path d="M115 143L107 156Q104 161 112 161H132L139 144M217 133L214 153Q214 157 221 157H237Q240 153 228 150L232 132" fill="#BE805C"/>
+    <path d="M95 128C94 97 124 79 159 80C191 79 208 89 223 96Q244 98 257 113L276 126Q280 132 269 137L233 144Q205 153 169 154H133Q102 153 95 128Z" fill="#94A6B3"/>
+    <path d="M118 133Q114 115 131 107Q149 98 162 114Q172 128 159 143" fill="#D8DDE2"/>
+    <path d="M210 101Q200 90 206 80Q211 71 220 76Q229 81 226 94" fill="#94A6B3"/>
+    <path d="M213 92Q208 85 213 81Q219 79 221 87" fill="#E5B18A" stroke-width="1.7"/>
+    <circle cx="244" cy="113" r="3" fill="#17324D" stroke="none"/>
+    <ellipse cx="276" cy="127" rx="4" ry="3" fill="#BE805C"/>
+    <path d="M263 127L287 118M265 132L293 133M261 136L284 146" fill="none" stroke-width="1.7"/>
+  </g>
+</svg>
