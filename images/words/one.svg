@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Uno: una sola manzana</title>
+  <desc id="descripcion">Uno: una sola manzana roja con su tallo y una hoja verde. La fruta está aislada para poder contarla; no hay otras frutas alrededor.</desc>
+  <g transform="translate(26.666667 0) scale(0.833333333)" stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <g id="manzana">
+      <path id="fruto" d="M160 85C137 60 96 76 93 118C90 156 115 197 141 201Q152 203 160 197Q170 203 181 201C209 197 232 155 228 119C225 78 184 64 160 85Z" fill="#C8553D"/>
+      <path id="tallo" d="M159 88Q154 65 166 45" fill="none" stroke="#594235" stroke-width="7"/>
+      <path id="hoja" d="M163 65Q182 36 210 48Q200 75 163 65Z" fill="#146B63"/>
+      <path d="M168 63L199 51" fill="none" stroke="#7CAD96" stroke-width="1.8"/>
+      <path d="M117 100Q106 113 109 131" fill="none" stroke="#FBF7EE" stroke-width="5"/>
+      <path d="M145 88Q159 95 172 87" fill="none" stroke="#594235" stroke-width="1.8"/>
+    </g>
+  </g>
+</svg>

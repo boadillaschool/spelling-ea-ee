@@ -160,3 +160,30 @@ All fourteen final worktree files fully decode and pass format, metadata, signal
 Twelve recordings decode to the exact authored frame count. The `rat` pronunciation has 37 extra quiet codec-tail frames (peak below -79 dBFS), and the `pin` spelling has 25 (peak below -95 dBFS). Independent decode, zero-shift speech alignment and separate diagnostic encodings with known trailing zeros confirm end-only frame-boundary padding. No frames are missing; neither the delivered PCM nor the cues or MP3s were changed to hide the difference. These two files are explicitly not sample-exact decodes.
 
 Only the fixed vocabulary, English letter names and generic sentences were sent for synthesis. No learner responses or private recordings were uploaded. This asset validation does not claim human listening, browser/device integration or publication; curriculum registration and any older exact-inventory assertions remain the integrator's responsibility.
+
+## Weekly audio — 14/11/2026
+
+Ten new IDs add twenty recordings and ten PCM-derived timing entries. The 138 earlier MP3s and 69 earlier cue entries are preserved. This audio-only addition does not change curriculum data, playback mappings or application code.
+
+| ID | Exact example sentence |
+| --- | --- |
+| skirt | She wears a blue skirt. |
+| bird | The bird is singing in the tree. |
+| first | I am first in the line. |
+| birthday | Today is my birthday. |
+| thirsty | I am thirsty after playing. |
+| shirt | My shirt has three buttons. |
+| thirteen | There are thirteen stars. |
+| dirty | My boots are dirty. |
+| said | She said hello to me. |
+| one | I have one apple. |
+
+Stock British voice `en-GB-SoniaNeural`, synthesized with the Microsoft Edge speech service through `edge-tts` 7.3.1 and composed with FFmpeg 6.1.1. Pronunciation is the word at `-25%`, 0.70 s of added PCM silence, the exact sentence at `-35%`, 0.85 s of added PCM silence, and the same word again. Spelling uses separate uppercase English letter names at `-10%`, 0.55 s of PCM silence between letters, then 1.25 s of PCM silence before the final whole word at `-20%`. No synthesis-only substitutions are used.
+
+All 44 required source segments (14 unique letters and 30 word/sentence segments) were synthesized freshly, without extracting or re-trimming any earlier final recording. Sources are decoded to mono 24 kHz signed 16-bit PCM and trimmed only outside the first and last samples above -50 dBFS, retaining 240 leading and 480 trailing guard frames. Internal pauses are preserved. Integer sample counts of the actual assembled PCM define the cues. Each final clip is encoded once as mono 24 kHz / 96 kbps MP3 with embedded metadata stripped.
+
+All twenty final files fully decode and pass format, metadata, signal and SHA-256 checks. Independent PCM reconstruction and zero-offset waveform comparisons verify every speech segment. FFmpeg `silencedetect` confirms the pronunciation gaps, inter-letter gaps and a covering silent interval for every authored 1.25 s pre-word pause; all final whole-word segments contain non-silent signal after their cues. Detected silence can include quiet speech edges and is not asserted to equal the inserted zeros exactly.
+
+Eighteen recordings decode to their exact authored frame count. The `dirty` pronunciation has 11 additional quiet codec-tail frames (peak below -84 dBFS); the `one` spelling has 35 (peak below -90 dBFS). Independent WAV decoding and separate diagnostic encodings with known trailing zeros confirm end-only frame-boundary padding. No frames are missing and no speech is shifted. Those two decodes are not claimed to be sample-exact; the delivered PCM, MP3s and cues were not padded or changed to hide the difference.
+
+Only the approved fixed vocabulary, English letter names and generic sentences were sent for synthesis. No learner responses, private names or personal recordings were uploaded. Technical validation does not imply human listening, browser/device integration or publication; curriculum registration and older exact-inventory assertions remain integration dependencies.

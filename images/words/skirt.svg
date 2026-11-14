@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Falda azul con pliegues</title>
+  <desc id="descripcion">Una falda azul tiene cintura estrecha, pliegues largos y un bajo ancho continuo. Es una sola pieza de tela abierta por abajo, sin mangas ni perneras.</desc>
+  <g transform="translate(26.666667 0) scale(0.833333333)" stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path id="tela" d="M112 62H208L247 198Q160 218 73 198Z" fill="#477DA6"/>
+    <path d="M129 63L107 202Q119 205 131 206L144 63ZM176 63L189 206Q201 205 213 202L191 63Z" fill="#6896B7" stroke="none"/>
+    <path d="M129 66L107 196M144 66L135 198M176 66L185 198M191 66L213 196" fill="none" stroke="#35658C"/>
+    <rect id="cintura" x="112" y="44" width="96" height="19" rx="3" fill="#35658C"/>
+    <path d="M127 44V63M193 44V63" fill="none" stroke="#6896B7" stroke-width="4"/>
+    <path d="M79 191Q160 211 241 191" fill="none" stroke="#F1D4A2" stroke-width="1.8" stroke-dasharray="4 4"/>
+  </g>
+</svg>

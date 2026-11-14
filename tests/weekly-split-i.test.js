@@ -19,8 +19,8 @@ test('30 October adds the exact photographed vocabulary, date and independent pr
   assert.equal(lesson.storageKey, 'spelling-ea-ee:list:2026-10-30:v1');
   assert.equal(new Set(LESSONS.map(x => x.storageKey)).size, LESSONS.length);
   assert.equal(getLessonHref(lesson), './?list=2026-10-30');
-  assert.deepEqual(LESSONS.map(x => x.id), ['2026-09-25','2026-10-02','2026-10-16','2026-10-19','2026-10-30','2026-11-06', '2026-11-13']);
-  assert.equal(ALL_WORDS.length, 69);
+  assert.deepEqual(LESSONS.map(x => x.id), ['2026-09-25','2026-10-02','2026-10-16','2026-10-19','2026-10-30','2026-11-06', '2026-11-13', '2026-11-20']);
+  assert.equal(ALL_WORDS.length, 79);
   assert.ok(Object.isFrozen(lesson) && Object.isFrozen(lesson.words));
   assert.ok(lesson.words.every(Object.isFrozen));
 });

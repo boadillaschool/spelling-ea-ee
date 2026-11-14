@@ -14,6 +14,8 @@ A small, static, mobile-first spelling app. The front page lets families choose 
 
 `people`, `you` and `your` are extra spelling words, not examples of their lists' patterns. Their learning flows skip the pattern-choice step. Both `ph` groups are highlighted in `photograph`.
 
+- **20 November 2026 — ir:** `skirt`, `bird`, `first`, `birthday`, `thirsty`, `shirt`, `thirteen`, `dirty`, `said`, `one`. The eight `ir` words highlight that pair; `said` and `one` are special words with no pattern-choice step.
+
 ## Public address and publication
 
 **https://boadillaschool.github.io/spelling/** is the stable public address for every weekly list.
@@ -32,9 +34,9 @@ The origin and all existing lesson storage keys remain unchanged. Moving between
 
 ## Dated routes and separate progress
 
-- The root page is the list chooser. `?list=2026-09-25`, `?list=2026-10-02`, `?list=2026-10-16` `?list=2026-10-19`, `?list=2026-10-30` , `?list=2026-11-06` and `?list=2026-11-13` open the corresponding lists; unknown IDs return to the chooser.
+- The root page is the list chooser. `?list=2026-09-25`, `?list=2026-10-02`, `?list=2026-10-16` `?list=2026-10-19`, `?list=2026-10-30` , `?list=2026-11-06` , `?list=2026-11-13` and `?list=2026-11-20` open the corresponding lists; unknown IDs return to the chooser.
 - **Inicio** returns to the current lesson. **Elegir otra lista** opens the front page; links, reload and browser Back/Forward use ordinary same-origin navigation.
-- Each list keeps its own aggregate progress. The first list retains the original `spelling-ea-ee:v1` storage key, so existing work is not lost. The later lists use `spelling-ea-ee:list:2026-10-02:v1`, `spelling-ea-ee:list:2026-10-16:v1` `spelling-ea-ee:list:2026-10-19:v1`, `spelling-ea-ee:list:2026-10-30:v1` , `spelling-ea-ee:list:2026-11-06:v1` and `spelling-ea-ee:list:2026-11-13:v1`.
+- Each list keeps its own aggregate progress. The first list retains the original `spelling-ea-ee:v1` storage key, so existing work is not lost. The later lists use `spelling-ea-ee:list:2026-10-02:v1`, `spelling-ea-ee:list:2026-10-16:v1` `spelling-ea-ee:list:2026-10-19:v1`, `spelling-ea-ee:list:2026-10-30:v1` , `spelling-ea-ee:list:2026-11-06:v1` , `spelling-ea-ee:list:2026-11-13:v1` and `spelling-ea-ee:list:2026-11-20:v1`.
 - Reset clears only the current list. Sharing includes the list date and its canonical link, without unrelated query parameters.
 - Curriculum metadata is in `lessons.js`; the original inventory remains unchanged in `data.js`. No source photographs or identifying school/child information are published.
 
@@ -128,6 +130,7 @@ npm run check:sh-ch
 npm run check:long-i
 npm run check:split-i
 npm run check:vowels
+npm run check:ir
 npm run check:rewrite
 PORTAL_ROOT=../boadillaschool.github.io npm run check:migration
 npm run check:browser
@@ -150,8 +153,8 @@ The checks serve the app locally, exercise all-ten and subset sessions, keyboard
 | `ui-helpers.js` | Small pure UI helpers: nullish-safe child lists, audio button label |
 | `focus-policy.js` | Pure focus policy: focus moves on screen/step changes, not on same-step feedback |
 | `speech.js`, `spelling-timings.js` | Bundled word/spelling playback, cancellation, letter cues and slower en-GB Web Speech fallback |
-| `audio/en-gb-v1/`, `audio/spelling-en-gb-v1/` | Sixty-nine pronunciation clips and sixty-nine paced spelling clips, all same-origin |
+| `audio/en-gb-v1/`, `audio/spelling-en-gb-v1/` | One pronunciation clip and one paced spelling clip per unique word, all same-origin |
 | `ink-pad.js` | Pure local freehand-stroke state, normalization, undo and clear logic |
-| `illustrations.js`, `images/words/` | Fixed word-to-image metadata, Spanish alt text and sixty-nine original meaning illustrations |
+| `illustrations.js`, `images/words/` | Fixed word-to-image metadata, Spanish alt text and an original meaning illustration for every unique word |
 | `data.js` | The ten words with cues and sentences |
 | `tests/` | Unit tests |

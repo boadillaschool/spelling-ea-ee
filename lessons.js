@@ -80,6 +80,19 @@ const VOWEL_WORDS = Object.freeze([
   SH_CH_WORDS.find(item => item.id === 'your'),
 ]);
 
+const IR_WORDS = Object.freeze([
+  { id: 'skirt', word: 'skirt', pattern: 'ir', cue: 'falda', sentence: 'She wears a blue skirt.' },
+  { id: 'bird', word: 'bird', pattern: 'ir', cue: 'pájaro', sentence: 'The bird is singing in the tree.' },
+  { id: 'first', word: 'first', pattern: 'ir', cue: 'primero', sentence: 'I am first in the line.' },
+  { id: 'birthday', word: 'birthday', pattern: 'ir', cue: 'cumpleaños', sentence: 'Today is my birthday.' },
+  { id: 'thirsty', word: 'thirsty', pattern: 'ir', cue: 'tener sed', sentence: 'I am thirsty after playing.' },
+  { id: 'shirt', word: 'shirt', pattern: 'ir', cue: 'camisa', sentence: 'My shirt has three buttons.' },
+  { id: 'thirteen', word: 'thirteen', pattern: 'ir', cue: 'trece', sentence: 'There are thirteen stars.' },
+  { id: 'dirty', word: 'dirty', pattern: 'ir', cue: 'sucio', sentence: 'My boots are dirty.' },
+  { id: 'said', word: 'said', pattern: '', cue: 'dijo', sentence: 'She said hello to me.' },
+  { id: 'one', word: 'one', pattern: '', cue: 'uno', sentence: 'I have one apple.' },
+].map(Object.freeze));
+
 export const LESSONS = Object.freeze([
   Object.freeze({
     id: '2026-09-25', date: 'Viernes 25 de septiembre de 2026', shortDate: '25/09/2026',
@@ -122,6 +135,12 @@ export const LESSONS = Object.freeze([
     title: 'Escucha y compara las vocales', patterns: Object.freeze(['a', 'a…e', 'e', 'ea', 'i', 'i…e', 'o', 'oa']),
     intro: 'Escucha y compara: rat y gate, bed y beads, pin y pine, socks y soak. Fíjate en las letras de cada vocal. También repasamos «you» y «your».',
     words: VOWEL_WORDS, storageKey: 'spelling-ea-ee:list:2026-11-13:v1',
+  }),
+  Object.freeze({
+    id: '2026-11-20', date: 'Viernes 20 de noviembre de 2026', shortDate: '20/11/2026',
+    title: 'Palabras con ir', patterns: Object.freeze(['ir']),
+    intro: 'Fíjate en las letras ir de «bird» y «shirt». Escucha cada palabra y recuerda cómo se escribe. También practicamos «said» y «one», dos palabras especiales.',
+    words: IR_WORDS, storageKey: 'spelling-ea-ee:list:2026-11-20:v1',
   }),
 ]);
 

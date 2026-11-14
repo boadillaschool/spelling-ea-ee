@@ -1,6 +1,6 @@
 # Ilustraciones de vocabulario
 
-Sesenta y nueve dibujos vectoriales originales creados expresamente para este proyecto con
+Setenta y nueve dibujos vectoriales originales creados expresamente para este proyecto con
 formas y trazados SVG, con asistencia de IA. No proceden de bancos de imágenes,
 fotografías, emojis, fuentes de iconos ni servicios externos de imágenes;
 no contienen materiales de terceros.
@@ -88,6 +88,28 @@ Se reutilizan sin cambios `pine`, `you` y `your`. Todos los dibujos nuevos
 siguen el mismo contrato SVG local, la paleta y los metadatos en español;
 no contienen texto inglés visible ni referencias externas.
 La regresión específica es `node --test tests/nov13-illustrations.test.js`.
+
+## Lista del 20/11/2026
+
+Se añaden diez ilustraciones originales, creadas con la misma paleta y sin
+texto inglés visible ni recursos externos. Las escenas se dibujaron sobre
+320 × 240 y se ajustan uniformemente al marco habitual 320 × 200, sin recortar
+ni deformar. Los recursos anteriores no cambian.
+
+| Archivo | Significado |
+| --- | --- |
+| `skirt.svg` | Falda azul con pliegues y bajo ancho continuo. |
+| `bird.svg` | Pájaro posado en una rama, cantando. |
+| `first.svg` | Primera persona de una fila tranquila, junto a una puerta. |
+| `birthday.svg` | Tarta con velas, globos y un regalo sin datos personales. |
+| `thirsty.svg` | Niño después de jugar que alcanza un vaso de agua. |
+| `shirt.svg` | Camisa con cuello, mangas y tres botones. |
+| `thirteen.svg` | Trece estrellas separadas en filas de cinco, cinco y tres. |
+| `dirty.svg` | Dos botas manchadas de barro. |
+| `said.svg` | Una persona habla y otra escucha, sin letras en el bocadillo. |
+| `one.svg` | Una sola manzana. |
+
+Pruebas específicas: `node --test tests/nov14-illustrations.test.js`.
 
 Comprobación sin dependencias adicionales:
 `node --test tests/illustration-assets.test.js tests/illustrations.test.js tests/sh-ch-illustrations.test.js`.

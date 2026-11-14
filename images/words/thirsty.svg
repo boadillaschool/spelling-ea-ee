@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Tener sed después de jugar</title>
+  <desc id="descripcion">Tener sed: un niño estira el brazo hacia un vaso de agua sobre una mesa. Tiene una gota de sudor en la frente y una pelota descansa en el suelo después de jugar.</desc>
+  <g transform="translate(26.666667 0) scale(0.833333333)" stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M35 219H291" fill="none" stroke="#7CAD96"/>
+    <path d="M208 166V216M280 166V216" fill="none" stroke="#B5864F" stroke-width="7"/>
+    <rect x="197" y="157" width="94" height="10" rx="3" fill="#F1D4A2"/>
+    <path id="vaso" d="M232 106H267L263 155H236Z" fill="#FBF7EE"/>
+    <path id="agua" d="M234 126Q242 123 250 127Q258 130 265 126L263 155H236Z" fill="#CFE3EC"/>
+    <path d="M241 131L242 146" fill="none" stroke="#FBF7EE" stroke-width="3"/>
+    <path d="M85 174L83 205H97L104 184L114 205H128L123 174Z" fill="#477DA6"/>
+    <path d="M84 204H97V217H74Q72 210 84 204ZM114 204H127L137 211Q142 217 135 217H115Z" fill="#FBF7EE"/>
+    <path d="M89 105V121L111 124L115 100Z" fill="#E5B18A"/>
+    <path id="brazo-extendido" d="M121 121L167 132L207 124L219 119Q223 117 225 120L219 125L226 124Q230 125 228 128L219 133L211 135L166 145L120 138Z" fill="#E5B18A"/>
+    <path d="M86 124L73 153L78 169Q82 176 87 172L86 154L97 133" fill="#E5B18A"/>
+    <path d="M86 119Q103 113 117 120L134 126L130 144L121 141L126 178Q104 185 82 176L85 140L79 139Z" fill="#146B63"/>
+    <path d="M84 63Q95 49 113 58Q128 65 125 83L133 90Q135 95 127 96Q125 114 109 113Q87 111 82 93Q76 78 84 63Z" fill="#E5B18A"/>
+    <path d="M82 88Q70 70 85 56Q101 42 117 52Q128 56 127 68Q115 72 106 64L96 78L88 76Z" fill="#594235"/>
+    <path d="M86 83Q76 79 78 90Q80 96 88 95" fill="#E5B18A"/>
+    <circle cx="117" cy="81" r="1.8" fill="#17324D" stroke="none"/>
+    <ellipse cx="121" cy="102" rx="3" ry="2.5" fill="#594235" stroke-width="1.5"/>
+    <path id="sudor" d="M116 59Q109 69 114 73Q119 76 122 70Q123 66 116 59Z" fill="#CFE3EC" stroke-width="1.5"/>
+    <circle cx="46" cy="201" r="17" fill="#F2C14E"/>
+    <path d="M32 191Q48 201 38 216M58 190Q48 201 61 208" fill="none" stroke-width="1.8"/>
+  </g>
+</svg>

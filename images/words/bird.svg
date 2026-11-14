@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Un pájaro canta en una rama</title>
+  <desc id="descripcion">Un pájaro pequeño con pico, ala, cola y dos patas está posado en una rama con hojas. Unas notas musicales junto al pico indican que canta.</desc>
+  <g transform="translate(26.666667 0) scale(0.833333333)" stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M41 188Q157 195 281 174" fill="none" stroke="#594235" stroke-width="8"/>
+    <path d="M247 180Q245 156 269 153Q269 172 247 180ZM78 189Q64 169 46 172Q53 192 78 189Z" fill="#7CAD96"/>
+    <path d="M244 180L267 155M78 189L49 174" fill="none" stroke-width="1.8"/>
+    <path d="M145 162V186L136 190M145 186L154 190M168 163V184L160 188M168 184L176 188" fill="none" stroke="#B5864F" stroke-width="3.5"/>
+    <path id="cola" d="M125 132L74 118L93 155L129 154Z" fill="#35658C"/>
+    <path d="M88 131L121 146" fill="none" stroke="#6896B7"/>
+    <path id="cuerpo" d="M119 104Q137 79 163 88Q171 62 193 68Q215 74 214 99Q213 118 192 125Q189 167 157 170Q118 170 113 140Q109 120 119 104Z" fill="#477DA6"/>
+    <path d="M174 112Q188 106 193 112Q197 149 174 164Q156 174 141 164Q163 152 174 112Z" fill="#F2C14E" stroke="none"/>
+    <path id="ala" d="M126 111Q152 104 169 126Q157 150 131 147Q139 138 138 130Q124 125 126 111Z" fill="#6896B7"/>
+    <path d="M136 121Q146 124 150 133" fill="none" stroke="#35658C"/>
+    <path id="pico" d="M211 91L234 101L211 106Z" fill="#F2C14E"/>
+    <circle cx="195" cy="87" r="3" fill="#17324D" stroke="none"/>
+    <path d="M248 77V49L261 46V70" fill="none" stroke="#146B63" stroke-width="3"/>
+    <ellipse cx="243" cy="78" rx="5" ry="3.8" fill="#146B63" stroke="none"/>
+    <ellipse cx="256" cy="71" rx="5" ry="3.8" fill="#146B63" stroke="none"/>
+  </g>
+</svg>

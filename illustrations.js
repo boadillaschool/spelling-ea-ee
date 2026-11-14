@@ -1,5 +1,15 @@
 // Original, same-origin illustrations. No learner text or remote image requests.
 const illustrations = new Map([
+  ['skirt', 'Falda: una prenda azul de cintura estrecha y bajo ancho continuo, con pliegues y sin mangas ni perneras.'],
+  ['bird', 'Pájaro: un ave pequeña con pico, ala, cola y patas, posada en una rama; unas notas indican que canta.'],
+  ['first', 'Primero: el niño junto a la puerta abierta está delante de otras dos personas que esperan en una fila tranquila. Una flecha lo señala.'],
+  ['birthday', 'Cumpleaños: una tarta con velas decorativas, globos y un regalo, sin cifras ni nombres.'],
+  ['thirsty', 'Tener sed: un niño después de jugar estira el brazo hacia un vaso de agua; tiene una gota de sudor en la frente.'],
+  ['shirt', 'Camisa: una prenda verde con cuello, dos mangas cortas y exactamente tres botones en la abertura central.'],
+  ['thirteen', 'Trece: trece estrellas separadas, en dos filas de cinco y una fila de tres, para poder contarlas.'],
+  ['dirty', 'Sucio: un par de botas cubiertas de manchas y salpicaduras de barro, sobre un charco de tierra mojada.'],
+  ['said', 'Dijo: una niña habla a otra persona que la escucha; el bocadillo que sale de su boca contiene trazos de voz, sin letras.'],
+  ['one', 'Uno: una sola manzana roja con su tallo y una hoja, sin más frutas alrededor.'],
   ['soak', 'Poner en remojo: un paño está sumergido en el agua de un recipiente transparente, con pliegues visibles y ondas de agua a su alrededor.'],
   ['socks', 'Calcetines: un par de calcetines verdes separados, con puños de canalé claros, talones y punteras amarillos.'],
   ['pin', 'Alfiler: un alfiler recto con una cabeza redonda roja, una varilla metálica fina y una punta afilada.'],

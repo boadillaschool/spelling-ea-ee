@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Primero en la fila</title>
+  <desc id="descripcion">El primero es el niño junto a la puerta abierta, señalado por una flecha. Detrás esperan otras dos personas en una fila tranquila, todas con los pies apoyados en el suelo.</desc>
+  <g transform="translate(26.666667 0) scale(0.833333333)" stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 213H286" fill="none" stroke="#7CAD96"/>
+    <rect x="23" y="65" width="43" height="145" rx="2" fill="#CFE3EC"/>
+    <path id="puerta-abierta" d="M24 65L46 56V213L24 207Z" fill="#FBF7EE"/>
+    <circle cx="39" cy="139" r="2.5" fill="#B5864F"/>
+    <path id="indicador" d="M105 28V58M96 49L105 59L114 49" fill="none" stroke="#146B63" stroke-width="4"/>
+    <g id="persona-1" transform="translate(105 0)">
+      <path d="M-16 163L-15 202H-3L0 176L6 202H18L16 163Z" fill="#526272"/>
+      <path d="M-15 200H-3V212H-23Q-25 205 -15 200ZM6 200H18V212H-1Q-3 205 6 200Z" fill="#FBF7EE"/>
+      <path d="M-17 121Q0 114 17 121L21 168H-21Z" fill="#F2C14E"/>
+      <path d="M-16 130L-23 158Q-24 164 -19 165M17 130L21 157" fill="none" stroke="#E5B18A" stroke-width="8"/>
+      <path d="M-6 109V120H7V109" fill="#E5B18A"/>
+      <circle cy="91" r="21" fill="#E5B18A"/>
+      <path d="M-20 87Q-23 66 0 68Q24 69 21 91L13 87L8 78Q-6 83 -20 80Z" fill="#594235"/>
+      <circle cx="-9" cy="91" r="1.8" fill="#17324D" stroke="none"/>
+      <path d="M-18 96L-22 99L-17 101M-14 105Q-10 108 -6 105" fill="none" stroke-width="1.8"/>
+    </g>
+    <g id="persona-2" transform="translate(177 0)">
+      <path d="M-16 163L-15 202H-3L0 176L6 202H18L16 163Z" fill="#477DA6"/>
+      <path d="M-15 200H-3V212H-23Q-25 205 -15 200ZM6 200H18V212H-1Q-3 205 6 200Z" fill="#FBF7EE"/>
+      <path d="M-17 121Q0 114 17 121L21 168H-21Z" fill="#146B63"/>
+      <path d="M-16 130L-22 158M17 130L21 158" fill="none" stroke="#BE805C" stroke-width="8"/>
+      <path d="M-6 109V120H7V109" fill="#BE805C"/>
+      <circle cy="91" r="21" fill="#BE805C"/>
+      <path d="M-21 87Q-24 65 0 68Q22 67 21 91L14 85L9 77Q-6 87 -21 81Z" fill="#594235"/>
+      <circle cx="-9" cy="91" r="1.8" fill="#17324D" stroke="none"/>
+      <path d="M-18 96L-22 99L-17 101M-14 105Q-10 108 -6 105" fill="none" stroke-width="1.8"/>
+    </g>
+    <g id="persona-3" transform="translate(249 0)">
+      <path d="M-16 163L-15 202H-3L0 176L6 202H18L16 163Z" fill="#526272"/>
+      <path d="M-15 200H-3V212H-23Q-25 205 -15 200ZM6 200H18V212H-1Q-3 205 6 200Z" fill="#FBF7EE"/>
+      <path d="M-17 121Q0 114 17 121L21 168H-21Z" fill="#6896B7"/>
+      <path d="M-16 130L-22 158M17 130L21 158" fill="none" stroke="#E5B18A" stroke-width="8"/>
+      <path d="M-6 109V120H7V109" fill="#E5B18A"/>
+      <circle cy="91" r="21" fill="#E5B18A"/>
+      <path d="M-21 87Q-23 64 0 67Q23 68 21 91L13 86L5 77Q-9 86 -21 81Z" fill="#B5864F"/>
+      <circle cx="-9" cy="91" r="1.8" fill="#17324D" stroke="none"/>
+      <path d="M-18 96L-22 99L-17 101M-14 105Q-10 108 -6 105" fill="none" stroke-width="1.8"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Dijo algo a otra persona</title>
+  <desc id="descripcion">Dijo: una niña habla a otra persona que la escucha mirándola. Un bocadillo con la punta dirigida a su boca contiene trazos de voz, sin letras ni palabras. La pista verbal expresa que ya lo dijo.</desc>
+  <g transform="translate(26.666667 0) scale(0.833333333)" stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M32 217H285" fill="none" stroke="#7CAD96"/>
+    <g id="hablante">
+      <path d="M63 193L61 215H76L82 193L89 215H105L100 193Z" fill="#477DA6"/>
+      <path d="M100 154L124 167L145 150Q150 144 145 141Q141 139 137 145L123 154L108 142Z" fill="#BE805C"/>
+      <path d="M62 151L48 181Q47 188 53 189L61 180L72 159Z" fill="#BE805C"/>
+      <path d="M63 145Q81 137 101 144L114 150L107 167L99 162L105 195H58L62 165L56 163Z" fill="#F2C14E"/>
+      <path d="M74 130V145H90V130" fill="#BE805C"/>
+      <path d="M62 87Q40 76 40 95Q35 112 49 123L61 106Z" fill="#594235"/>
+      <path d="M60 92Q77 78 94 90Q105 97 104 111L111 116Q115 120 107 122Q102 137 85 137Q65 134 61 119Q55 104 60 92Z" fill="#BE805C"/>
+      <path d="M60 111Q48 91 64 81Q80 72 96 85Q105 91 105 100Q87 101 80 91L66 107Z" fill="#594235"/>
+      <circle cx="96" cy="109" r="1.8" fill="#17324D" stroke="none"/>
+      <ellipse cx="103" cy="125" rx="3" ry="2.8" fill="#594235" stroke-width="1.4"/>
+    </g>
+    <g id="oyente">
+      <path d="M222 194L219 215H234L239 194L244 215H259L255 194Z" fill="#526272"/>
+      <path d="M219 151L208 179Q207 187 213 188L223 164M256 153L271 182Q273 189 267 191" fill="none" stroke="#E5B18A" stroke-width="9"/>
+      <path d="M219 146Q239 138 258 147L261 197H215Z" fill="#146B63"/>
+      <path d="M230 131V145H247V131" fill="#E5B18A"/>
+      <path d="M221 90Q238 81 252 90Q267 101 261 119Q257 137 239 137Q224 136 219 122L212 119Q210 116 217 111Q216 99 221 90Z" fill="#E5B18A"/>
+      <path d="M218 104Q211 88 228 81Q252 73 264 94L262 109L251 99L247 90Q232 103 218 96Z" fill="#B5864F"/>
+      <circle cx="226" cy="109" r="1.8" fill="#17324D" stroke="none"/>
+      <path d="M222 126Q228 130 234 125" fill="none" stroke-width="1.8"/>
+    </g>
+    <path id="bocadillo" d="M125 34H204Q220 34 220 50V65Q220 82 204 82H151L119 106L128 82H125Q109 82 109 65V50Q109 34 125 34Z" fill="#FBF7EE"/>
+    <path id="voz-1" d="M140 53Q149 58 140 63" fill="none" stroke="#146B63" stroke-width="3"/>
+    <path id="voz-2" d="M158 47Q174 58 158 69" fill="none" stroke="#146B63" stroke-width="3"/>
+    <path id="voz-3" d="M179 41Q201 58 179 75" fill="none" stroke="#146B63" stroke-width="3"/>
+  </g>
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200" role="img" aria-labelledby="titulo descripcion">
+  <title id="titulo">Camisa verde con tres botones</title>
+  <desc id="descripcion">Una camisa verde tiene cuello doblado, dos mangas cortas, un bolsillo y exactamente tres botones en la abertura central. Es una prenda para la parte superior del cuerpo.</desc>
+  <g transform="translate(26.666667 0) scale(0.833333333)" stroke="#17324D" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path id="prenda" d="M113 55L139 45H181L207 55L263 91L239 125L210 107V203H110V107L81 125L57 91Z" fill="#146B63"/>
+    <path d="M139 45Q160 57 181 45L160 76Z" fill="#7CAD96"/>
+    <path id="cuello-1" d="M139 45L160 67L144 87L126 60Z" fill="#FBF7EE"/>
+    <path id="cuello-2" d="M181 45L160 67L176 87L194 60Z" fill="#FBF7EE"/>
+    <path d="M160 69V202M154 85V201" fill="none" stroke="#7CAD96" stroke-width="1.8"/>
+    <path d="M62 94L83 118M258 94L237 118M115 195H205" fill="none" stroke="#7CAD96"/>
+    <path d="M180 102H200V125L190 133L180 125Z" fill="#7CAD96"/>
+    <path d="M181 108H199" fill="none" stroke-width="1.8"/>
+    <circle id="boton-1" cx="160" cy="102" r="4" fill="#F2C14E" stroke-width="1.8"/>
+    <circle id="boton-2" cx="160" cy="132" r="4" fill="#F2C14E" stroke-width="1.8"/>
+    <circle id="boton-3" cx="160" cy="162" r="4" fill="#F2C14E" stroke-width="1.8"/>
+  </g>
+</svg>

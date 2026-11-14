@@ -78,6 +78,16 @@ const CUES = Object.freeze({
   "mistake": Object.freeze({ letters: Object.freeze([0.0, 0.9264583333333334, 1.9157916666666666, 2.9261666666666666, 3.9076666666666666, 4.87575, 5.873083333333334]), lastLetterEndAt: 6.280875, pauseBeforeWord: 1.25, wordAt: 7.530875 }),
   "because": Object.freeze({ letters: Object.freeze([0.0, 0.9713333333333334, 1.929125, 2.9984166666666665, 3.9665, 4.952, 5.962375]), lastLetterEndAt: 6.370166666666667, pauseBeforeWord: 1.25, wordAt: 7.620166666666667 }),
   "should": Object.freeze({ letters: Object.freeze([0.0, 1.010375, 2.048625, 3.050333333333333, 4.035833333333334, 4.98325]), lastLetterEndAt: 5.418208333333333, pauseBeforeWord: 1.25, wordAt: 6.668208333333333 }),
+  "skirt": Object.freeze({ letters: Object.freeze([0.0, 1.010375, 2.0077083333333334, 2.9970416666666666, 4.021416666666667]), lastLetterEndAt: 4.452916666666667, pauseBeforeWord: 1.25, wordAt: 5.702916666666667 }),
+  "bird": Object.freeze({ letters: Object.freeze([0.0, 0.9713333333333334, 1.9606666666666666, 2.9850416666666666]), lastLetterEndAt: 3.42, pauseBeforeWord: 1.25, wordAt: 4.67 }),
+  "first": Object.freeze({ letters: Object.freeze([0.0, 0.9970416666666667, 1.986375, 3.01075, 4.021125]), lastLetterEndAt: 4.452625, pauseBeforeWord: 1.25, wordAt: 5.702625 }),
+  "birthday": Object.freeze({ letters: Object.freeze([0.0, 0.9713333333333334, 1.9606666666666666, 2.9850416666666666, 3.9665416666666666, 5.004791666666667, 5.98975, 6.957833333333333]), lastLetterEndAt: 7.470291666666666, pauseBeforeWord: 1.25, wordAt: 8.720291666666666 }),
+  "thirsty": Object.freeze({ letters: Object.freeze([0.0, 0.9815, 2.01975, 3.0090833333333333, 4.033458333333333, 5.043833333333334, 6.025333333333333]), lastLetterEndAt: 6.537791666666666, pauseBeforeWord: 1.25, wordAt: 7.787791666666666 }),
+  "shirt": Object.freeze({ letters: Object.freeze([0.0, 1.010375, 2.048625, 3.0379583333333335, 4.062333333333333]), lastLetterEndAt: 4.493833333333333, pauseBeforeWord: 1.25, wordAt: 5.743833333333333 }),
+  "thirteen": Object.freeze({ letters: Object.freeze([0.0, 0.9815, 2.01975, 3.0090833333333333, 4.033458333333333, 5.014958333333333, 5.97275, 6.930541666666667]), lastLetterEndAt: 7.328791666666667, pauseBeforeWord: 1.25, wordAt: 8.578791666666667 }),
+  "dirty": Object.freeze({ letters: Object.freeze([0.0, 0.9849583333333334, 1.9742916666666666, 2.998666666666667, 3.980166666666667]), lastLetterEndAt: 4.492625, pauseBeforeWord: 1.25, wordAt: 5.742625 }),
+  "said": Object.freeze({ letters: Object.freeze([0.0, 1.010375, 1.9784583333333334, 2.967791666666667]), lastLetterEndAt: 3.40275, pauseBeforeWord: 1.25, wordAt: 4.65275 }),
+  "one": Object.freeze({ letters: Object.freeze([0.0, 1.0017083333333334, 1.9499583333333332]), lastLetterEndAt: 2.35775, pauseBeforeWord: 1.25, wordAt: 3.60775 }),
 });
 
 export function getSpellingCues(item) {

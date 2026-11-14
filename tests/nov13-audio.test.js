@@ -99,8 +99,9 @@ test('13 November provenance retains the exact confirmed sentences and voice pro
   assert.ok(provenance.includes('en-GB-SoniaNeural'));
 });
 
-test('13 November directories contain exactly the retained plus seven new IDs', () => {
-  const expected = [...retained, ...confirmed.map(({ id }) => id)].map(id => `${id}.mp3`).sort();
+test('13 November assets and confirmed 20 November additions form the exact inventory', () => {
+  const nextWeek = ['skirt', 'bird', 'first', 'birthday', 'thirsty', 'shirt', 'thirteen', 'dirty', 'said', 'one'];
+  const expected = [...retained, ...confirmed.map(({ id }) => id), ...nextWeek].map(id => `${id}.mp3`).sort();
   assert.equal(new Set(expected).size, expected.length, 'no duplicate existing asset IDs');
   for (const directory of ['en-gb-v1', 'spelling-en-gb-v1']) {
     const actual = readdirSync(new URL(`../audio/${directory}/`, import.meta.url)).sort();

@@ -47,7 +47,7 @@ const confirmed = [
   ]
 ];
 const retained = ["alphabet", "between", "cheese", "chess", "child", "chops", "cried", "dolphin", "dry", "easy", "elephant", "family", "fly", "friends", "frighten", "heel", "jeans", "lied", "light", "meat", "night", "peanuts", "people", "pharmacy", "photograph", "reach", "read", "shells", "shoes", "shops", "shorts", "sky", "street", "sweets", "telephone", "tied-up", "tights", "trophy", "you", "your"];
-const later = ["smoke", "home", "bone", "phone", "mule", "cube", "tune", "wake-up", "came", "mistake", "because", "should", "rat", "gate", "bed", "beads", "pin", "socks", "soak"];
+const later = ["smoke", "home", "bone", "phone", "mule", "cube", "tune", "wake-up", "came", "mistake", "because", "should", "rat", "gate", "bed", "beads", "pin", "socks", "soak", "skirt", "bird", "first", "birthday", "thirsty", "shirt", "thirteen", "dirty", "said", "one"];
 
 test('30 October audio contains every confirmed clip, PCM-derived cue and exact sentence', () => {
   const provenance = readFileSync(new URL('../audio/README.md', import.meta.url), 'utf8');
